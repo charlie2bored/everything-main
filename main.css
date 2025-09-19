@@ -409,6 +409,7 @@ body, p, li, nav {
 
 .title-line {
     display: block;
+    margin-bottom: var(--space-sm);
     opacity: 0;
     transform: translateY(50px);
     animation: titleReveal 1s ease-out forwards;
