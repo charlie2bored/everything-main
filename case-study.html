@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Case Study - Charlie Portfolio</title>
+    <meta name="description" id="pageDescription" content="Detailed case study of a creative project">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/animations.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    
+    <style>
+        /* Case Study Specific Styles */
+        .case-study-hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .case-study-hero {
+                background-attachment: scroll;
+            }
+        }
+        
+        .case-study-hero-content {
+            text-align: center;
+            color: var(--text);
+            max-width: 800px;
+            padding: 0 var(--space-lg);
+        }
+        
+        .case-study-title {
+            font-size: var(--step-3);
+            font-weight: var(--weight-black);
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.02em;
+        }
+        
+        .case-study-subtitle {
+            font-size: var(--step-1);
+            color: var(--c-gray-100);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .case-study-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+        }
+        
+        .case-study-tag {
+            padding: var(--space-xs) var(--space-sm);
+            background-color: var(--accent);
+            color: var(--bg);
+            border-radius: var(--radius-sm);
+            font-size: var(--step--1);
+            font-weight: var(--weight-medium);
+        }
+        
+        .breadcrumb {
+            position: fixed;
+            top: 100px;
+            left: var(--space-lg);
+            z-index: var(--z-nav);
+        }
+        
+        .breadcrumb-link {
+            color: var(--c-gray-100);
+            text-decoration: none;
+            font-size: var(--step--1);
+            transition: color var(--transition-fast);
+        }
+        
+        .breadcrumb-link:hover {
+            color: var(--accent);
+        }
+        
+        .case-study-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+        
+        .case-study-section {
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .case-study-section h2 {
+            font-size: var(--step-2);
+            font-weight: var(--weight-bold);
+            margin-bottom: var(--space-lg);
+            color: var(--text);
+        }
+        
+        .case-study-section p {
+            font-size: var(--step-0);
+            line-height: 1.7;
+            color: var(--c-gray-100);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-3xl);
+            padding: var(--space-xl);
+            background-color: var(--surface);
+            border-radius: var(--radius);
+        }
+        
+        .meta-item h3 {
+            font-size: var(--step-0);
+            font-weight: var(--weight-semibold);
+            color: var(--text);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .meta-item p,
+        .meta-item ul {
+            font-size: var(--step--1);
+            color: var(--c-gray-100);
+        }
+        
+        .meta-item ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .meta-item li {
+            padding: var(--space-xs) 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .meta-item li:last-child {
+            border-bottom: none;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+        
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            background-color: var(--surface);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--c-gray-100);
+            font-size: var(--step-0);
+        }
+        
+        .outcomes-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .outcomes-list li {
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--border);
+            font-size: var(--step-0);
+            color: var(--c-gray-100);
+        }
+        
+        .outcomes-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .outcomes-list li::before {
+            content: "→";
+            color: var(--accent);
+            font-weight: var(--weight-bold);
+            margin-right: var(--space-sm);
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: var(--space-3xl) 0;
+            border-top: 1px solid var(--border);
+            margin-top: var(--space-3xl);
+        }
+        
+        .cta-section h2 {
+            font-size: var(--step-2);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .cta-section p {
+            font-size: var(--step-0);
+            color: var(--c-gray-100);
+            margin-bottom: var(--space-xl);
+        }
+        
+        @media (max-width: 768px) {
+            .breadcrumb {
+                left: var(--space-md);
+            }
+            
+            .case-study-hero {
+                background-attachment: scroll;
+            }
+            
+            .meta-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../index.html#work" class="breadcrumb-link">← Back to Work</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="case-study-hero" id="hero">
+        <div class="case-study-hero-content">
+            <h1 class="case-study-title" id="heroTitle">Loading...</h1>
+            <p class="case-study-subtitle" id="heroSubtitle">Loading...</p>
+            <div class="case-study-tags" id="heroTags">
+                <!-- Tags will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="case-study-content">
+        <!-- Meta Information -->
+        <section class="case-study-section">
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <h3>Role</h3>
+                    <p id="projectRole">Loading...</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Scope</h3>
+                    <ul id="projectScope">
+                        <!-- Scope items will be populated by JavaScript -->
+                    </ul>
+                </div>
+                <div class="meta-item">
+                    <h3>Timeline</h3>
+                    <p>6-8 weeks</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Links</h3>
+                    <p><a href="#" style="color: var(--accent);">Live Site</a> • <a href="#" style="color: var(--accent);">Case Study</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="case-study-section">
+            <h2>Overview</h2>
+            <p id="projectSummary">Loading...</p>
+        </section>
+
+        <!-- Process -->
+        <section class="case-study-section">
+            <h2>Process</h2>
+            <p>This project followed a structured design process, beginning with discovery and research to understand the client's needs and target audience. Through iterative design and development cycles, we created a solution that not only met the requirements but exceeded expectations.</p>
+            
+            <p>The approach combined user-centered design principles with technical excellence, ensuring both aesthetic appeal and functional performance. Regular client feedback sessions and user testing informed key decisions throughout the project lifecycle.</p>
+        </section>
+
+        <!-- Gallery -->
+        <section class="case-study-section">
+            <h2>Gallery</h2>
+            <div class="gallery" id="projectGallery">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Outcomes -->
+        <section class="case-study-section">
+            <h2>Outcomes</h2>
+            <ul class="outcomes-list" id="projectOutcomes">
+                <!-- Outcomes will be populated by JavaScript -->
+            </ul>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Let's Work Together</h2>
+            <p>Interested in collaborating on your next project? I'd love to hear about your vision and explore how we can bring it to life.</p>
+            <a href="../index.html#contact" class="btn-primary">
+                <span class="btn-text">Get In Touch</span>
+                <div class="btn-ripple"></div>
+            </a>
+        </section>
+    </main>
+
+    <script>
+        // Get project data from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('slug');
+        
+        if (!slug) {
+            // Redirect to 404 or home if no slug provided
+            window.location.href = '../index.html';
+        }
+        
+        // Fetch project data
+        async function loadProject() {
+            try {
+                const response = await fetch('../projects.json');
+                const projects = await response.json();
+                const project = projects.find(p => p.slug === slug);
+                
+                if (!project) {
+                    // Project not found, redirect to home
+                    window.location.href = '../index.html';
+                    return;
+                }
+                
+                // Update page title and meta
+                document.getElementById('pageTitle').textContent = `${project.title} - Charlie Portfolio`;
+                document.getElementById('pageDescription').textContent = project.summary;
+                
+                // Update hero section
+                document.getElementById('heroTitle').textContent = project.title;
+                document.getElementById('heroSubtitle').textContent = project.subtitle;
+                
+                // Set hero background
+                const hero = document.getElementById('hero');
+                hero.style.backgroundImage = `url(${project.hero})`;
+                
+                // Update tags
+                const tagsContainer = document.getElementById('heroTags');
+                tagsContainer.innerHTML = project.tags.map(tag => 
+                    `<span class="case-study-tag">${tag}</span>`
+                ).join('');
+                
+                // Update meta information
+                document.getElementById('projectRole').textContent = project.role;
+                
+                const scopeContainer = document.getElementById('projectScope');
+                scopeContainer.innerHTML = project.scope.map(item => 
+                    `<li>${item}</li>`
+                ).join('');
+                
+                // Update summary
+                document.getElementById('projectSummary').textContent = project.summary;
+                
+                // Update gallery
+                const galleryContainer = document.getElementById('projectGallery');
+                galleryContainer.innerHTML = project.gallery.map((image, index) => 
+                    `<div class="gallery-item">Gallery Image ${index + 1}</div>`
+                ).join('');
+                
+                // Update outcomes
+                const outcomesContainer = document.getElementById('projectOutcomes');
+                outcomesContainer.innerHTML = project.outcomes.map(outcome => 
+                    `<li>${outcome}</li>`
+                ).join('');
+                
+            } catch (error) {
+                console.error('Error loading project:', error);
+                window.location.href = '../index.html';
+            }
+        }
+        
+        // Load project on page load
+        document.addEventListener('DOMContentLoaded', loadProject);
+    </script>
+</body>
+</html>

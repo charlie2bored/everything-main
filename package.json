@@ -1,0 +1,36 @@
+{
+  "name": "charlie-portfolio",
+  "version": "1.0.0",
+  "description": "A modern, visually striking one-page portfolio website for creative professionals",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "build": "echo 'No build process needed - static files only'",
+    "lint": "echo 'Linting not configured - add ESLint if needed'"
+  },
+  "keywords": [
+    "portfolio",
+    "website",
+    "creative",
+    "design",
+    "developer",
+    "artist",
+    "responsive",
+    "modern",
+    "minimalist"
+  ],
+  "author": "Charlie",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/charlie-portfolio.git"
+  },
+  "homepage": "https://yourusername.github.io/charlie-portfolio/",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

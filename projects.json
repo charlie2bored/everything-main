@@ -1,0 +1,80 @@
+[
+  {
+    "slug": "brand-system-a",
+    "title": "Brand System A",
+    "subtitle": "Identity, motion & web",
+    "tags": ["Branding", "Motion", "Web"],
+    "thumb": "placeholder/a-cover.jpg",
+    "hero": "placeholder/a-hero.jpg",
+    "summary": "A clean brand system for a modern product.",
+    "role": "Creative Strategist, Designer, Dev",
+    "scope": ["Discovery", "Identity", "Motion", "Web"],
+    "outcomes": ["+22% recall", "6-week launch"],
+    "gallery": ["placeholder/a-1.jpg", "placeholder/a-2.jpg"]
+  },
+  {
+    "slug": "brand-system-b",
+    "title": "Brand System B",
+    "subtitle": "Bold type & tactile textures",
+    "tags": ["Branding", "Print"],
+    "thumb": "placeholder/b-cover.jpg",
+    "hero": "placeholder/b-hero.jpg",
+    "summary": "Playful yet precise visual language.",
+    "role": "Designer",
+    "scope": ["Identity", "Guidelines", "Posters"],
+    "outcomes": ["Community buzz", "Museum placement"],
+    "gallery": ["placeholder/b-1.jpg"]
+  },
+  {
+    "slug": "commerce-site",
+    "title": "E-Com Refresh",
+    "subtitle": "Conversion-first redesign",
+    "tags": ["Web", "UX"],
+    "thumb": "placeholder/c-cover.jpg",
+    "hero": "placeholder/c-hero.jpg",
+    "summary": "A calmer funnel with better IA and PDP clarity.",
+    "role": "Product Designer",
+    "scope": ["IA", "Wireframes", "Visual Design"],
+    "outcomes": ["+14% CR", "-18% bounce"],
+    "gallery": ["placeholder/c-1.jpg", "placeholder/c-2.jpg"]
+  },
+  {
+    "slug": "poster-series",
+    "title": "Poster Series",
+    "subtitle": "Large-scale typographic campaign",
+    "tags": ["Print", "Experimental"],
+    "thumb": "placeholder/d-cover.jpg",
+    "hero": "placeholder/d-hero.jpg",
+    "summary": "Street-first campaign with modular layout logic.",
+    "role": "Designer",
+    "scope": ["Layout", "Grid System", "Printing"],
+    "outcomes": ["35% recall in intercepts"],
+    "gallery": ["placeholder/d-1.jpg"]
+  },
+  {
+    "slug": "motion-kit",
+    "title": "Motion Kit",
+    "subtitle": "Reusable motion system",
+    "tags": ["Motion", "Branding"],
+    "thumb": "placeholder/e-cover.mp4",
+    "hero": "placeholder/e-hero.jpg",
+    "summary": "A library of transitions, masks, trails.",
+    "role": "Motion Designer",
+    "scope": ["Principles", "Templates"],
+    "outcomes": ["Faster edits", "Consistency"],
+    "gallery": ["placeholder/e-1.jpg"]
+  },
+  {
+    "slug": "ux-audit",
+    "title": "UX Audit",
+    "subtitle": "Find & fix friction",
+    "tags": ["UX", "Research"],
+    "thumb": "placeholder/f-cover.jpg",
+    "hero": "placeholder/f-hero.jpg",
+    "summary": "Evidence-driven improvements from qual+quant.",
+    "role": "UX Researcher",
+    "scope": ["Heuristics", "Surveys", "Prototyping"],
+    "outcomes": ["NPS +9", "Task time -22%"],
+    "gallery": []
+  }
+]

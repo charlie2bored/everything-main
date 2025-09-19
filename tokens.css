@@ -1,0 +1,98 @@
+/* ===== FONTS ===== */
+@font-face {
+  font-family: "Mensrea Bubble";
+  src: url("../fonts/mensrea-bubble.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  /* Brand Colors */
+  --c-black: #000;
+  --c-white: #fff;
+  --c-yellow: #FFD300;
+  --c-gray-100: #EDEDED;
+  --c-gray-900: #1C1C1C;
+
+  /* Semantic Colors */
+  --bg: var(--c-black);
+  --text: var(--c-white);
+  --accent: var(--c-yellow);
+  --surface: var(--c-gray-900);
+  --border: #333333;
+
+  /* Typography Scale */
+  --step--1: clamp(12px, 0.8vw, 14px);
+  --step-0: clamp(14px, 1vw, 16px);
+  --step-1: clamp(18px, 2vw, 22px);
+  --step-2: clamp(26px, 3.2vw, 40px);
+  --step-3: clamp(40px, 6vw, 88px);
+  --step-4: clamp(60px, 8vw, 120px);
+
+  /* Font Families */
+  --font-title: "Mensrea Bubble", system-ui, sans-serif;
+  --font-subtitle: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+  --space-5xl: 10rem;
+
+  /* Content widths */
+  --content-narrow: 600px;
+  --content-medium: 800px;
+  --content-wide: 1200px;
+  --content-full: 1400px;
+
+  /* Border Radius */
+  --radius: 16px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+
+  /* Shadows */
+  --shadow: 0 10px 30px rgba(0,0,0,.3);
+  --shadow-sm: 0 4px 16px rgba(0,0,0,0.15);
+  --shadow-lg: 0 16px 64px rgba(0,0,0,0.25);
+
+  /* Transitions */
+  --transition-fast: 120ms ease-out;
+  --transition-normal: 160ms ease-out;
+  --transition-slow: 240ms ease-out;
+
+  /* Z-index layers */
+  --z-nav: 100;
+  --z-drawer: 200;
+  --z-hero: 10;
+  --z-content: 1;
+}
+
+/* Light mode support */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: var(--c-white);
+    --text: var(--c-gray-900);
+    --surface: var(--c-gray-100);
+    --border: #e0e0e0;
+    --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    --shadow-sm: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-lg: 0 16px 64px rgba(0,0,0,0.12);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0.01ms;
+    --transition-normal: 0.01ms;
+    --transition-slow: 0.01ms;
+  }
+}

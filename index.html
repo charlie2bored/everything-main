@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charlie Portfolio - Creative Professional</title>
+    <meta name="description" content="Portfolio of a creative professional specializing in design, development, and digital art.">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="animations.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <!-- Skip Link -->
+    <a class="skip-link" href="#work">Skip to Work</a>
+
+    <!-- Pre-Hero Intro (plays once; skipped under reduced-motion) -->
+    <div class="intro" id="intro" aria-hidden="true">
+        <div class="intro-inner">
+            <div class="intro-mark" role="img" aria-label="Charlie Portfolio">
+                <span class="intro-logo">Charlie</span>
+                <span class="intro-tag">Portfolio</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav" role="navigation" aria-label="Primary">
+        <div class="nav-wrap">
+            <a class="nav-logo" href="#home" aria-label="Home">Charlie</a>
+            <button class="nav-burger" id="navBurger" aria-expanded="false" aria-controls="nav-drawer">
+                <span class="sr-only">Menu</span>
+            </button>
+            <div id="nav-links" class="nav-links">
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <nav class="social" aria-label="Social links">
+                <a class="icon" href="https://instagram.com/yourusername" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.4.5.6.2 1 .5 1.5 1 .5.5.8.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.5 2.4-.2.6-.5 1-1 1.5-.5.5-.9.8-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.4-.5-.6-.2-1-.5-1.5-1-.5-.5-.8-.9-1-1.5-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.9.5-2.4.2-.6.5-1 1-1.5.5-.5.9-.8 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 4a6 6 0 100 12 6 6 0 000-12zm7-1.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/></svg>
+                    <span>Instagram</span>
+                </a>
+                <a class="icon" href="https://youtube.com/@yourusername" aria-label="YouTube">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a4 4 0 00-2.8-2.8C18.7 3 12 3 12 3s-6.7 0-8.7.4A4 4 0 00.5 6.2 41.7 41.7 0 000 12a41.7 41.7 0 00.5 5.8 4 4 0 002.8 2.8C5.3 21 12 21 12 21s6.7 0 8.7-.4a4 4 0 002.8-2.8A41.7 41.7 0 0024 12a41.7 41.7 0 00-.5-5.8zM9.8 15.5V8.5L15.8 12l-6 3.5z"/></svg>
+                    <span>YouTube</span>
+                </a>
+                <a class="icon" href="https://medium.com/@yourusername" aria-label="Medium">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h3.1l5.3 8.9L17.7 4H21l-6.1 10.5L21.8 20H18l-5-5.7L7.9 20H4l6.9-5.5L4 4z"/></svg>
+                    <span>Medium</span>
+                </a>
+                <a class="icon" href="https://linkedin.com/in/yourusername" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+            </nav>
+        </div>
+        <div id="nav-drawer" class="nav-drawer" hidden aria-hidden="true">
+            <div class="nav-drawer-links">
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <canvas id="particleCanvas" class="particle-canvas"></canvas>
+            <div class="gradient-mesh"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-greeting">Creative Professional</p>
+                <h1 class="hero-title">
+                    <span class="title-line">Crafting Digital</span>
+                    <span class="title-line">Experiences</span>
+                </h1>
+                <p class="hero-subtitle">
+                    I design and develop thoughtful digital products that balance aesthetic beauty with functional purpose—creating experiences that resonate and inspire.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn-primary" id="viewWorkBtn">
+                        <span class="btn-text">View Work</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                    <button class="btn-secondary" id="collaborateBtn">
+                        <span class="btn-text">Let's Collaborate</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button class="scroll-more" aria-label="Scroll for more" data-scrollto="#work">
+            <span class="scroll-dot" aria-hidden="true"></span>
+            <span class="scroll-label">Scroll for more</span>
+        </button>
+    </section>
+
+    <!-- Work Section -->
+    <section class="work" id="work">
+        <div class="work-container">
+            <header class="section-header centered">
+                <h2 class="section-title">Selected Work</h2>
+                <p class="section-subtitle">A few things I'm proud of.</p>
+            </header>
+            
+            <!-- Filter Chips -->
+            <div class="filter-chips" role="tablist" aria-label="Filter projects">
+                <button class="filter-chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+                <button class="filter-chip" data-filter="branding" role="tab" aria-selected="false">Branding</button>
+                <button class="filter-chip" data-filter="web" role="tab" aria-selected="false">Web</button>
+                <button class="filter-chip" data-filter="motion" role="tab" aria-selected="false">Motion</button>
+                <button class="filter-chip" data-filter="ux" role="tab" aria-selected="false">UX</button>
+            </div>
+            
+            <!-- Rows: 48/52 grid layout -->
+            <ul class="work-rows" role="list" id="projectList">
+                <!-- Server-rendered placeholders (visible without JS) -->
+                <li class="work-row" data-slug="brand-system-a" data-tags="branding,motion,web">
+                    <a class="work-link" href="case-study.html?slug=brand-system-a" aria-label="Open case study: Brand System A">
+                        <div class="col-text">
+                            <h3 class="project-title">Brand System A</h3>
+                            <p class="project-subtitle">Identity, Motion & Web</p>
+                            <ul class="tags" aria-label="Tags">
+                                <li class="tag">Branding</li>
+                                <li class="tag">Motion</li>
+                                <li class="tag">Web</li>
+                            </ul>
+                        </div>
+                        <div class="col-media">
+                            <div class="media-wrap">
+                                <img class="project-thumb" src="placeholder/a-cover.jpg"
+                                     srcset="placeholder/a-cover.jpg 640w, placeholder/a-cover.jpg 1024w, placeholder/a-cover.jpg 1440w, placeholder/a-cover.jpg 1500w"
+                                     sizes="(min-width: 900px) 52vw, 100vw"
+                                     loading="lazy" decoding="async" alt="Brand System A cover">
+                                <div class="skeleton" aria-hidden="true"></div>
+                                <span class="hover-pill" aria-hidden="true">See the work</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="work-row" data-slug="brand-system-b" data-tags="branding,print">
+                    <a class="work-link" href="case-study.html?slug=brand-system-b" aria-label="Open case study: Brand System B">
+                        <div class="col-text">
+                            <h3 class="project-title">Brand System B</h3>
+                            <p class="project-subtitle">Bold type & tactile textures</p>
+                            <ul class="tags" aria-label="Tags">
+                                <li class="tag">Branding</li>
+                                <li class="tag">Print</li>
+                            </ul>
+                        </div>
+                        <div class="col-media">
+                            <div class="media-wrap">
+                                <img class="project-thumb" src="placeholder/b-cover.jpg"
+                                     srcset="placeholder/b-cover.jpg 640w, placeholder/b-cover.jpg 1024w, placeholder/b-cover.jpg 1440w, placeholder/b-cover.jpg 1500w"
+                                     sizes="(min-width: 900px) 52vw, 100vw"
+                                     loading="lazy" decoding="async" alt="Brand System B cover">
+                                <div class="skeleton" aria-hidden="true"></div>
+                                <span class="hover-pill" aria-hidden="true">See the work</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="work-row" data-slug="commerce-site" data-tags="web,ux">
+                    <a class="work-link" href="case-study.html?slug=commerce-site" aria-label="Open case study: E-Com Refresh">
+                        <div class="col-text">
+                            <h3 class="project-title">E-Com Refresh</h3>
+                            <p class="project-subtitle">Conversion-first redesign</p>
+                            <ul class="tags" aria-label="Tags">
+                                <li class="tag">Web</li>
+                                <li class="tag">UX</li>
+                            </ul>
+                        </div>
+                        <div class="col-media">
+                            <div class="media-wrap">
+                                <img class="project-thumb" src="placeholder/c-cover.jpg"
+                                     srcset="placeholder/c-cover.jpg 640w, placeholder/c-cover.jpg 1024w, placeholder/c-cover.jpg 1440w, placeholder/c-cover.jpg 1500w"
+                                     sizes="(min-width: 900px) 52vw, 100vw"
+                                     loading="lazy" decoding="async" alt="E-Com Refresh cover">
+                                <div class="skeleton" aria-hidden="true"></div>
+                                <span class="hover-pill" aria-hidden="true">See the work</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="work-row" data-slug="poster-series" data-tags="print,experimental">
+                    <a class="work-link" href="case-study.html?slug=poster-series" aria-label="Open case study: Poster Series">
+                        <div class="col-text">
+                            <h3 class="project-title">Poster Series</h3>
+                            <p class="project-subtitle">Large-scale typographic campaign</p>
+                            <ul class="tags" aria-label="Tags">
+                                <li class="tag">Print</li>
+                                <li class="tag">Experimental</li>
+                            </ul>
+                        </div>
+                        <div class="col-media">
+                            <div class="media-wrap">
+                                <img class="project-thumb" src="placeholder/d-cover.jpg"
+                                     srcset="placeholder/d-cover.jpg 640w, placeholder/d-cover.jpg 1024w, placeholder/d-cover.jpg 1440w, placeholder/d-cover.jpg 1500w"
+                                     sizes="(min-width: 900px) 52vw, 100vw"
+                                     loading="lazy" decoding="async" alt="Poster Series cover">
+                                <div class="skeleton" aria-hidden="true"></div>
+                                <span class="hover-pill" aria-hidden="true">See the work</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="work-row" data-slug="motion-kit" data-tags="motion,branding">
+                    <a class="work-link" href="case-study.html?slug=motion-kit" aria-label="Open case study: Motion Kit">
+                        <div class="col-text">
+                            <h3 class="project-title">Motion Kit</h3>
+                            <p class="project-subtitle">Reusable motion system</p>
+                            <ul class="tags" aria-label="Tags">
+                                <li class="tag">Motion</li>
+                                <li class="tag">Branding</li>
+                            </ul>
+                        </div>
+                        <div class="col-media">
+                            <div class="media-wrap">
+                                <video class="project-thumb" muted autoplay loop playsinline poster="placeholder/e-hero.jpg">
+                                    <source src="placeholder/e-cover.mp4" type="video/mp4">
+                                    <img src="placeholder/e-cover.jpg" alt="Motion Kit cover">
+                                </video>
+                                <div class="skeleton" aria-hidden="true"></div>
+                                <span class="hover-pill" aria-hidden="true">See the work</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="work-row" data-slug="ux-audit" data-tags="ux,research">
+                    <a class="work-link" href="case-study.html?slug=ux-audit" aria-label="Open case study: UX Audit">
+                        <div class="col-text">
+                            <h3 class="project-title">UX Audit</h3>
+                            <p class="project-subtitle">Find & fix friction</p>
+                            <ul class="tags" aria-label="Tags">
+                                <li class="tag">UX</li>
+                                <li class="tag">Research</li>
+                            </ul>
+                        </div>
+                        <div class="col-media">
+                            <div class="media-wrap">
+                                <img class="project-thumb" src="placeholder/f-cover.jpg"
+                                     srcset="placeholder/f-cover.jpg 640w, placeholder/f-cover.jpg 1024w, placeholder/f-cover.jpg 1440w, placeholder/f-cover.jpg 1500w"
+                                     sizes="(min-width: 900px) 52vw, 100vw"
+                                     loading="lazy" decoding="async" alt="UX Audit cover">
+                                <div class="skeleton" aria-hidden="true"></div>
+                                <span class="hover-pill" aria-hidden="true">See the work</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <header class="section-header centered">
+                <h2 class="section-title">What I Do</h2>
+                <p class="section-subtitle">Comprehensive design and development services tailored to bring your vision to life.</p>
+            </header>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Brand Identity</h3>
+                    <p class="service-description">Creating cohesive visual systems that communicate your brand's essence and connect with your audience.</p>
+                    <ul class="service-features">
+                        <li>Logo Design</li>
+                        <li>Visual Identity</li>
+                        <li>Brand Guidelines</li>
+                        <li>Typography Systems</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-description">Building responsive, performant websites and applications with modern technologies and best practices.</p>
+                    <ul class="service-features">
+                        <li>Responsive Design</li>
+                        <li>Frontend Development</li>
+                        <li>Performance Optimization</li>
+                        <li>CMS Integration</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 11H7v9h2v-9zm4 0h-2v9h2v-9zm4 0h-2v9h2v-9zM4 22h16v-2H4v2zM6 6l2-2h8l2 2h3v2H3V6h3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">UX Design</h3>
+                    <p class="service-description">Designing intuitive user experiences through research, strategy, and thoughtful interface design.</p>
+                    <ul class="service-features">
+                        <li>User Research</li>
+                        <li>Wireframing</li>
+                        <li>Prototyping</li>
+                        <li>Interface Design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="about-description">
+                        <p class="about-intro">I'm a creative professional with 8+ years of experience crafting digital experiences that balance form and function. My work spans brand identity, web development, and user experience design.</p>
+                        
+                        <p>Based in San Francisco, I work with startups and established brands to create meaningful digital products. My approach combines strategic thinking with meticulous attention to detail, ensuring every project delivers both aesthetic impact and functional excellence.</p>
+                        
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <h4>50+ Projects</h4>
+                                <p>Delivered across various industries</p>
+                            </div>
+                            <div class="highlight-item">
+                                <h4>8 Years</h4>
+                                <p>Of design and development experience</p>
+                            </div>
+                            <div class="highlight-item">
+                                <h4>Award Winner</h4>
+                                <p>Featured in Design Showcase 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-actions">
+                        <a class="btn-secondary" href="resume.pdf" download rel="noopener" aria-label="Download résumé PDF">
+                            <span class="btn-text">Download résumé</span>
+                        </a>
+                        <a class="btn-link" href="#contact">
+                            <span class="btn-text">Get in touch</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <figure class="about-image">
+                        <img src="headshot.jpg" alt="Portrait of Charlie" loading="lazy" decoding="async" width="640" height="800" />
+                        <div class="image-texture"></div>
+                        <div class="image-overlay"></div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-background">
+            <div class="contact-texture"></div>
+        </div>
+        <div class="contact-container">
+            <div class="contact-content">
+                <div class="contact-header">
+                    <h2 class="section-title">Let's Create Together</h2>
+                    <p class="section-subtitle">Ready to bring your vision to life? I'd love to hear about your project and explore how we can collaborate.</p>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <!-- Honeypot field for spam protection -->
+                    <div class="form-group" style="position: absolute; left: -9999px; opacity: 0;">
+                        <label for="website">Website</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-input" required aria-describedby="name-error">
+                        <div id="name-error" class="form-error" role="alert" aria-live="polite"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-input" required aria-describedby="email-error">
+                        <div id="email-error" class="form-error" role="alert" aria-live="polite"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" class="form-textarea" rows="6" required aria-describedby="message-error"></textarea>
+                        <div id="message-error" class="form-error" role="alert" aria-live="polite"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary btn-submit">
+                        <span class="btn-text">Send Message</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 Charlie Portfolio. Crafted with intention and care.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Dribbble</a>
+                    <a href="#" class="footer-link">Behance</a>
+                    <a href="#" class="footer-link">LinkedIn</a>
+                    <a href="#" class="footer-link">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+    <script src="particles.js"></script>
+    <script src="animations.js"></script>
+</body>
+</html>
