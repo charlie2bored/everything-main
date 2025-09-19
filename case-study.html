@@ -3,21 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">Case Study - Charlie Portfolio</title>
-    <meta name="description" id="pageDescription" content="Detailed case study of a creative project">
+    <title>Case Study — Charlie</title>
+    <meta name="description" content="Detailed case study of a creative project">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Case Study — Charlie">
+    <meta property="og:description" content="Selected work with measurable outcomes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://everything-evu.pages.dev/">
+    <meta property="og:image" content="/assets/og/case-study.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://everything-evu.pages.dev/case-study.html">
     
     <!-- Preload critical fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap&display=swap" rel="stylesheet">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../styles/tokens.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/animations.css">
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="animations.css">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <!-- Icons -->
+    <link rel="icon" href="/assets/favicon.ico">
     
     <style>
         /* Case Study Specific Styles */
@@ -236,159 +249,89 @@
 <body>
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
-        <a href="../index.html#work" class="breadcrumb-link">← Back to Work</a>
+        <a href="index.html#work" class="breadcrumb-link">← Back to Work</a>
     </nav>
-
-    <!-- Hero Section -->
-    <section class="case-study-hero" id="hero">
-        <div class="case-study-hero-content">
-            <h1 class="case-study-title" id="heroTitle">Loading...</h1>
-            <p class="case-study-subtitle" id="heroSubtitle">Loading...</p>
-            <div class="case-study-tags" id="heroTags">
-                <!-- Tags will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
 
     <!-- Main Content -->
     <main class="case-study-content">
+        <!-- Header -->
+        <header class="case-study-section">
+            <h1 id="title">Loading…</h1>
+            <p id="dek">Loading…</p>
+        </header>
+
         <!-- Meta Information -->
         <section class="case-study-section">
             <div class="meta-grid">
                 <div class="meta-item">
                     <h3>Role</h3>
-                    <p id="projectRole">Loading...</p>
+                    <p id="role">Loading…</p>
                 </div>
                 <div class="meta-item">
                     <h3>Scope</h3>
-                    <ul id="projectScope">
-                        <!-- Scope items will be populated by JavaScript -->
-                    </ul>
+                    <p id="scope">Loading…</p>
                 </div>
                 <div class="meta-item">
                     <h3>Timeline</h3>
-                    <p>6-8 weeks</p>
+                    <p id="timeline">Loading…</p>
                 </div>
                 <div class="meta-item">
                     <h3>Links</h3>
-                    <p><a href="#" style="color: var(--accent);">Live Site</a> • <a href="#" style="color: var(--accent);">Case Study</a></p>
+                    <p id="links">Loading…</p>
                 </div>
             </div>
         </section>
 
-        <!-- Summary -->
+        <!-- Overview -->
         <section class="case-study-section">
             <h2>Overview</h2>
-            <p id="projectSummary">Loading...</p>
+            <div id="overview">Loading…</div>
         </section>
 
         <!-- Process -->
         <section class="case-study-section">
             <h2>Process</h2>
-            <p>This project followed a structured design process, beginning with discovery and research to understand the client's needs and target audience. Through iterative design and development cycles, we created a solution that not only met the requirements but exceeded expectations.</p>
-            
-            <p>The approach combined user-centered design principles with technical excellence, ensuring both aesthetic appeal and functional performance. Regular client feedback sessions and user testing informed key decisions throughout the project lifecycle.</p>
+            <div id="process"></div>
         </section>
 
         <!-- Gallery -->
         <section class="case-study-section">
             <h2>Gallery</h2>
-            <div class="gallery" id="projectGallery">
-                <!-- Gallery items will be populated by JavaScript -->
-            </div>
+            <div id="gallery" class="cs-gallery"></div>
         </section>
 
         <!-- Outcomes -->
         <section class="case-study-section">
             <h2>Outcomes</h2>
-            <ul class="outcomes-list" id="projectOutcomes">
-                <!-- Outcomes will be populated by JavaScript -->
-            </ul>
+            <ul id="outcomes" class="cs-outcomes"></ul>
         </section>
 
         <!-- CTA Section -->
         <section class="cta-section">
             <h2>Let's Work Together</h2>
             <p>Interested in collaborating on your next project? I'd love to hear about your vision and explore how we can bring it to life.</p>
-            <a href="../index.html#contact" class="btn-primary">
+            <a href="index.html#contact" class="btn-primary">
                 <span class="btn-text">Get In Touch</span>
                 <div class="btn-ripple"></div>
             </a>
         </section>
     </main>
 
-    <script>
-        // Get project data from URL parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const slug = urlParams.get('slug');
-        
-        if (!slug) {
-            // Redirect to 404 or home if no slug provided
-            window.location.href = '../index.html';
+    <!-- Case Study Gallery CSS -->
+    <style>
+        .cs-gallery{display:grid;gap:1rem;grid-template-columns:repeat(12,1fr);margin:2rem 0}
+        .cs-gallery .cs-media{grid-column:span 12}
+        .cs-gallery img{width:100%;height:auto;border-radius:var(--radius-sm)}
+        @media(min-width:900px){
+            .cs-gallery .cs-media:nth-child(odd){grid-column:span 7}
+            .cs-gallery .cs-media:nth-child(even){grid-column:span 5}
         }
-        
-        // Fetch project data
-        async function loadProject() {
-            try {
-                const response = await fetch('../projects.json');
-                const projects = await response.json();
-                const project = projects.find(p => p.slug === slug);
-                
-                if (!project) {
-                    // Project not found, redirect to home
-                    window.location.href = '../index.html';
-                    return;
-                }
-                
-                // Update page title and meta
-                document.getElementById('pageTitle').textContent = `${project.title} - Charlie Portfolio`;
-                document.getElementById('pageDescription').textContent = project.summary;
-                
-                // Update hero section
-                document.getElementById('heroTitle').textContent = project.title;
-                document.getElementById('heroSubtitle').textContent = project.subtitle;
-                
-                // Set hero background
-                const hero = document.getElementById('hero');
-                hero.style.backgroundImage = `url(${project.hero})`;
-                
-                // Update tags
-                const tagsContainer = document.getElementById('heroTags');
-                tagsContainer.innerHTML = project.tags.map(tag => 
-                    `<span class="case-study-tag">${tag}</span>`
-                ).join('');
-                
-                // Update meta information
-                document.getElementById('projectRole').textContent = project.role;
-                
-                const scopeContainer = document.getElementById('projectScope');
-                scopeContainer.innerHTML = project.scope.map(item => 
-                    `<li>${item}</li>`
-                ).join('');
-                
-                // Update summary
-                document.getElementById('projectSummary').textContent = project.summary;
-                
-                // Update gallery
-                const galleryContainer = document.getElementById('projectGallery');
-                galleryContainer.innerHTML = project.gallery.map((image, index) => 
-                    `<div class="gallery-item">Gallery Image ${index + 1}</div>`
-                ).join('');
-                
-                // Update outcomes
-                const outcomesContainer = document.getElementById('projectOutcomes');
-                outcomesContainer.innerHTML = project.outcomes.map(outcome => 
-                    `<li>${outcome}</li>`
-                ).join('');
-                
-            } catch (error) {
-                console.error('Error loading project:', error);
-                window.location.href = '../index.html';
-            }
-        }
-        
-        // Load project on page load
-        document.addEventListener('DOMContentLoaded', loadProject);
-    </script>
+        .cs-outcomes{list-style:none;padding:0}
+        .cs-outcomes li{padding:var(--space-sm) 0;border-bottom:1px solid var(--border);color:var(--c-gray-100)}
+        .cs-outcomes li:last-child{border-bottom:none}
+        .cs-outcomes li::before{content:"→";color:var(--accent);font-weight:bold;margin-right:var(--space-sm)}
+    </style>
+    
+    <script type="module" src="case-study.js"></script>
 </body>
 </html>
