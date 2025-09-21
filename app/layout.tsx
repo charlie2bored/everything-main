@@ -22,30 +22,20 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Charlie — Designer & Developer',
-  description: 'Charlie — product designer/dev. Brand systems, motion, and conversion-focused web.',
-  keywords: ['design', 'development', 'branding', 'motion', 'portfolio', 'UX', 'UI'],
+  metadataBase: new URL('https://charlie2bored.pages.dev'),
+  title: { 
+    default: 'Charlie — Brand systems + motion that convert', 
+    template: '%s · Charlie' 
+  },
+  description: 'Identity, web, and conversion UX. Case studies with outcomes.',
+  keywords: ['design', 'development', 'branding', 'motion', 'portfolio', 'UX', 'UI', 'conversion'],
   authors: [{ name: 'Charlie' }],
   creator: 'Charlie',
   openGraph: {
-    title: 'Charlie — Designer & Developer',
-    description: 'Selected work with measurable outcomes.',
-    type: 'website',
-    url: 'https://everything-evu.pages.dev/',
-    images: [
-      {
-        url: '/assets/og/home.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Charlie Portfolio',
-      },
-    ],
+    images: ['/assets/og/home.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Charlie — Designer & Developer',
-    description: 'Selected work with measurable outcomes.',
-    images: ['/assets/og/home.jpg'],
   },
   robots: {
     index: true,
@@ -62,9 +52,6 @@ export const metadata: Metadata = {
     icon: '/assets/favicon.ico',
     apple: '/assets/apple-touch-icon.png',
   },
-  alternates: {
-    canonical: 'https://everything-evu.pages.dev/',
-  },
 }
 
 export default function RootLayout({
@@ -75,6 +62,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${dmSans.variable} ${playfair.variable}`}>
       <head>
+        {/* Preload critical resources for LCP optimization */}
+        <link 
+          rel="preload" 
+          href="/fonts/Display.woff2" 
+          as="font" 
+          type="font/woff2" 
+          crossOrigin="anonymous" 
+        />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/assets/projects/zenflow-cover.webp" 
+        />
         <link rel="preload" href="/assets/noise.avif" as="image" />
         <script
           type="application/ld+json"
@@ -83,7 +83,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Charlie',
-              url: 'https://everything-evu.pages.dev/',
+              url: 'https://charlie2bored.pages.dev/',
               sameAs: [
                 'https://instagram.com/charlie_designs',
                 'https://www.youtube.com/@charliedesigns',
@@ -100,6 +100,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
+        <a className="skip-link" href="#main">Skip to content</a>
         <MotionProvider>
           {children}
         </MotionProvider>

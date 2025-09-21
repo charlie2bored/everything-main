@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
 import { m } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -19,15 +19,27 @@ export default function Row({ project, index }: RowProps) {
   const pillRef = useRef<HTMLSpanElement>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [pillPosition, setPillPosition] = useState({ x: -9999, y: -9999 })
+  const rafRef = useRef<number>(0)
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!mediaRef.current || !pillRef.current) return
     
-    const rect = mediaRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
+    // Cancel any pending RAF to avoid queuing up multiple updates
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current)
+    }
     
-    setPillPosition({ x, y })
+    // Batch DOM reads and writes using requestAnimationFrame
+    rafRef.current = requestAnimationFrame(() => {
+      if (!mediaRef.current) return
+      
+      const rect = mediaRef.current.getBoundingClientRect()
+      const x = e.clientX - rect.left + 12  // offset for pill positioning
+      const y = e.clientY - rect.top + 12
+      
+      setPillPosition({ x, y })
+      rafRef.current = 0
+    })
   }, [])
 
   const handleMouseEnter = useCallback(() => {
@@ -58,6 +70,15 @@ export default function Row({ project, index }: RowProps) {
   const handleBlur = useCallback(() => {
     setIsHovered(false)
     setPillPosition({ x: -9999, y: -9999 })
+  }, [])
+
+  // Cleanup any pending RAF on unmount
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
+    }
   }, [])
 
   return (
@@ -126,7 +147,8 @@ export default function Row({ project, index }: RowProps) {
               fill
               className="project-thumb"
               sizes="(min-width: 900px) 52vw, 100vw"
-              loading={index < 2 ? "eager" : "lazy"}
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "auto"}
               decoding="async"
               style={{ objectFit: 'cover' }}
             />

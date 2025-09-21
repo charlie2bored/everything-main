@@ -49,20 +49,10 @@ export default function Header() {
   }
 
   return (
-    <>
-      {/* Skip to content link */}
-      <Link 
-        href="#main" 
-        className="skip-link"
-        aria-label="Skip to main content"
-      >
-        Skip to content
-      </Link>
-
-      <header 
-        className={`header ${isScrolled ? 'header--scrolled' : ''}`}
-        role="banner"
-      >
+    <header
+      className={`header ${isScrolled ? 'header--scrolled' : ''}`}
+      role="banner"
+    >
         <div className="header__container">
           {/* Logo */}
           <div className="header__logo">
@@ -121,8 +111,7 @@ export default function Header() {
             </ul>
           </div>
         </div>
-      </header>
-    </>
+    </header>
   )
 }
 

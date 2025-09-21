@@ -1,10 +1,16 @@
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import Hero from '@/components/Hero'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Row from '@/components/Row'
 import { ProofStrip } from '@/components/MetricBadge'
 import { getSelectedWork, getAverageImprovement, getAllProjects } from '@/lib/projects'
+
+const Particles = dynamic(() => import('@/components/Particles'), { 
+  ssr: false, 
+  loading: () => null 
+})
 
 export const metadata: Metadata = {
   title: 'Charlie — Designer & Developer',
@@ -78,6 +84,9 @@ export default function HomePage() {
       <main id="main">
         {/* Hero Section */}
         <Hero />
+        
+        {/* Background particles - loads after idle, not render-blocking */}
+        <Particles />
 
         {/* Selected Work Section */}
         <section id="work" className="selected-work" aria-labelledby="work-heading">

@@ -417,8 +417,9 @@ body {
 
 .media-wrap {
   position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  max-height: min(80svh, 720px);
+  overflow: clip;
   border-radius: 0 0 0 clamp(48px, 10vw, 120px);
   background: var(--surface);
 }
