@@ -47,10 +47,10 @@ export default function Row({ project, index }: RowProps) {
 
   const handleFocus = useCallback(() => {
     setIsHovered(true)
-    // Pin pill to bottom-right for keyboard focus
+    // Pin pill to bottom-right for keyboard focus as specified
     if (mediaRef.current) {
       const rect = mediaRef.current.getBoundingClientRect()
-      setPillPosition({ x: rect.width * 0.5, y: rect.height * 0.5 })
+      setPillPosition({ x: rect.width - 80, y: rect.height - 40 })
     }
   }, [])
 

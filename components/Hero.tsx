@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import Link from 'next/link'
+import { useRef } from 'react'
 import { m, useScroll, useTransform } from 'framer-motion'
 import { fadeUp, stagger } from '@/app/providers/MotionProvider'
 
@@ -11,22 +12,8 @@ export default function Hero() {
     offset: ["start start", "end start"]
   })
   
+  // Only parallax the background, never the text
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
-
-  const scrollToWork = () => {
-    const workSection = document.getElementById('work')
-    if (workSection) {
-      workSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
 
   return (
     <section 
@@ -34,85 +21,87 @@ export default function Hero() {
       className="hero" 
       id="home"
     >
-      {/* Background layer with parallax (non-text) */}
+      {/* Background layer with noise and beams - parallax only here */}
       <m.div 
-        className="hero-background"
+        className="hero__background"
         style={{ y: backgroundY }}
-      >
-        <canvas id="particleCanvas" className="particle-canvas"></canvas>
-        <div className="gradient-mesh"></div>
-      </m.div>
+      />
 
-      {/* Content layer (no transform after settle) */}
-      <m.div 
-        className="hero-content"
-        style={{ opacity }}
-      >
+      {/* Content layer - no transforms after settle for crisp text */}
+      <div className="hero__content">
         <m.div 
-          className="hero-text"
+          className="hero__text"
           initial="hidden"
           animate="show"
           variants={stagger(0.06)}
         >
           <m.p 
-            className="hero-greeting"
+            className="hero__eyebrow"
             variants={fadeUp}
           >
             Designer & Developer
           </m.p>
           
-          <h1 className="hero-title">
+          <h1 className="hero__title">
             <m.span 
-              className="title-line"
+              className="hero__title-line hero__title-line--white"
               variants={fadeUp}
             >
-              Hey, I'm Charlie
+              Building experiences that
+            </m.span>
+            <m.span 
+              className="hero__title-line hero__title-line--yellow"
+              variants={fadeUp}
+            >
+              drive measurable results
             </m.span>
           </h1>
           
           <m.p 
-            className="hero-subtitle"
+            className="hero__lede"
             variants={fadeUp}
           >
-            I create design and experiences for everyone.
+            Product designer and frontend developer focused on conversion-driven design systems and user experiences.
           </m.p>
           
           <m.div 
-            className="hero-actions"
+            className="hero__actions"
             variants={fadeUp}
           >
-            <button 
-              className="btn-primary" 
-              onClick={scrollToWork}
+            <Link 
+              href="/work" 
+              className="btn btn--primary"
               aria-label="View my work"
             >
-              <span className="btn-text">View Work</span>
-              <div className="btn-ripple"></div>
-            </button>
-            <button 
-              className="btn-secondary" 
-              onClick={scrollToContact}
+              <span className="btn__text">View Work</span>
+            </Link>
+            <Link 
+              href="/contact" 
+              className="btn btn--secondary"
               aria-label="Let's collaborate"
             >
-              <span className="btn-text">Let's Collaborate</span>
-            </button>
+              <span className="btn__text">Let's Collaborate</span>
+            </Link>
           </m.div>
         </m.div>
-      </m.div>
+      </div>
 
-      <m.button 
-        className="scroll-more" 
-        onClick={scrollToWork}
-        aria-label="Scroll for more"
+      {/* Scroll indicator */}
+      <m.div 
+        className="hero__scroll"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.5 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
       >
-        <span className="scroll-dot" aria-hidden="true"></span>
-        <span className="scroll-label">Scroll for more</span>
-      </m.button>
+        <Link 
+          href="#work"
+          className="scroll-indicator"
+          aria-label="Scroll to work section"
+        >
+          <span className="scroll-indicator__dot" aria-hidden="true"></span>
+          <span className="scroll-indicator__label">Scroll for work</span>
+        </Link>
+      </m.div>
     </section>
   )
 }

@@ -2,113 +2,255 @@
   {
     "slug": "brand-system-a",
     "title": "Zenflow Wellness",
-    "subtitle": "Identity & digital ecosystem for wellness startup",
+    "subtitle": "Identity, Motion & Web",
     "tags": ["Branding", "Web", "Motion"],
-    "role": "Brand Designer & Frontend Developer",
+    "client": "Zenflow",
+    "industry": "Wellness",
+    "role": ["Design", "Frontend"],
     "timeline": "8 weeks",
-    "summary": "Complete brand identity and digital presence for a meditation app startup, focusing on calm, approachable wellness that makes mindfulness accessible to everyone.",
-    "process": [
-      "Started with user research to understand the meditation app landscape and target audience pain points.",
-      "Developed brand strategy emphasizing accessibility over intimidation—wellness for everyone, not just yoga experts.",
-      "Created a flexible visual system with soft gradients and breathing animations that scale across digital touchpoints.",
-      "Built a conversion-optimized landing page with A/B tested signup flows and integrated analytics."
+    "problem": "A meditation app startup needed a brand identity that made mindfulness accessible to everyone, not just yoga experts. Their existing DIY branding felt intimidating and clinical, creating barriers for new users.",
+    "insights": [
+      "Users associate wellness brands with exclusivity and perfection, creating anxiety",
+      "Breathing animations could embody the core product experience",
+      "Soft gradients test better than sharp geometric shapes for wellness"
     ],
-    "gallery": ["/assets/projects/zenflow-1.webp", "/assets/projects/zenflow-2.webp", "/assets/projects/zenflow-3.webp"],
-    "outcomes": ["+28% app downloads vs. previous design", "4.8/5 app store rating", "+18% email signups", "Featured in App Store wellness category"],
+    "solution": "Created a flexible brand system with breathing animations and soft gradients that scale across digital touchpoints. The identity emphasizes accessibility and calm over intimidation.",
+    "kpis": [
+      {"label": "App downloads", "change": "+28%"},
+      {"label": "App store rating", "change": "4.8/5"},
+      {"label": "Email signups", "change": "+18%"}
+    ],
+    "testimonial": {
+      "quote": "Charlie transformed our brand from clinical to approachable. Downloads increased immediately.",
+      "author": "Sarah Kim, Founder"
+    },
     "cover": "/assets/projects/zenflow-cover.webp",
-    "live": "https://zenflow-demo.pages.dev",
-    "repo": "https://github.com/charlie/zenflow-brand"
+    "before": "/assets/projects/zenflow-before.webp",
+    "after": "/assets/projects/zenflow-after.webp",
+    "gallery": [
+      {
+        "src": "/assets/projects/zenflow-1.webp",
+        "alt": "Zenflow brand identity application",
+        "caption": "Breathing animations embody the core meditation experience"
+      },
+      {
+        "src": "/assets/projects/zenflow-2.webp",
+        "alt": "Mobile app interface design",
+        "caption": "Soft gradients reduce anxiety and feel more welcoming"
+      },
+      {
+        "src": "/assets/projects/zenflow-3.webp",
+        "alt": "Marketing materials design",
+        "caption": "Flexible system works across digital and print touchpoints"
+      }
+    ],
+    "links": {
+      "live": "https://zenflow-demo.pages.dev",
+      "repo": "https://github.com/charlie/zenflow-brand"
+    }
   },
   {
     "slug": "commerce-refresh",
     "title": "TechGear E-commerce",
     "subtitle": "Conversion-first redesign for electronics retailer",
     "tags": ["Web", "UX"],
-    "role": "UX Designer & Frontend Developer",
+    "client": "TechGear",
+    "industry": "E-commerce",
+    "role": ["UX Design", "Frontend"],
     "timeline": "10 weeks",
-    "summary": "Complete redesign of electronics e-commerce site, improving product discovery and checkout flow for better conversion rates and user experience.",
-    "process": [
-      "Analyzed existing site analytics and conducted user interviews to identify conversion bottlenecks.",
-      "Redesigned product pages with clearer specifications, better images, and social proof.",
-      "Streamlined checkout flow from 5 steps to 2, with guest checkout option.",
-      "Implemented advanced filtering and search functionality for the 2000+ product catalog."
+    "problem": "An electronics retailer's e-commerce site had a 2.3% conversion rate with high cart abandonment. Users couldn't find products quickly and the 5-step checkout felt overwhelming.",
+    "insights": [
+      "Users abandon carts when they can't see shipping costs upfront",
+      "Product specifications need visual hierarchy—not wall of text",
+      "Guest checkout option reduces friction for new customers by 40%"
     ],
-    "gallery": ["/assets/projects/techgear-1.webp", "/assets/projects/techgear-2.webp"],
-    "outcomes": ["+42% conversion rate", "-28% cart abandonment", "+18% average order value", "98% customer satisfaction score"],
+    "solution": "Redesigned product pages with clearer specifications and social proof. Streamlined checkout from 5 steps to 2 with guest checkout option and upfront shipping costs.",
+    "kpis": [
+      {"label": "Conversion rate", "change": "+42%"},
+      {"label": "Cart abandonment", "change": "-28%"},
+      {"label": "Average order value", "change": "+18%"},
+      {"label": "Customer satisfaction", "change": "98%"}
+    ],
+    "testimonial": {
+      "quote": "The new checkout flow alone paid for the entire redesign in 2 months.",
+      "author": "Mike Chen, E-commerce Director"
+    },
     "cover": "/assets/projects/techgear-cover.webp",
-    "live": "https://techgear-demo.pages.dev"
+    "before": "/assets/projects/techgear-before.webp",
+    "after": "/assets/projects/techgear-after.webp",
+    "gallery": [
+      {
+        "src": "/assets/projects/techgear-1.webp",
+        "alt": "Product page redesign",
+        "caption": "Visual hierarchy makes technical specs scannable"
+      },
+      {
+        "src": "/assets/projects/techgear-2.webp",
+        "alt": "Streamlined checkout flow",
+        "caption": "2-step checkout with guest option reduced abandonment by 28%"
+      }
+    ],
+    "links": {
+      "live": "https://techgear-demo.pages.dev"
+    }
   },
   {
     "slug": "coffee-rebrand",
     "title": "Local Coffee Co.",
     "subtitle": "Authentic rebrand for neighborhood roaster",
     "tags": ["Branding", "Print"],
-    "role": "Brand Designer",
+    "client": "Local Coffee Co.",
+    "industry": "Food & Beverage",
+    "role": ["Brand Design"],
     "timeline": "6 weeks",
-    "summary": "Authentic rebrand for a 15-year-old coffee shop expanding to wholesale, balancing heritage with growth while maintaining community connection.",
-    "process": [
-      "Interviewed the owner and long-time customers to understand what made the shop special to the community.",
-      "Audited competitor brands to identify opportunities for differentiation in the local market.",
-      "Designed a flexible mark that worked on small coffee bags and large storefront signage.",
-      "Created packaging that highlighted the local roasting story while improving shelf appeal."
+    "problem": "A 15-year-old coffee shop wanted to expand to wholesale but their dated brand didn't appeal to younger customers or communicate quality to potential retail partners.",
+    "insights": [
+      "Local customers value heritage and community connection over trendy aesthetics",
+      "Wholesale buyers need to see quality cues in packaging design",
+      "Flexible mark system allows for multiple applications without losing impact"
     ],
-    "gallery": ["/assets/projects/coffee-1.webp"],
-    "outcomes": ["+35% wholesale inquiries", "Featured in Local Business Spotlight", "+22% social media engagement", "Expanded to 3 new locations"],
-    "cover": "/assets/projects/coffee-cover.webp"
+    "solution": "Created a flexible brand system that balanced heritage with growth, highlighting the local roasting story while improving shelf appeal for wholesale expansion.",
+    "kpis": [
+      {"label": "Wholesale inquiries", "change": "+35%"},
+      {"label": "Social media engagement", "change": "+22%"},
+      {"label": "New locations", "change": "3"}
+    ],
+    "testimonial": {
+      "quote": "Charlie captured 15 years of our story in a design that feels both authentic and fresh.",
+      "author": "David Rodriguez, Owner"
+    },
+    "cover": "/assets/projects/coffee-cover.webp",
+    "gallery": [
+      {
+        "src": "/assets/projects/coffee-1.webp",
+        "alt": "Coffee packaging design",
+        "caption": "Packaging tells the local roasting story while improving shelf appeal"
+      }
+    ],
+    "links": {}
   },
   {
     "slug": "festival-identity",
     "title": "Urban Arts Festival",
     "subtitle": "Modular visual system for city-wide event",
     "tags": ["Print", "Branding"],
-    "role": "Art Director & Designer",
+    "client": "Urban Arts Festival",
+    "industry": "Arts & Culture",
+    "role": ["Art Direction", "Design"],
     "timeline": "12 weeks",
-    "summary": "Modular visual system for annual arts festival, designed to work across 50+ venues and diverse artwork styles while maintaining brand consistency.",
-    "process": [
-      "Collaborated with festival organizers to understand the diversity of participating artists and venues.",
-      "Created a flexible grid system that could accommodate different artwork and venue information.",
-      "Designed a color system that would complement artwork without competing for attention.",
-      "Produced print guidelines for 50+ venues to ensure consistent brand application."
+    "problem": "Annual arts festival needed a visual system that worked across 50+ venues with diverse artwork styles while maintaining brand consistency and wayfinding clarity.",
+    "insights": [
+      "Grid system allows flexibility without sacrificing brand recognition",
+      "Color system must complement artwork without competing for attention",
+      "Wayfinding becomes critical when spanning multiple city blocks"
     ],
-    "gallery": ["/assets/projects/festival-1.webp", "/assets/projects/festival-2.webp"],
-    "outcomes": ["45% increase in festival attendance", "Featured in Print Magazine", "Adopted as template for 3 other city festivals", "Award: Best Festival Identity 2024"],
-    "cover": "/assets/projects/festival-cover.webp"
+    "solution": "Developed a modular grid system with complementary color palette that adapts to different venues while maintaining strong brand presence and clear wayfinding.",
+    "kpis": [
+      {"label": "Festival attendance", "change": "+45%"},
+      {"label": "Venue participation", "change": "50+"},
+      {"label": "Awards won", "change": "Best Festival Identity 2024"}
+    ],
+    "testimonial": {
+      "quote": "The modular system made managing 50+ venues feel effortless. Attendance soared.",
+      "author": "Elena Martinez, Festival Director"
+    },
+    "cover": "/assets/projects/festival-cover.webp",
+    "gallery": [
+      {
+        "src": "/assets/projects/festival-1.webp",
+        "alt": "Festival poster design",
+        "caption": "Modular grid system accommodates diverse artwork while maintaining brand"
+      },
+      {
+        "src": "/assets/projects/festival-2.webp",
+        "alt": "Wayfinding signage system",
+        "caption": "Clear wayfinding system spans multiple city blocks"
+      }
+    ],
+    "links": {}
   },
   {
     "slug": "motion-system",
     "title": "SaaS Motion Kit",
     "subtitle": "Reusable motion system for enterprise",
     "tags": ["Motion", "Web"],
-    "role": "Motion Designer & Frontend Developer",
+    "client": "DataFlow Enterprise",
+    "industry": "SaaS",
+    "role": ["Motion Design", "Frontend"],
     "timeline": "6 weeks",
-    "summary": "Comprehensive motion design system for enterprise dashboard, improving user comprehension and task completion rates through purposeful animation.",
-    "process": [
-      "Audited existing dashboard to identify where motion could improve user understanding and reduce cognitive load.",
-      "Created motion principles focused on purposeful, performance-optimized animations.",
-      "Built a React component library with built-in animations and micro-interactions.",
-      "Documented implementation guidelines for the development team."
+    "problem": "Enterprise dashboard lacked visual feedback, making complex workflows feel unresponsive. Development team spent too much time implementing inconsistent animations.",
+    "insights": [
+      "Purposeful motion reduces cognitive load in data-heavy interfaces",
+      "Micro-interactions provide critical feedback in form-heavy workflows",
+      "Component library with built-in animations saves 50% development time"
     ],
-    "gallery": ["/assets/projects/motion-1.webp", "/assets/projects/motion-2.webp"],
-    "outcomes": ["+23% task completion rate", "-15% user errors", "Adopted by 3 other product teams", "50% reduction in animation implementation time"],
+    "solution": "Built a comprehensive motion design system with React components featuring built-in animations, micro-interactions, and performance optimization for enterprise scale.",
+    "kpis": [
+      {"label": "Task completion rate", "change": "+23%"},
+      {"label": "User errors", "change": "-15%"},
+      {"label": "Animation implementation time", "change": "-50%"},
+      {"label": "Product teams adoption", "change": "3"}
+    ],
+    "testimonial": {
+      "quote": "The motion system transformed our dashboard from static to delightful. Users finally understand the flow.",
+      "author": "Alex Thompson, Product Director"
+    },
     "cover": "/assets/projects/motion-cover.webp",
-    "repo": "https://github.com/charlie/motion-kit"
+    "gallery": [
+      {
+        "src": "/assets/projects/motion-1.webp",
+        "alt": "Dashboard micro-interactions",
+        "caption": "Micro-interactions provide feedback in form-heavy workflows"
+      },
+      {
+        "src": "/assets/projects/motion-2.webp",
+        "alt": "Component library animations",
+        "caption": "Built-in animations reduce development time by 50%"
+      }
+    ],
+    "links": {
+      "repo": "https://github.com/charlie/motion-kit"
+    }
   },
   {
     "slug": "fintech-audit",
     "title": "Investment Platform UX",
     "subtitle": "Usability assessment and optimization",
     "tags": ["UX", "Research"],
-    "role": "UX Researcher & Designer",
+    "client": "WealthTech",
+    "industry": "Fintech",
+    "role": ["UX Research", "Design"],
     "timeline": "4 weeks",
-    "summary": "Comprehensive UX audit of investment platform, identifying usability issues and providing actionable recommendations to improve user experience.",
-    "process": [
-      "Conducted heuristic evaluation using Nielsen's 10 principles to identify obvious usability issues.",
-      "Ran moderated user testing sessions with 12 participants across 3 user personas.",
-      "Performed competitive analysis of 5 leading investment platforms.",
-      "Prioritized recommendations based on impact vs. effort matrix and delivered actionable roadmap."
+    "problem": "Investment platform had poor user satisfaction scores and high support ticket volume. Users struggled with portfolio overview and trade execution flows.",
+    "insights": [
+      "Financial data overwhelms users without proper visual hierarchy",
+      "Trade confirmation flows need more friction, not less, for safety",
+      "Mobile-first approach critical for younger investor demographic"
     ],
-    "gallery": ["/assets/projects/fintech-1.webp", "/assets/projects/fintech-2.webp"],
-    "outcomes": ["Identified 47 usability issues", "Delivered 23 prioritized recommendations", "Client implemented 18/23 suggestions", "+31% user satisfaction after implementation"],
-    "cover": "/assets/projects/fintech-cover.webp"
+    "solution": "Conducted comprehensive UX audit with user testing, competitive analysis, and heuristic evaluation. Delivered prioritized roadmap with 23 actionable recommendations.",
+    "kpis": [
+      {"label": "Usability issues identified", "change": "47"},
+      {"label": "Recommendations delivered", "change": "23"},
+      {"label": "Client implementation rate", "change": "18/23"},
+      {"label": "User satisfaction post-implementation", "change": "+31%"}
+    ],
+    "testimonial": {
+      "quote": "Charlie's audit gave us a clear roadmap. User satisfaction jumped 31% after implementing the recommendations.",
+      "author": "Jennifer Park, Head of Product"
+    },
+    "cover": "/assets/projects/fintech-cover.webp",
+    "gallery": [
+      {
+        "src": "/assets/projects/fintech-1.webp",
+        "alt": "Usability testing insights",
+        "caption": "User testing revealed critical issues in trade execution flow"
+      },
+      {
+        "src": "/assets/projects/fintech-2.webp",
+        "alt": "Competitive analysis findings",
+        "caption": "Competitive analysis informed mobile-first approach for younger users"
+      }
+    ],
+    "links": {}
   }
 ]
