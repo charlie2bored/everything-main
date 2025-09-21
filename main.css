@@ -670,6 +670,30 @@ body, p, li, nav {
     font-weight: 400;
     margin-bottom: var(--space-lg);
     letter-spacing: -0.02em;
+    overflow: hidden;
+}
+
+/* Porto-style text reveal animation */
+.section-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, var(--bg) 50%, transparent 100%);
+    transform: translateX(-100%);
+    animation: textReveal 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes textReveal {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .section-subtitle {
@@ -743,26 +767,63 @@ body, p, li, nav {
 .work-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
 .work-rows { gap: 0; }
 
-/* Subtle grain texture */
-.work, .about, .hero, .contact {
+/* Sophisticated grain texture like Porto */
+.work, .about, .hero, .contact, .services {
     position: relative;
     isolation: isolate;
-    background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 4px 4px;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.03) 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.01) 50%, transparent 100%);
+    background-size: 6px 6px, 8px 8px, 100% 2px;
+    background-position: 0 0, 3px 3px, 0 0;
 }
 
-/* Animated background layers (user-initiated: hover/focus-within) */
-.hero::before, .work::before, .about::before, .contact::before {
+/* Dynamic noise overlay */
+.hero::before, .work::before, .about::before, .contact::before, .services::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255,211,0,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.02) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255,211,0,0.01) 0%, transparent 50%);
+    background-size: 600px 600px, 800px 800px, 400px 400px;
+    background-position: 0% 0%, 100% 100%, 50% 50%;
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: -1;
+    animation: floatingGrain 20s ease-in-out infinite;
+}
+
+@keyframes floatingGrain {
+    0%, 100% { 
+        background-position: 0% 0%, 100% 100%, 50% 50%;
+        opacity: 0.6;
+    }
+    33% { 
+        background-position: 20% 10%, 90% 80%, 60% 40%;
+        opacity: 0.4;
+    }
+    66% { 
+        background-position: 10% 20%, 80% 90%, 40% 60%;
+        opacity: 0.5;
+    }
+}
+
+/* Enhanced background layers on hover */
+.hero:hover::after, .work:hover::after, .about:hover::after, .contact:hover::after, .services:hover::after {
     content: "";
     position: absolute;
     inset: -20%;
-    background: radial-gradient(120% 120% at 20% 10%, rgba(255,255,255,0.05), transparent 60%),
-                radial-gradient(100% 100% at 80% 90%, rgba(255,211,0,0.05), transparent 60%);
-    filter: blur(30px);
-    transform: rotate(0deg);
-    opacity: 0.6;
+    background: radial-gradient(120% 120% at 20% 10%, rgba(255,255,255,0.08), transparent 60%),
+                radial-gradient(100% 100% at 80% 90%, rgba(255,211,0,0.08), transparent 60%);
+    filter: blur(40px);
+    opacity: 0.7;
     pointer-events: none;
     z-index: -1;
+    transition: opacity 0.6s ease;
 }
 
 .hero:hover::before, .hero:focus-within::before { animation: none; }
@@ -798,9 +859,47 @@ body, p, li, nav {
 .media-wrap { box-shadow: 0 40px 80px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.25); }
 .media-wrap::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); pointer-events: none; }
 
-/* Hover-only micro-animations */
-.media-wrap:hover .project-thumb { transform: scale(1.02); transition: transform .18s ease; will-change: transform; }
+/* Enhanced hover animations like Porto */
+.media-wrap {
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.media-wrap:hover {
+    transform: scale(1.03) rotate(1deg);
+    box-shadow: 0 60px 120px rgba(0,0,0,0.4), 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.media-wrap:hover .project-thumb { 
+    transform: scale(1.1); 
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    will-change: transform; 
+}
+
 .work-link:focus-visible .project-thumb { transform: none; }
+
+/* Interactive cursor pill enhancement */
+.hover-pill {
+    backdrop-filter: blur(20px);
+    background: rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,211,0,0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.work-link:hover .hover-pill {
+    animation: pillPulse 2s ease-in-out infinite;
+}
+
+@keyframes pillPulse {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.05);
+        box-shadow: 0 12px 48px rgba(255,211,0,0.2);
+    }
+}
 
 @media (prefers-reduced-motion: reduce) {
     .media-wrap:hover .project-thumb { transform: none !important; }
@@ -839,6 +938,49 @@ body, p, li, nav {
     background-color: var(--surface);
     padding: var(--space-5xl) 0;
     position: relative;
+    overflow: hidden;
+}
+
+/* Floating elements like Porto */
+.services::after {
+    content: "";
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255,211,0,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatingOrb 15s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.about::after {
+    content: "";
+    position: absolute;
+    bottom: 20%;
+    left: 5%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatingOrb 20s ease-in-out infinite reverse;
+    pointer-events: none;
+}
+
+@keyframes floatingOrb {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.6;
+    }
+    33% {
+        transform: translateY(-30px) translateX(20px) scale(1.1);
+        opacity: 0.4;
+    }
+    66% {
+        transform: translateY(10px) translateX(-15px) scale(0.9);
+        opacity: 0.8;
+    }
 }
 
 .services-container {
@@ -900,7 +1042,51 @@ body, p, li, nav {
 }
 
 .service-card:hover .service-icon {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Magnetic hover effect like Porto */
+.service-card, .work-link, .btn-primary, .btn-secondary {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-card:hover, .work-link:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-4px) scale(1.05);
+}
+
+/* Floating elements animation */
+.hero-greeting, .hero-title, .hero-subtitle {
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smooth section reveals */
+.services, .about, .contact {
+    opacity: 0;
+    transform: translateY(60px);
+    animation: sectionReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.services {
+    animation-delay: 0.2s;
+}
+
+.about {
+    animation-delay: 0.4s;
+}
+
+.contact {
+    animation-delay: 0.6s;
+}
+
+@keyframes sectionReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .service-title {

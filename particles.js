@@ -108,7 +108,7 @@ class ParticleSystem {
     }
 
     drawConnections() {
-        const maxDistance = 120;
+        const maxDistance = 150;
         
         for (let i = 0; i < this.particles.length; i++) {
             for (let j = i + 1; j < this.particles.length; j++) {
@@ -118,8 +118,17 @@ class ParticleSystem {
                 
                 if (distance < maxDistance) {
                     const opacity = 1 - (distance / maxDistance);
-                    this.ctx.strokeStyle = `rgba(255, 107, 53, ${opacity * 0.2})`;
-                    this.ctx.lineWidth = 1;
+                    // Porto-style gradient connections
+                    const gradient = this.ctx.createLinearGradient(
+                        this.particles[i].x, this.particles[i].y,
+                        this.particles[j].x, this.particles[j].y
+                    );
+                    gradient.addColorStop(0, `rgba(255, 211, 0, ${opacity * 0.3})`);
+                    gradient.addColorStop(0.5, `rgba(255, 255, 255, ${opacity * 0.1})`);
+                    gradient.addColorStop(1, `rgba(255, 211, 0, ${opacity * 0.3})`);
+                    
+                    this.ctx.strokeStyle = gradient;
+                    this.ctx.lineWidth = opacity * 2;
                     this.ctx.beginPath();
                     this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
                     this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
@@ -144,12 +153,13 @@ class Particle {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         
-        // Random properties
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 2 + 1;
-        this.opacity = Math.random() * 0.5 + 0.2;
+        // Enhanced properties like Porto
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.size = Math.random() * 3 + 1;
+        this.opacity = Math.random() * 0.7 + 0.3;
         this.hue = Math.random() * 60 + 15; // Orange to yellow range
+        this.pulsePhase = Math.random() * Math.PI * 2;
         
         // Animation properties
         this.baseX = x;
@@ -194,17 +204,28 @@ class Particle {
     draw(ctx) {
         ctx.save();
         
-        // Create gradient for particle
+        // Porto-style pulsing effect
+        this.pulsePhase += 0.02;
+        const pulseSize = this.size + Math.sin(this.pulsePhase) * 0.5;
+        const pulseOpacity = this.opacity + Math.sin(this.pulsePhase) * 0.1;
+        
+        // Create enhanced gradient for particle
         const gradient = ctx.createRadialGradient(
             this.x, this.y, 0,
-            this.x, this.y, this.size * 2
+            this.x, this.y, pulseSize * 3
         );
-        gradient.addColorStop(0, `hsla(${this.hue}, 70%, 60%, ${this.opacity})`);
-        gradient.addColorStop(1, `hsla(${this.hue}, 70%, 60%, 0)`);
+        gradient.addColorStop(0, `hsla(${this.hue}, 80%, 70%, ${pulseOpacity})`);
+        gradient.addColorStop(0.4, `hsla(${this.hue}, 70%, 60%, ${pulseOpacity * 0.6})`);
+        gradient.addColorStop(1, `hsla(${this.hue}, 60%, 50%, 0)`);
         
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, pulseSize, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Add subtle glow effect
+        ctx.shadowColor = `hsla(${this.hue}, 80%, 70%, ${pulseOpacity * 0.3})`;
+        ctx.shadowBlur = pulseSize * 2;
         ctx.fill();
         
         ctx.restore();
