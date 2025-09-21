@@ -47,13 +47,13 @@ export default function Hero() {
               className="hero__title-line hero__title-line--white"
               variants={fadeUp}
             >
-              Building experiences that
+              Brand systems + motion
             </m.span>
             <m.span 
               className="hero__title-line hero__title-line--yellow"
               variants={fadeUp}
             >
-              drive measurable results
+              that convert.
             </m.span>
           </h1>
           
@@ -61,7 +61,7 @@ export default function Hero() {
             className="hero__lede"
             variants={fadeUp}
           >
-            Product designer and frontend developer focused on conversion-driven design systems and user experiences.
+            Identity, web, and UX that ship fast and move metrics.
           </m.p>
           
           <m.div 
@@ -73,14 +73,14 @@ export default function Hero() {
               className="btn btn--primary"
               aria-label="View my work"
             >
-              <span className="btn__text">View Work</span>
+              <span className="btn__text">View work</span>
             </Link>
             <Link 
               href="/contact" 
               className="btn btn--secondary"
               aria-label="Let's collaborate"
             >
-              <span className="btn__text">Let's Collaborate</span>
+              <span className="btn__text">Let's collaborate</span>
             </Link>
           </m.div>
         </m.div>

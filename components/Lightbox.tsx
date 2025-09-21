@@ -248,3 +248,4 @@ export default function Lightbox({ images, initialIndex, isOpen, onClose }: Ligh
     </AnimatePresence>
   )
 }
+

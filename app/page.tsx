@@ -8,10 +8,25 @@ import { getSelectedWork, getAverageImprovement, getAllProjects } from '@/lib/pr
 
 export const metadata: Metadata = {
   title: 'Charlie — Designer & Developer',
-  description: 'Building experiences that drive measurable results. Product designer and frontend developer focused on conversion-driven design systems.',
+  description: 'Brand systems + motion that convert. Identity, web, and UX that ship fast and move metrics.',
   openGraph: {
     title: 'Charlie — Designer & Developer',
-    description: 'Building experiences that drive measurable results',
+    description: 'Brand systems + motion that convert',
+    type: 'website',
+    url: 'https://everything-evu.pages.dev/',
+    images: [
+      {
+        url: '/assets/og/home.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Charlie Portfolio - Brand systems + motion that convert',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Charlie — Designer & Developer',
+    description: 'Brand systems + motion that convert',
     images: ['/assets/og/home.jpg'],
   },
 }
@@ -28,8 +43,36 @@ export default function HomePage() {
     { label: 'Conversion increase', change: '+42%' }
   ]
 
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Charlie — Designer & Developer',
+    url: 'https://everything-evu.pages.dev/',
+    description: 'Brand systems + motion that convert. Identity, web, and UX that ship fast and move metrics.',
+    author: {
+      '@type': 'Person',
+      name: 'Charlie',
+      jobTitle: 'Designer & Frontend Developer',
+      url: 'https://everything-evu.pages.dev/',
+    },
+    mainEntity: {
+      '@type': 'Person',
+      name: 'Charlie',
+    },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://everything-evu.pages.dev/work',
+      'query-input': 'required name=search_term_string',
+    },
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      
       <Header />
       
       <main id="main">
@@ -48,7 +91,7 @@ export default function HomePage() {
               </p>
             </header>
 
-            <div className="selected-work__grid">
+            <ul className="selected-work__grid">
               {selectedWork.map((project, index) => (
                 <Row 
                   key={project.slug}
@@ -56,7 +99,7 @@ export default function HomePage() {
                   index={index}
                 />
               ))}
-            </div>
+            </ul>
 
             <div className="selected-work__cta">
               <a 

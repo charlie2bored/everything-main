@@ -36,14 +36,14 @@ function RouteTransition({ children }: RouteTransitionProps) {
   )
 }
 
-// Export common animation variants
+// Export common animation variants with reduced motion support
 export const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 12 },
   show: { 
     opacity: 1, 
     y: 0,
     transition: { 
-      duration: 0.5, 
+      duration: 0.38, 
       ease: "easeOut" 
     }
   }

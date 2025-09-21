@@ -1,9 +1,17 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { m } from 'framer-motion'
-import { Project } from '@/lib/projects'
+import { Project, hasBeforeAfter, getProjectStructuredData } from '@/lib/projects'
+import Header from './Header'
+import Footer from './Footer'
+import StickyToc from './StickyToc'
+import { MetricGrid } from './MetricBadge'
+import Testimonial from './Testimonial'
+import Lightbox from './Lightbox'
+import BeforeAfter from './BeforeAfter'
+import { MediaGrid } from './Media'
 import TagChips from './TagChips'
 import { fadeUp, stagger } from '@/app/providers/MotionProvider'
 
@@ -12,188 +20,312 @@ interface CaseStudyContentProps {
 }
 
 export default function CaseStudyContent({ project }: CaseStudyContentProps) {
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+
+  const sections = [
+    { id: 'overview', title: 'Overview' },
+    { id: 'problem', title: 'Problem' },
+    { id: 'insights', title: 'Insights' },
+    { id: 'solution', title: 'Solution' },
+    { id: 'outcomes', title: 'Outcomes' },
+    { id: 'gallery', title: 'Gallery' }
+  ]
+
+  const handleImageClick = (index: number) => {
+    setLightboxIndex(index)
+    setLightboxOpen(true)
+  }
+
+  const projectStructuredData = getProjectStructuredData(project)
+
   return (
-    <main className="case-study-content">
-      {/* Breadcrumb */}
-      <nav className="breadcrumb">
-        <Link href="/#work" className="breadcrumb-link">
-          ← Back to Work
-        </Link>
-      </nav>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectStructuredData) }}
+      />
+      
+      <Header />
+      
+      {/* Sticky TOC */}
+      <StickyToc sections={sections} />
 
-      {/* Header */}
-      <m.header 
-        className="case-study-section"
-        initial="hidden"
-        animate="show"
-        variants={stagger(0.1)}
-      >
-        <m.h1 variants={fadeUp}>{project.title}</m.h1>
-        <m.p variants={fadeUp}>{project.subtitle}</m.p>
-        <m.div variants={fadeUp}>
-          <TagChips tags={project.tags} />
-        </m.div>
-      </m.header>
-
-      {/* Meta Information */}
-      <m.section 
-        className="case-study-section"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={stagger(0.05)}
-      >
-        <div className="meta-grid">
-          <m.div className="meta-item" variants={fadeUp}>
-            <h3>Role</h3>
-            <p>{project.role}</p>
-          </m.div>
-          <m.div className="meta-item" variants={fadeUp}>
-            <h3>Timeline</h3>
-            <p>{project.timeline}</p>
-          </m.div>
-          <m.div className="meta-item" variants={fadeUp}>
-            <h3>Tags</h3>
-            <TagChips tags={project.tags} />
-          </m.div>
-          <m.div className="meta-item" variants={fadeUp}>
-            <h3>Links</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {project.live && (
-                <a 
-                  href={project.live} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-link"
-                >
-                  View Live Site
-                </a>
-              )}
-              {project.repo && (
-                <a 
-                  href={project.repo} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-link"
-                >
-                  View Repository
-                </a>
-              )}
-            </div>
-          </m.div>
-        </div>
-      </m.section>
-
-      {/* Overview */}
-      <m.section 
-        className="case-study-section"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={fadeUp}
-      >
-        <h2>Overview</h2>
-        <p>{project.summary}</p>
-      </m.section>
-
-      {/* Process */}
-      <m.section 
-        className="case-study-section"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={stagger(0.1)}
-      >
-        <m.h2 variants={fadeUp}>Process</m.h2>
-        <div>
-          {project.process.map((step, index) => (
-            <m.p key={index} variants={fadeUp}>
-              {step}
-            </m.p>
-          ))}
-        </div>
-      </m.section>
-
-      {/* Gallery */}
-      {project.gallery && project.gallery.length > 0 && (
-        <m.section 
-          className="case-study-section"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={stagger(0.1)}
-        >
-          <m.h2 variants={fadeUp}>Gallery</m.h2>
-          <m.div className="cs-gallery" variants={fadeUp}>
-            {project.gallery.map((imageSrc, index) => (
-              <m.div 
-                key={index} 
-                className="cs-media"
+      <main id="main" className="case-study">
+        {/* Hero Section */}
+        <header className="case-study__hero">
+          <div className="case-study__container">
+            <m.div
+              className="case-study__hero-content"
+              initial="hidden"
+              animate="show"
+              variants={stagger(0.06)}
+            >
+              <m.h1 
+                className="case-study__title"
                 variants={fadeUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
               >
-                <Image
-                  src={imageSrc}
-                  alt={`${project.title} gallery image ${index + 1}`}
-                  width={800}
-                  height={600}
-                  loading="lazy"
-                  style={{ 
-                    width: '100%', 
-                    height: 'auto',
-                    borderRadius: 'var(--radius-sm)'
-                  }}
-                />
+                {project.title}
+              </m.h1>
+              <m.p 
+                className="case-study__subtitle"
+                variants={fadeUp}
+              >
+                {project.subtitle}
+              </m.p>
+              <m.div variants={fadeUp}>
+                <TagChips tags={project.tags} variant="light" />
               </m.div>
-            ))}
-          </m.div>
-        </m.section>
+            </m.div>
+
+            {/* Meta Grid */}
+            <m.div 
+              className="case-study__meta"
+              initial="hidden"
+              animate="show"
+              variants={stagger(0.04)}
+            >
+              <m.div className="meta-item" variants={fadeUp}>
+                <h3 className="meta-label">Client</h3>
+                <p className="meta-value">{project.client}</p>
+              </m.div>
+              <m.div className="meta-item" variants={fadeUp}>
+                <h3 className="meta-label">Industry</h3>
+                <p className="meta-value">{project.industry}</p>
+              </m.div>
+              <m.div className="meta-item" variants={fadeUp}>
+                <h3 className="meta-label">Role</h3>
+                <p className="meta-value">{Array.isArray(project.role) ? project.role.join(', ') : project.role}</p>
+              </m.div>
+              <m.div className="meta-item" variants={fadeUp}>
+                <h3 className="meta-label">Timeline</h3>
+                <p className="meta-value">{project.timeline}</p>
+              </m.div>
+            </m.div>
+          </div>
+        </header>
+
+        <div className="case-study__content">
+          <div className="case-study__container">
+            
+            {/* Overview */}
+            <section id="overview" className="case-study__section">
+              <m.h2 
+                className="section-title"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.38 }}
+              >
+                Overview
+              </m.h2>
+              <m.div 
+                className="section-content"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <p className="section-text">
+                  {project.solution}
+                </p>
+              </m.div>
+            </section>
+
+            {/* Problem */}
+            <section id="problem" className="case-study__section">
+              <m.h2 
+                className="section-title"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.38 }}
+              >
+                Problem
+              </m.h2>
+              <m.div 
+                className="section-content"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <p className="section-text">
+                  {project.problem}
+                </p>
+              </m.div>
+            </section>
+
+            {/* Insights */}
+            <section id="insights" className="case-study__section">
+              <m.h2 
+                className="section-title"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.38 }}
+              >
+                Insights
+              </m.h2>
+              <m.div 
+                className="section-content"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <ul className="insights-list">
+                  {project.insights.map((insight, index) => (
+                    <m.li 
+                      key={index}
+                      className="insight-item"
+                      initial={{ opacity: 0, x: -12 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                    >
+                      {insight}
+                    </m.li>
+                  ))}
+                </ul>
+              </m.div>
+            </section>
+
+            {/* Solution */}
+            <section id="solution" className="case-study__section">
+              <m.h2 
+                className="section-title"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.38 }}
+              >
+                Solution
+              </m.h2>
+              <m.div 
+                className="section-content"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <p className="section-text">
+                  {project.solution}
+                </p>
+
+                {/* Before/After if available */}
+                {hasBeforeAfter(project) && (
+                  <div className="before-after-section">
+                    <h3 className="subsection-title">Before & After</h3>
+                    <BeforeAfter
+                      beforeSrc={project.before!}
+                      afterSrc={project.after!}
+                      beforeAlt={`${project.title} before redesign`}
+                      afterAlt={`${project.title} after redesign`}
+                    />
+                  </div>
+                )}
+              </m.div>
+            </section>
+
+            {/* Outcomes */}
+            <section id="outcomes" className="case-study__section">
+              <m.h2 
+                className="section-title"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.38 }}
+              >
+                Outcomes
+              </m.h2>
+              <m.div 
+                className="section-content"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                {/* KPI Metrics */}
+                {project.kpis && project.kpis.length > 0 && (
+                  <div className="outcomes-kpis">
+                    <h3 className="subsection-title">Key Metrics</h3>
+                    <MetricGrid kpis={project.kpis} className="case-study-metrics" />
+                  </div>
+                )}
+
+                {/* Testimonial */}
+                {project.testimonial && (
+                  <div className="outcomes-testimonial">
+                    <Testimonial 
+                      testimonial={project.testimonial} 
+                      variant="featured"
+                      delay={0.2}
+                    />
+                  </div>
+                )}
+              </m.div>
+            </section>
+
+            {/* Gallery */}
+            {project.gallery && project.gallery.length > 0 && (
+              <section id="gallery" className="case-study__section">
+                <m.h2 
+                  className="section-title"
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.38 }}
+                >
+                  Gallery
+                </m.h2>
+                <m.div 
+                  className="section-content"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
+                  <MediaGrid 
+                    items={project.gallery} 
+                    onImageClick={handleImageClick}
+                    className="case-study-gallery"
+                  />
+                </m.div>
+              </section>
+            )}
+
+            {/* Navigation */}
+            <section className="case-study__navigation">
+              <Link 
+                href="/work"
+                className="btn btn--secondary"
+              >
+                <span className="btn__text">← Back to Work</span>
+              </Link>
+              
+              <Link 
+                href="/contact"
+                className="btn btn--primary"
+              >
+                <span className="btn__text">Start your project</span>
+              </Link>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      {/* Lightbox */}
+      {project.gallery && (
+        <Lightbox
+          images={project.gallery}
+          initialIndex={lightboxIndex}
+          isOpen={lightboxOpen}
+          onClose={() => setLightboxOpen(false)}
+        />
       )}
 
-      {/* Outcomes */}
-      <m.section 
-        className="case-study-section"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={stagger(0.05)}
-      >
-        <m.h2 variants={fadeUp}>Outcomes</m.h2>
-        <m.ul className="cs-outcomes" variants={fadeUp}>
-          {project.outcomes.map((outcome, index) => (
-            <m.li 
-              key={index}
-              variants={fadeUp}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              {outcome}
-            </m.li>
-          ))}
-        </m.ul>
-      </m.section>
-
-      {/* CTA Section */}
-      <m.section 
-        className="cta-section"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={stagger(0.1)}
-      >
-        <m.h2 variants={fadeUp}>Let's Work Together</m.h2>
-        <m.p variants={fadeUp}>
-          Interested in collaborating on your next project? I'd love to hear about your vision and explore how we can bring it to life.
-        </m.p>
-        <m.div variants={fadeUp}>
-          <Link href="/#contact" className="btn-primary">
-            <span className="btn-text">Get In Touch</span>
-            <div className="btn-ripple"></div>
-          </Link>
-        </m.div>
-      </m.section>
-    </main>
+      <Footer />
+    </>
   )
 }

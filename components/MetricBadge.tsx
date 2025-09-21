@@ -108,3 +108,4 @@ export function ProofStrip({ metrics, footnote }: ProofStripProps) {
     </section>
   )
 }
+

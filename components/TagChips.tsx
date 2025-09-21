@@ -4,13 +4,14 @@ import { m } from 'framer-motion'
 
 interface TagChipsProps {
   tags: string[]
+  variant?: 'default' | 'light'
   className?: string
 }
 
-export default function TagChips({ tags, className = '' }: TagChipsProps) {
+export default function TagChips({ tags, variant = 'default', className = '' }: TagChipsProps) {
   return (
     <ul 
-      className={`tags ${className}`} 
+      className={`tags tags--${variant} ${className}`} 
       aria-label="Project tags"
     >
       {tags.map((tag, index) => (

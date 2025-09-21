@@ -18,28 +18,32 @@ const timeline = [
   {
     year: '2024',
     title: 'Independent Designer & Developer',
-    description: 'Launched independent practice focusing on conversion-driven design systems and user experiences.',
+    description: 'Launched independent practice focusing on conversion-driven design systems and user experiences for ambitious startups and scale-ups.',
     highlight: true
   },
   {
     year: '2022-2024',
     title: 'Senior Product Designer at Stripe',
-    description: 'Led design for payment flows and developer tools, improving conversion rates by 30% across core products.'
+    description: 'Led design for payment flows and developer tools across global markets. Redesigned checkout experience and API documentation for improved developer adoption.',
+    metric: '+30% conversion across core products'
   },
   {
     year: '2020-2022',
     title: 'Design Lead at Figma',
-    description: 'Managed design system team and component library, supporting 50M+ users and 100+ internal designers.'
+    description: 'Managed design system team and component library architecture. Built scalable design tokens and documentation that supported rapid company growth.',
+    metric: 'Supported 50M+ users and 100+ designers'
   },
   {
     year: '2018-2020',
     title: 'Product Designer at Airbnb',
-    description: 'Designed host onboarding flows and listing optimization tools, increasing host conversion by 25%.'
+    description: 'Designed host onboarding flows and listing optimization tools for global expansion. Focused on reducing friction for new hosts in emerging markets.',
+    metric: '+25% host conversion rate'
   },
   {
     year: '2016-2018',
     title: 'Frontend Developer at GitHub',
-    description: 'Built accessible React components and design system infrastructure for developer productivity.'
+    description: 'Built accessible React components and design system infrastructure. Contributed to open-source component library used by developer community.',
+    metric: '99.9% uptime across design system'
   }
 ]
 
@@ -80,26 +84,25 @@ export default function AboutPage() {
             <div className="bio__content">
               <div className="bio__text">
                 <h2 id="bio-heading" className="bio__heading">
-                  Hi, I'm Charlie
+                  I help founders and product teams build brands and experiences that convert.
                 </h2>
                 
                 <div className="bio__description">
                   <p>
-                    I'm a product designer and frontend developer with 8+ years of experience 
-                    creating conversion-focused digital experiences. Currently based in San Francisco, 
-                    I work with startups and established companies worldwide.
+                    Whether you're launching a new product or scaling an existing one, I combine 
+                    design strategy with technical implementation to create systems that drive 
+                    measurable business outcomes.
                   </p>
                   
                   <p>
-                    My approach combines design thinking with technical implementation, ensuring 
-                    that every decision serves both user needs and business goals. I specialize in 
-                    design systems, conversion optimization, and accessible user interfaces.
+                    My process focuses on understanding your users deeply, then building brands 
+                    and digital experiences that convert visitors into customers. Every project 
+                    includes performance tracking and optimization based on real user data.
                   </p>
                   
                   <p>
-                    When I'm not designing or coding, you'll find me photographing architecture 
-                    around the city, experimenting with new brewing methods, or contributing to 
-                    open-source design tools.
+                    Based in San Francisco, I work with ambitious teams worldwide who want 
+                    design that moves metrics, not just aesthetics.
                   </p>
                 </div>
 
@@ -224,6 +227,11 @@ export default function AboutPage() {
                     <div className="timeline__year">{item.year}</div>
                     <h3 className="timeline__title-item">{item.title}</h3>
                     <p className="timeline__description">{item.description}</p>
+                    {item.metric && (
+                      <div className="timeline__metric">
+                        {item.metric}
+                      </div>
+                    )}
                   </div>
                 </article>
               ))}
@@ -231,45 +239,52 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Skills/Tools Section */}
-        <section className="about-page__skills" aria-labelledby="skills-heading">
+        {/* Capabilities Section */}
+        <section className="about-page__capabilities" aria-labelledby="capabilities-heading">
           <div className="about-page__container">
-            <h2 id="skills-heading" className="skills__title">
-              Tools & Technologies
+            <h2 id="capabilities-heading" className="capabilities__title">
+              Capabilities
             </h2>
             
-            <div className="skills__grid">
-              <div className="skills__category">
-                <h3 className="skills__category-title">Design</h3>
-                <ul className="skills__list">
-                  <li>Figma</li>
-                  <li>Adobe Creative Suite</li>
-                  <li>Principle</li>
-                  <li>Framer</li>
-                  <li>Sketch</li>
-                </ul>
+            <div className="capabilities__grid">
+              <div className="capability">
+                <h3 className="capability__title">Branding Systems</h3>
+                <p className="capability__description">
+                  Complete visual identities that scale across touchpoints. 
+                  From logo to guidelines, built for consistency and growth.
+                </p>
               </div>
 
-              <div className="skills__category">
-                <h3 className="skills__category-title">Development</h3>
-                <ul className="skills__list">
-                  <li>React & Next.js</li>
-                  <li>TypeScript</li>
-                  <li>CSS & Sass</li>
-                  <li>Node.js</li>
-                  <li>Git & GitHub</li>
-                </ul>
+              <div className="capability">
+                <h3 className="capability__title">Conversion UX</h3>
+                <p className="capability__description">
+                  User experiences designed to drive measurable business outcomes. 
+                  Research-backed flows that optimize for conversion and retention.
+                </p>
               </div>
 
-              <div className="skills__category">
-                <h3 className="skills__category-title">Process</h3>
-                <ul className="skills__list">
-                  <li>Design Systems</li>
-                  <li>User Research</li>
-                  <li>A/B Testing</li>
-                  <li>Analytics</li>
-                  <li>Agile/Scrum</li>
-                </ul>
+              <div className="capability">
+                <h3 className="capability__title">Motion/Interactions</h3>
+                <p className="capability__description">
+                  Purposeful animation that enhances usability and delight. 
+                  Micro-interactions and motion systems that guide user behavior.
+                </p>
+              </div>
+
+              <div className="capability">
+                <h3 className="capability__title">Web (Next/Perf)</h3>
+                <p className="capability__description">
+                  Fast, accessible websites built with Next.js. 
+                  Performance-optimized for Core Web Vitals and real user metrics.
+                </p>
+              </div>
+
+              <div className="capability">
+                <h3 className="capability__title">Analytics</h3>
+                <p className="capability__description">
+                  Data-driven design decisions backed by user behavior insights. 
+                  A/B testing and metrics that prove business impact.
+                </p>
               </div>
             </div>
           </div>
@@ -280,3 +295,4 @@ export default function AboutPage() {
     </>
   )
 }
+

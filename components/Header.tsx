@@ -147,3 +147,4 @@ function SocialIcon({ name }: { name: string }) {
     </svg>
   )
 }
+

@@ -133,3 +133,4 @@ export default function StickyToc({ sections, className = '' }: StickyTocProps) 
     </nav>
   )
 }
+

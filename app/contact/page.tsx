@@ -79,14 +79,23 @@ export default function ContactPage() {
     setSubmitStatus('idle')
 
     try {
-      // In a real implementation, you would submit to your form handler
-      // For static export, you might use Formspree, Netlify Forms, or similar
-      const response = await fetch('/api/contact', {
+      // Use Formspree for form handling (replace with your Formspree endpoint)
+      const formspreeEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xvoejqwo'
+      
+      const response = await fetch(`https://formspree.io/f/${formspreeEndpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          budget: formData.budget,
+          timeline: formData.timeline,
+          message: formData.message,
+          service: formData.service,
+          _subject: `New project inquiry from ${formData.name}`,
+        }),
       })
 
       if (response.ok) {
@@ -100,18 +109,14 @@ export default function ContactPage() {
           service: formData.service // Keep service if it was pre-selected
         })
         
-        // Announce success to screen readers
-        const announcement = document.createElement('div')
-        announcement.setAttribute('aria-live', 'polite')
-        announcement.setAttribute('aria-atomic', 'true')
-        announcement.className = 'sr-only'
-        announcement.textContent = 'Message sent successfully! I\'ll get back to you within 24 hours.'
-        document.body.appendChild(announcement)
-        
-        setTimeout(() => {
-          document.body.removeChild(announcement)
-        }, 3000)
+        // Focus management for accessibility
+        const successElement = document.querySelector('.contact-form__success')
+        if (successElement instanceof HTMLElement) {
+          successElement.focus()
+        }
       } else {
+        const errorData = await response.json()
+        console.error('Form submission failed:', errorData)
         setSubmitStatus('error')
       }
     } catch (error) {
@@ -169,7 +174,12 @@ export default function ContactPage() {
               <h2 id="form-heading" className="sr-only">Contact form</h2>
               
               {submitStatus === 'success' && (
-                <div className="contact-form__success" role="alert">
+                <div 
+                  className="contact-form__success" 
+                  role="alert"
+                  aria-live="polite"
+                  tabIndex={-1}
+                >
                   <h3 className="contact-form__success-title">Message sent!</h3>
                   <p className="contact-form__success-text">
                     Thanks for reaching out. I'll get back to you within 24 hours.
@@ -178,7 +188,12 @@ export default function ContactPage() {
               )}
 
               {submitStatus === 'error' && (
-                <div className="contact-form__error" role="alert">
+                <div 
+                  className="contact-form__error" 
+                  role="alert"
+                  aria-live="assertive"
+                  tabIndex={-1}
+                >
                   <h3 className="contact-form__error-title">Something went wrong</h3>
                   <p className="contact-form__error-text">
                     Please try again or send me an email directly at hello@charlie.design
@@ -299,18 +314,21 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn btn--primary contact-form__submit"
+                  className={`btn btn--primary contact-form__submit ${isSubmitting ? 'contact-form__submit--sending' : ''}`}
                   aria-describedby="submit-status"
                 >
                   <span className="btn__text">
-                    {isSubmitting ? 'Sending...' : 'Send message'}
+                    {isSubmitting ? 'Sending message...' : 'Send message'}
                   </span>
+                  {isSubmitting && (
+                    <span className="btn__spinner" aria-hidden="true"></span>
+                  )}
                 </button>
 
-                <div id="submit-status" className="sr-only" aria-live="polite">
-                  {isSubmitting && 'Sending your message...'}
-                  {submitStatus === 'success' && 'Message sent successfully!'}
-                  {submitStatus === 'error' && 'Error sending message. Please try again.'}
+                <div id="submit-status" className="sr-only" aria-live="polite" aria-atomic="true">
+                  {isSubmitting && 'Sending your message, please wait...'}
+                  {submitStatus === 'success' && 'Message sent successfully! I\'ll get back to you within 24 hours.'}
+                  {submitStatus === 'error' && 'Error sending message. Please try again or contact me directly.'}
                 </div>
               </form>
             </div>
@@ -361,3 +379,4 @@ export default function ContactPage() {
 
 // Note: For static export, you'll need to handle form submission differently
 // Consider using services like Formspree, Netlify Forms, or Cloudflare Workers
+

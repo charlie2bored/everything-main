@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Project } from '@/lib/projects'
 import TagChips from './TagChips'
+import MetricBadge from './MetricBadge'
 import { fadeUp } from '@/app/providers/MotionProvider'
 
 interface RowProps {
@@ -93,6 +94,16 @@ export default function Row({ project, index }: RowProps) {
           <m.div variants={fadeUp}>
             <TagChips tags={project.tags} />
           </m.div>
+          
+          {/* KPI Chip from first KPI */}
+          {project.kpis && project.kpis.length > 0 && (
+            <m.div variants={fadeUp} className="project-kpi">
+              <MetricBadge 
+                kpi={project.kpis[0]} 
+                variant="default"
+              />
+            </m.div>
+          )}
         </div>
 
         {/* Media Column (52%) */}
@@ -116,6 +127,7 @@ export default function Row({ project, index }: RowProps) {
               className="project-thumb"
               sizes="(min-width: 900px) 52vw, 100vw"
               loading={index < 2 ? "eager" : "lazy"}
+              decoding="async"
               style={{ objectFit: 'cover' }}
             />
             
