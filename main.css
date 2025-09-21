@@ -201,6 +201,20 @@ body, p, li, nav {
 .nav-link:hover,
 .nav-link[aria-current="page"] {
     color: var(--text);
+    text-shadow: 0 0 8px rgba(255,211,0,0.3);
+    animation: navGlow 0.6s ease-out;
+}
+
+@keyframes navGlow {
+    0% {
+        text-shadow: 0 0 8px rgba(255,211,0,0.3);
+    }
+    50% {
+        text-shadow: 0 0 16px rgba(255,211,0,0.6);
+    }
+    100% {
+        text-shadow: 0 0 8px rgba(255,211,0,0.3);
+    }
 }
 
 .nav-link:hover::after,
@@ -345,6 +359,29 @@ body, p, li, nav {
     text-align: center;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, 
+        rgba(0,0,0,1) 0%, 
+        rgba(28,28,28,0.95) 25%, 
+        rgba(0,0,0,1) 50%, 
+        rgba(28,28,28,0.98) 75%, 
+        rgba(0,0,0,1) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
 }
 
 .hero-background {
@@ -533,8 +570,21 @@ body, p, li, nav {
 
 .btn-primary:hover {
     background-color: var(--c-yellow);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(255,211,0,0.3), 0 8px 16px rgba(0,0,0,0.2);
+    animation: buttonPulse 0.6s ease-out;
+}
+
+@keyframes buttonPulse {
+    0% {
+        transform: translateY(-4px) scale(1.05);
+    }
+    50% {
+        transform: translateY(-6px) scale(1.08);
+    }
+    100% {
+        transform: translateY(-4px) scale(1.05);
+    }
 }
 
 .btn-primary:focus-visible {
@@ -551,7 +601,22 @@ body, p, li, nav {
 .btn-secondary:hover {
     border-color: var(--accent);
     color: var(--accent);
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(255,211,0,0.2), 0 6px 12px rgba(0,0,0,0.15);
+    background: radial-gradient(circle at center, rgba(255,211,0,0.1) 0%, transparent 70%);
+    animation: secondaryButtonGlow 0.8s ease-out;
+}
+
+@keyframes secondaryButtonGlow {
+    0% {
+        box-shadow: 0 15px 30px rgba(255,211,0,0.2), 0 6px 12px rgba(0,0,0,0.15);
+    }
+    50% {
+        box-shadow: 0 20px 40px rgba(255,211,0,0.4), 0 8px 16px rgba(0,0,0,0.2);
+    }
+    100% {
+        box-shadow: 0 15px 30px rgba(255,211,0,0.2), 0 6px 12px rgba(0,0,0,0.15);
+    }
 }
 
 .btn-secondary:focus-visible {
@@ -615,6 +680,69 @@ body, p, li, nav {
 :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
+    animation: focusPulse 2s ease-in-out infinite;
+}
+
+@keyframes focusPulse {
+    0%, 100% {
+        outline-color: var(--accent);
+        outline-width: 2px;
+    }
+    50% {
+        outline-color: rgba(255, 211, 0, 0.6);
+        outline-width: 3px;
+    }
+}
+
+/* ===== CURSOR TRAIL SYSTEM ===== */
+.cursor-trail {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transform: scale(0);
+    animation: trailFade 0.6s ease-out forwards;
+}
+
+@keyframes trailFade {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* Enhanced cursor on interactive elements */
+.work-link, .service-card, .btn-primary, .btn-secondary, .nav-link {
+    cursor: none;
+    position: relative;
+}
+
+.work-link::after, .service-card::after, .btn-primary::after, .btn-secondary::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 10;
+}
+
+.work-link:hover::after, .service-card:hover::after, 
+.btn-primary:hover::after, .btn-secondary:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 /* ===== NAV LINK UNDERLINE GROW ===== */
@@ -732,6 +860,29 @@ body, p, li, nav {
 .filter-chip:focus {
     border-color: var(--accent);
     color: var(--accent);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(255,211,0,0.2);
+    background: linear-gradient(135deg, rgba(255,211,0,0.1) 0%, transparent 100%);
+}
+
+.filter-chip {
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-chip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,211,0,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.filter-chip:hover::before {
+    left: 100%;
 }
 
 .filter-chip.active {
@@ -812,7 +963,7 @@ body, p, li, nav {
     }
 }
 
-/* Enhanced background layers on hover */
+/* Enhanced background layers with parallax */
 .hero:hover::after, .work:hover::after, .about:hover::after, .contact:hover::after, .services:hover::after {
     content: "";
     position: absolute;
@@ -824,6 +975,46 @@ body, p, li, nav {
     pointer-events: none;
     z-index: -1;
     transition: opacity 0.6s ease;
+    animation: backgroundFloat 15s ease-in-out infinite;
+}
+
+@keyframes backgroundFloat {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) scale(1);
+    }
+    25% {
+        transform: translateY(-10px) translateX(5px) scale(1.02);
+    }
+    50% {
+        transform: translateY(5px) translateX(-3px) scale(0.98);
+    }
+    75% {
+        transform: translateY(-3px) translateX(8px) scale(1.01);
+    }
+}
+
+/* Parallax scroll effects */
+.hero-content {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.parallax-element {
+    transform: translateZ(0);
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+}
+
+/* Advanced section transitions */
+.section-enter {
+    opacity: 0;
+    transform: translateY(100px) rotateX(15deg);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-enter.visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
 }
 
 .hero:hover::before, .hero:focus-within::before { animation: none; }
@@ -911,8 +1102,56 @@ body, p, li, nav {
 .media-wrap { position: relative; width: 100%; height: clamp(280px, 52vh, 620px); overflow: hidden; border-radius: var(--radius-lg); }
 .project-thumb { width: 100%; height: 100%; object-fit: cover; display: block; filter: blur(20px); opacity: 0; }
 .project-thumb.loaded { filter: blur(0); opacity: 1; transition: opacity .24s ease, filter .24s ease; }
-.skeleton { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.12), rgba(255,255,255,.06)); background-size: 200% 100%; animation: shimmer 1.2s infinite; }
-@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+.skeleton { 
+    position: absolute; 
+    inset: 0; 
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,.04) 0%, 
+        rgba(255,211,0,.08) 25%, 
+        rgba(255,255,255,.12) 50%, 
+        rgba(255,211,0,.08) 75%, 
+        rgba(255,255,255,.04) 100%); 
+    background-size: 300% 100%; 
+    animation: advancedShimmer 2s ease-in-out infinite; 
+    border-radius: inherit;
+}
+
+@keyframes advancedShimmer { 
+    0% { 
+        background-position: -300% 0;
+        opacity: 0.6;
+    } 
+    50% {
+        background-position: 0% 0;
+        opacity: 1;
+    }
+    100% { 
+        background-position: 300% 0;
+        opacity: 0.6;
+    } 
+}
+
+/* Enhanced loading states */
+.loading-text {
+    background: linear-gradient(90deg, 
+        var(--c-gray-100) 0%, 
+        var(--accent) 50%, 
+        var(--c-gray-100) 100%);
+    background-size: 200% 100%;
+    animation: textShimmer 2s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes textShimmer {
+    0%, 100% {
+        background-position: -200% 0;
+    }
+    50% {
+        background-position: 200% 0;
+    }
+}
 .hover-pill { position: absolute; inset: 0; pointer-events: none; display: inline-flex; align-items: center; justify-content: center; width: max-content; height: 36px; padding: 0 14px; border-radius: 999px; background: rgba(0,0,0,.7); color: var(--c-white); border: 1px solid rgba(255,255,255,.2); transform: translate(-50%, -50%); left: -9999px; top: -9999px; opacity: 0; transition: opacity .12s ease; font-size: var(--step-0); }
 .media-wrap:hover .hover-pill { opacity: 1; }
 .work-link:focus-visible .media-wrap .hover-pill { opacity: 1; left: 50%; top: 50%; }
@@ -1063,7 +1302,7 @@ body, p, li, nav {
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Smooth section reveals */
+/* Enhanced section reveals with staggered elements */
 .services, .about, .contact {
     opacity: 0;
     transform: translateY(60px);
@@ -1080,6 +1319,44 @@ body, p, li, nav {
 
 .contact {
     animation-delay: 0.6s;
+}
+
+/* Staggered content animations */
+.service-card {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    animation: cardReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.6s; }
+.service-card:nth-child(2) { animation-delay: 0.8s; }
+.service-card:nth-child(3) { animation-delay: 1s; }
+
+.work-row {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: workRowReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.work-row:nth-child(1) { animation-delay: 0.2s; }
+.work-row:nth-child(2) { animation-delay: 0.4s; }
+.work-row:nth-child(3) { animation-delay: 0.6s; }
+.work-row:nth-child(4) { animation-delay: 0.8s; }
+.work-row:nth-child(5) { animation-delay: 1s; }
+.work-row:nth-child(6) { animation-delay: 1.2s; }
+
+@keyframes cardReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes workRowReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes sectionReveal {

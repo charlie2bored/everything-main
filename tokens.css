@@ -9,19 +9,31 @@
 
 /* ===== DESIGN TOKENS ===== */
 :root {
-  /* Brand Colors */
-  --c-black: #000;
-  --c-white: #fff;
-  --c-yellow: #FFD300;
-  --c-gray-100: #EDEDED;
-  --c-gray-900: #1C1C1C;
+  /* Luxury Brand Colors */
+  --c-black: #0A0A0A;
+  --c-white: #FEFEFE;
+  --c-gold: #D4AF37;
+  --c-gold-light: #F4E4BC;
+  --c-gold-dark: #B8941F;
+  --c-gray-50: #F8F8F8;
+  --c-gray-100: #E8E8E8;
+  --c-gray-200: #D1D1D1;
+  --c-gray-300: #B4B4B4;
+  --c-gray-400: #6B6B6B;
+  --c-gray-500: #404040;
+  --c-gray-600: #262626;
+  --c-gray-700: #171717;
+  --c-gray-800: #111111;
+  --c-gray-900: #0D0D0D;
 
   /* Semantic Colors */
-  --bg: var(--c-black);
+  --bg: var(--c-gray-900);
   --text: var(--c-white);
-  --accent: var(--c-yellow);
-  --surface: var(--c-gray-900);
-  --border: #333333;
+  --accent: var(--c-gold);
+  --surface: var(--c-gray-800);
+  --surface-elevated: var(--c-gray-700);
+  --border: var(--c-gray-600);
+  --border-subtle: var(--c-gray-700);
 
   /* Typography Scale */
   --step--1: clamp(12px, 0.8vw, 14px);
@@ -31,9 +43,10 @@
   --step-3: clamp(40px, 6vw, 88px);
   --step-4: clamp(60px, 8vw, 120px);
 
-  /* Font Families */
-  --font-title: "Mensrea Bubble", system-ui, sans-serif;
-  --font-subtitle: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  /* Luxury Font Families */
+  --font-display: "Playfair Display", serif;
+  --font-title: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-subtitle: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   /* Spacing */

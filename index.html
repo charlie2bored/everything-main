@@ -25,11 +25,12 @@
     <!-- Preload critical fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="tokens.css">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="luxury-styles.css">
     <link rel="stylesheet" href="animations.css">
     
     <!-- Icons -->
@@ -80,13 +81,17 @@
             </button>
             <div id="nav-links" class="nav-links">
                 <a href="#work" class="nav-link">Work</a>
-                <a href="#services" class="nav-link">Services</a>
+                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             <nav class="social" aria-label="Social links">
                 <a class="icon" href="https://instagram.com/charlie_designs" aria-label="Instagram">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.4.5.6.2 1 .5 1.5 1 .5.5.8.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.5 2.4-.2.6-.5 1-1 1.5-.5.5-.9.8-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.4-.5-.6-.2-1-.5-1.5-1-.5-.5-.8-.9-1-1.5-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.9.5-2.4.2-.6.5-1 1-1.5.5-.5.9-.8 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 4a6 6 0 100 12 6 6 0 000-12zm7-1.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="m18 6 .01 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
                     <span>Instagram</span>
                 </a>
                 <a class="icon" href="https://www.linkedin.com/in/charliedesigns/" aria-label="LinkedIn">
@@ -95,12 +100,19 @@
                     </svg>
                     <span>LinkedIn</span>
                 </a>
+                <a class="icon" href="https://youtube.com/@charliedesigns" aria-label="YouTube">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                        <polygon points="9.75,15.02 15.5,11.75 9.75,8.48" fill="white"/>
+                    </svg>
+                    <span>YouTube</span>
+                </a>
             </nav>
         </div>
         <div id="nav-drawer" class="nav-drawer" hidden aria-hidden="true">
             <div class="nav-drawer-links">
                 <a href="#work" class="nav-link">Work</a>
-                <a href="#services" class="nav-link">Services</a>
+                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
@@ -117,14 +129,13 @@
         </div>
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-greeting">Designer & Developer</p>
-                <h1 class="hero-title">
-                    <span class="title-line">I design brand systems</span>
-                    <span class="title-line">that move and sites that convert</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Based in San Francisco, I create conversion-focused digital products for startups and established brands. My work combines strategic design thinking with performance-driven development.
-                </p>
+            <p class="hero-greeting">Designer & Developer</p>
+            <h1 class="hero-title">
+                <span class="title-line">Hey, I'm Charlie</span>
+            </h1>
+            <p class="hero-subtitle">
+                I create design and experiences for everyone.
+            </p>
                 <div class="hero-actions">
                     <button class="btn-primary" id="viewWorkBtn">
                         <span class="btn-text">View Work</span>
@@ -304,61 +315,116 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="services-container">
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="skills-container">
             <header class="section-header centered">
-                <h2 class="section-title">What I Do</h2>
-                <p class="section-subtitle">Comprehensive design and development services tailored to bring your vision to life.</p>
+                <h2 class="section-title">My Skills</h2>
             </header>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">Communication</h3>
+                </div>
+                
+                <div class="skill-card featured">
+                    <div class="skill-icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                         </svg>
                     </div>
-                    <h3 class="service-title">Brand Identity</h3>
-                    <p class="service-description">Creating cohesive visual systems that communicate your brand's essence and connect with your audience.</p>
-                    <ul class="service-features">
-                        <li>Logo Design</li>
-                        <li>Visual Identity</li>
-                        <li>Brand Guidelines</li>
-                        <li>Typography Systems</li>
-                    </ul>
+                    <h3 class="skill-title">Leadership</h3>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                         </svg>
                     </div>
-                    <h3 class="service-title">Web Development</h3>
-                    <p class="service-description">Building responsive, performant websites and applications with modern technologies and best practices.</p>
-                    <ul class="service-features">
-                        <li>Responsive Design</li>
-                        <li>Frontend Development</li>
-                        <li>Performance Optimization</li>
-                        <li>CMS Integration</li>
-                    </ul>
+                    <h3 class="skill-title">Critical Thinking</h3>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M9 11H7v9h2v-9zm4 0h-2v9h2v-9zm4 0h-2v9h2v-9zM4 22h16v-2H4v2zM6 6l2-2h8l2 2h3v2H3V6h3z"/>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-5 0V4.5A2.5 2.5 0 0 1 9.5 2z"/>
+                            <path d="M14.5 8.5A2.5 2.5 0 0 1 17 11v8.5a2.5 2.5 0 0 1-5 0V11a2.5 2.5 0 0 1 2.5-2.5z"/>
                         </svg>
                     </div>
-                    <h3 class="service-title">UX Design</h3>
-                    <p class="service-description">Designing intuitive user experiences through research, strategy, and thoughtful interface design.</p>
-                    <ul class="service-features">
-                        <li>User Research</li>
-                        <li>Wireframing</li>
-                        <li>Prototyping</li>
-                        <li>Interface Design</li>
-                    </ul>
+                    <h3 class="skill-title">Problem Solving</h3>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">Public Speaking</h3>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14.828 14.828L21 21m-5.5-16.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11z"/>
+                            <path d="M8 8l8 8"/>
+                            <path d="M16 8l-8 8"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">Performing Arts</h3>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">Digital Media Communication</h3>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">Entrepreneurship</h3>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 3v18h18V3H3z"/>
+                            <path d="M8 8h8"/>
+                            <path d="M8 12h8"/>
+                            <path d="M8 16h6"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">Data Analysis</h3>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">Business Operations</h3>
                 </div>
             </div>
         </div>
@@ -405,6 +471,66 @@
                         <div class="image-texture"></div>
                         <div class="image-overlay"></div>
                     </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="experience-container">
+            <header class="section-header centered">
+                <h2 class="section-title">My Experience</h2>
+            </header>
+            
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="experience-company">
+                        <div class="company-logo">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                        </div>
+                        <div class="experience-details">
+                            <h3 class="position-title">Lead Software Engineer at Google</h3>
+                            <p class="experience-date">Nov 2019 - Present</p>
+                            <p class="experience-description">As a Senior Software Engineer at Google, I played a pivotal role in developing innovative solutions for Google's core search algorithms. Collaborating with a dynamic team of engineers, I contributed to the enhancement of search accuracy and efficiency, optimizing user experiences for millions of users worldwide.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-company">
+                        <div class="company-logo youtube">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                                <polygon points="9.75,15.02 15.5,11.75 9.75,8.48" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="experience-details">
+                            <h3 class="position-title">Software Engineer at YouTube</h3>
+                            <p class="experience-date">Jan 2017 - Oct 2019</p>
+                            <p class="experience-description">At YouTube, I served as a Software Engineer, focusing on the design and implementation of backend systems for the social media giant's dynamic platform. Working on projects that involved large-scale data processing and user engagement features, I leveraged my expertise to ensure seamless functionality and scalability.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-company">
+                        <div class="company-logo apple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                        </div>
+                        <div class="experience-details">
+                            <h3 class="position-title">Junior Software Engineer at Apple</h3>
+                            <p class="experience-date">Jan 2016 - Dec 2017</p>
+                            <p class="experience-description">During my tenure at Apple, I held the role of Software Architect, where I played a key role in shaping the architecture of mission-critical software projects. Responsible for designing scalable and efficient systems, I provided technical leadership to a cross-functional team.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -479,5 +605,6 @@
     <script src="main.js"></script>
     <script src="particles.js"></script>
     <script src="animations.js"></script>
+    <script src="cursor-effects.js"></script>
 </body>
 </html>
