@@ -7,7 +7,7 @@ import Row from '@/components/Row'
 import { ProofStrip } from '@/components/MetricBadge'
 import { getSelectedWork, getAverageImprovement, getAllProjects } from '@/lib/projects'
 
-const Particles = dynamic(() => import('@/components/Particles'), { 
+const EffectsGate = dynamic(() => import('@/components/EffectsGate'), { 
   ssr: false, 
   loading: () => null 
 })
@@ -85,8 +85,8 @@ export default function HomePage() {
         {/* Hero Section */}
         <Hero />
         
-        {/* Background particles - loads after idle, not render-blocking */}
-        <Particles />
+        {/* Background effects - loads after idle, skipped on mobile */}
+        <EffectsGate />
 
         {/* Selected Work Section */}
         <section id="work" className="selected-work" aria-labelledby="work-heading">

@@ -1,3 +1,13 @@
+/* Self-hosted display font for critical performance */
+@font-face {
+  font-family: 'Display';
+  src: url('/fonts/Display.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* Import existing design tokens */
 @import url('../tokens.css');
 
@@ -418,7 +428,7 @@ body {
 .media-wrap {
   position: relative;
   aspect-ratio: 16 / 9;
-  max-height: min(80svh, 720px);
+  max-height: min(70svh, 520px);
   overflow: clip;
   border-radius: 0 0 0 clamp(48px, 10vw, 120px);
   background: var(--surface);
@@ -846,6 +856,34 @@ body {
 .footer__built {
   font-size: var(--step--1);
   color: var(--c-gray-300);
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+/* Content visibility for better rendering performance */
+.selected-work,
+.proof-strip,
+.work-row,
+.case-study__section,
+.about-page__bio,
+.about-page__method,
+.about-page__timeline,
+.about-page__capabilities,
+.services-page__content,
+.contact-page__form {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
+}
+
+/* Hero background simplification on mobile */
+@media (max-width: 480px) {
+  .hero__background {
+    background: var(--bg) !important;
+    opacity: 1 !important;
+  }
+  
+  .hero::after {
+    display: none !important;
+  }
 }
 
 /* ===== SELECTED WORK STYLES ===== */

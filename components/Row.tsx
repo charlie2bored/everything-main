@@ -141,17 +141,42 @@ export default function Row({ project, index }: RowProps) {
             }}
             variants={fadeUp}
           >
-            <Image
-              src={project.cover}
-              alt={`${project.title} cover`}
-              fill
-              className="project-thumb"
-              sizes="(min-width: 900px) 52vw, 100vw"
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchPriority={index === 0 ? "high" : "auto"}
-              decoding="async"
-              style={{ objectFit: 'cover' }}
-            />
+{index === 0 ? (
+              // LCP optimized picture element for first image
+              <picture>
+                <source 
+                  type="image/avif" 
+                  srcSet="/assets/projects/zenflow-cover-640.avif 640w, /assets/projects/zenflow-cover-960.avif 960w, /assets/projects/zenflow-cover-1280.avif 1280w" 
+                />
+                <source 
+                  type="image/webp" 
+                  srcSet="/assets/projects/zenflow-cover-640.webp 640w, /assets/projects/zenflow-cover-960.webp 960w, /assets/projects/zenflow-cover-1280.webp 1280w" 
+                />
+                <img
+                  src="/assets/projects/zenflow-cover-960.webp"
+                  alt={`${project.title} cover demonstrating brand & motion`}
+                  width={960}
+                  height={540}
+                  sizes="(max-width: 600px) 100vw, (max-width: 1024px) 80vw, 50vw"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                  className="project-thumb"
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                />
+              </picture>
+            ) : (
+              <Image
+                src={project.cover}
+                alt={`${project.title} cover`}
+                fill
+                className="project-thumb"
+                sizes="(min-width: 900px) 52vw, 100vw"
+                loading="lazy"
+                decoding="async"
+                style={{ objectFit: 'cover' }}
+              />
+            )}
             
             {/* Cursor-following pill */}
             <span

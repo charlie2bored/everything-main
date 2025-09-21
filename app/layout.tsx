@@ -54,6 +54,10 @@ export const metadata: Metadata = {
   },
 }
 
+const criticalCSS = `
+:root{--c-black:#0A0A0A;--c-white:#FEFEFE;--c-gold:#D4AF37;--c-gray-200:#D1D1D1;--c-gray-500:#4a4a4a;--c-gray-600:#3a3a3a;--c-gray-700:#171717;--c-gray-800:#111111;--c-gray-900:#0D0D0D;--bg:var(--c-gray-900);--text:var(--c-white);--accent:var(--c-gold);--surface:var(--c-gray-800);--border:var(--c-gray-600);--step--1:clamp(12px,0.8vw,14px);--step-0:clamp(14px,1vw,16px);--step-1:clamp(18px,2vw,22px);--step-2:clamp(26px,3.2vw,40px);--step-3:clamp(40px,6vw,88px);--font-display:"Playfair Display",serif;--font-title:"DM Sans",ui-sans-serif,system-ui,sans-serif;--font-body:"Inter",ui-sans-serif,system-ui,sans-serif;--space-xs:0.5rem;--space-sm:1rem;--space-md:1.5rem;--space-lg:2rem;--space-xl:3rem;--space-2xl:4rem;--content-wide:1200px;--radius:16px;--radius-sm:8px;--transition-fast:120ms ease-out;--z-nav:100}*{box-sizing:border-box}html{font-family:var(--font-body);line-height:1.5;-webkit-text-size-adjust:100%;scroll-behavior:smooth}body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden}.skip-link{position:absolute;top:-40px;left:6px;background:var(--accent);color:var(--bg);padding:8px;text-decoration:none;border-radius:4px;z-index:1000;font-weight:600;transform:translateY(-100%);transition:transform 0.2s}.skip-link:focus{transform:translateY(0)}.header{position:fixed;top:0;left:0;right:0;z-index:var(--z-nav);background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all var(--transition-fast)}.header__container{max-width:var(--content-wide);margin:0 auto;padding:var(--space-md) var(--space-lg);display:flex;align-items:center;justify-content:space-between}.header__logo{font-family:var(--font-display);font-size:var(--step-1);font-weight:400}.header__nav{display:none}.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:var(--space-2xl) var(--space-lg);overflow:hidden}.hero__background{position:absolute;top:0;left:0;right:0;bottom:0;background:var(--bg);opacity:0.05;pointer-events:none}.hero__container{position:relative;z-index:2;max-width:800px}.hero__eyebrow{font-size:var(--step-0);color:var(--c-gray-200);margin-bottom:var(--space-sm);text-transform:uppercase;letter-spacing:0.1em;font-weight:500}.hero__title{font-family:var(--font-display);font-size:var(--step-3);font-weight:400;line-height:1.1;margin:0 0 var(--space-lg)}.hero__title-line--white{color:var(--text);display:block}.hero__title-line--yellow{color:var(--accent);display:block}.hero__lede{font-size:var(--step-1);color:var(--c-gray-200);margin-bottom:var(--space-2xl);max-width:600px;margin-left:auto;margin-right:auto;line-height:1.5}.hero__actions{display:flex;gap:var(--space-lg);justify-content:center;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:var(--space-md) var(--space-xl);border-radius:999px;text-decoration:none;font-weight:600;font-size:var(--step-0);transition:all var(--transition-fast);cursor:pointer;border:1px solid transparent}.btn--primary{background:var(--accent);color:var(--bg)}.btn--secondary{background:transparent;color:var(--text);border-color:var(--border)}@media (max-width:768px){.header__container{padding:var(--space-sm) var(--space-md)}.hero{padding:var(--space-xl) var(--space-md);min-height:100svh}.hero__title{font-size:var(--step-2)}.hero__actions{flex-direction:column;align-items:center;gap:var(--space-md)}.btn{width:100%;max-width:280px}}@media (prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}html{scroll-behavior:auto}}
+`
+
 export default function RootLayout({
   children,
 }: {
@@ -62,6 +66,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${dmSans.variable} ${playfair.variable}`}>
       <head>
+        {/* Inline critical CSS for instant above-the-fold rendering */}
+        <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
+        
         {/* Preload critical resources for LCP optimization */}
         <link 
           rel="preload" 
@@ -73,9 +80,10 @@ export default function RootLayout({
         <link 
           rel="preload" 
           as="image" 
-          href="/assets/projects/zenflow-cover.webp" 
+          href="/assets/projects/zenflow-cover-640.avif" 
         />
         <link rel="preload" href="/assets/noise.avif" as="image" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
