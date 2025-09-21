@@ -1,0 +1,114 @@
+[
+  {
+    "slug": "brand-system-a",
+    "title": "Zenflow Wellness",
+    "subtitle": "Identity & digital ecosystem for wellness startup",
+    "tags": ["Branding", "Web", "Motion"],
+    "role": "Brand Designer & Frontend Developer",
+    "timeline": "8 weeks",
+    "summary": "Complete brand identity and digital presence for a meditation app startup, focusing on calm, approachable wellness that makes mindfulness accessible to everyone.",
+    "process": [
+      "Started with user research to understand the meditation app landscape and target audience pain points.",
+      "Developed brand strategy emphasizing accessibility over intimidation—wellness for everyone, not just yoga experts.",
+      "Created a flexible visual system with soft gradients and breathing animations that scale across digital touchpoints.",
+      "Built a conversion-optimized landing page with A/B tested signup flows and integrated analytics."
+    ],
+    "gallery": ["/assets/projects/zenflow-1.webp", "/assets/projects/zenflow-2.webp", "/assets/projects/zenflow-3.webp"],
+    "outcomes": ["+28% app downloads vs. previous design", "4.8/5 app store rating", "+18% email signups", "Featured in App Store wellness category"],
+    "cover": "/assets/projects/zenflow-cover.webp",
+    "live": "https://zenflow-demo.pages.dev",
+    "repo": "https://github.com/charlie/zenflow-brand"
+  },
+  {
+    "slug": "commerce-refresh",
+    "title": "TechGear E-commerce",
+    "subtitle": "Conversion-first redesign for electronics retailer",
+    "tags": ["Web", "UX"],
+    "role": "UX Designer & Frontend Developer",
+    "timeline": "10 weeks",
+    "summary": "Complete redesign of electronics e-commerce site, improving product discovery and checkout flow for better conversion rates and user experience.",
+    "process": [
+      "Analyzed existing site analytics and conducted user interviews to identify conversion bottlenecks.",
+      "Redesigned product pages with clearer specifications, better images, and social proof.",
+      "Streamlined checkout flow from 5 steps to 2, with guest checkout option.",
+      "Implemented advanced filtering and search functionality for the 2000+ product catalog."
+    ],
+    "gallery": ["/assets/projects/techgear-1.webp", "/assets/projects/techgear-2.webp"],
+    "outcomes": ["+42% conversion rate", "-28% cart abandonment", "+18% average order value", "98% customer satisfaction score"],
+    "cover": "/assets/projects/techgear-cover.webp",
+    "live": "https://techgear-demo.pages.dev"
+  },
+  {
+    "slug": "coffee-rebrand",
+    "title": "Local Coffee Co.",
+    "subtitle": "Authentic rebrand for neighborhood roaster",
+    "tags": ["Branding", "Print"],
+    "role": "Brand Designer",
+    "timeline": "6 weeks",
+    "summary": "Authentic rebrand for a 15-year-old coffee shop expanding to wholesale, balancing heritage with growth while maintaining community connection.",
+    "process": [
+      "Interviewed the owner and long-time customers to understand what made the shop special to the community.",
+      "Audited competitor brands to identify opportunities for differentiation in the local market.",
+      "Designed a flexible mark that worked on small coffee bags and large storefront signage.",
+      "Created packaging that highlighted the local roasting story while improving shelf appeal."
+    ],
+    "gallery": ["/assets/projects/coffee-1.webp"],
+    "outcomes": ["+35% wholesale inquiries", "Featured in Local Business Spotlight", "+22% social media engagement", "Expanded to 3 new locations"],
+    "cover": "/assets/projects/coffee-cover.webp"
+  },
+  {
+    "slug": "festival-identity",
+    "title": "Urban Arts Festival",
+    "subtitle": "Modular visual system for city-wide event",
+    "tags": ["Print", "Branding"],
+    "role": "Art Director & Designer",
+    "timeline": "12 weeks",
+    "summary": "Modular visual system for annual arts festival, designed to work across 50+ venues and diverse artwork styles while maintaining brand consistency.",
+    "process": [
+      "Collaborated with festival organizers to understand the diversity of participating artists and venues.",
+      "Created a flexible grid system that could accommodate different artwork and venue information.",
+      "Designed a color system that would complement artwork without competing for attention.",
+      "Produced print guidelines for 50+ venues to ensure consistent brand application."
+    ],
+    "gallery": ["/assets/projects/festival-1.webp", "/assets/projects/festival-2.webp"],
+    "outcomes": ["45% increase in festival attendance", "Featured in Print Magazine", "Adopted as template for 3 other city festivals", "Award: Best Festival Identity 2024"],
+    "cover": "/assets/projects/festival-cover.webp"
+  },
+  {
+    "slug": "motion-system",
+    "title": "SaaS Motion Kit",
+    "subtitle": "Reusable motion system for enterprise",
+    "tags": ["Motion", "Web"],
+    "role": "Motion Designer & Frontend Developer",
+    "timeline": "6 weeks",
+    "summary": "Comprehensive motion design system for enterprise dashboard, improving user comprehension and task completion rates through purposeful animation.",
+    "process": [
+      "Audited existing dashboard to identify where motion could improve user understanding and reduce cognitive load.",
+      "Created motion principles focused on purposeful, performance-optimized animations.",
+      "Built a React component library with built-in animations and micro-interactions.",
+      "Documented implementation guidelines for the development team."
+    ],
+    "gallery": ["/assets/projects/motion-1.webp", "/assets/projects/motion-2.webp"],
+    "outcomes": ["+23% task completion rate", "-15% user errors", "Adopted by 3 other product teams", "50% reduction in animation implementation time"],
+    "cover": "/assets/projects/motion-cover.webp",
+    "repo": "https://github.com/charlie/motion-kit"
+  },
+  {
+    "slug": "fintech-audit",
+    "title": "Investment Platform UX",
+    "subtitle": "Usability assessment and optimization",
+    "tags": ["UX", "Research"],
+    "role": "UX Researcher & Designer",
+    "timeline": "4 weeks",
+    "summary": "Comprehensive UX audit of investment platform, identifying usability issues and providing actionable recommendations to improve user experience.",
+    "process": [
+      "Conducted heuristic evaluation using Nielsen's 10 principles to identify obvious usability issues.",
+      "Ran moderated user testing sessions with 12 participants across 3 user personas.",
+      "Performed competitive analysis of 5 leading investment platforms.",
+      "Prioritized recommendations based on impact vs. effort matrix and delivered actionable roadmap."
+    ],
+    "gallery": ["/assets/projects/fintech-1.webp", "/assets/projects/fintech-2.webp"],
+    "outcomes": ["Identified 47 usability issues", "Delivered 23 prioritized recommendations", "Client implemented 18/23 suggestions", "+31% user satisfaction after implementation"],
+    "cover": "/assets/projects/fintech-cover.webp"
+  }
+]

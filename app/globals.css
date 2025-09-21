@@ -1,0 +1,248 @@
+/* Import existing styles from the original portfolio */
+@import url('../tokens.css');
+@import url('../main.css');
+@import url('../luxury-styles.css');
+
+/* Additional global styles for Next.js and Framer Motion */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Additional focus styles for better accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Hero background improvements for Next.js */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-hero);
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(255, 211, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(255, 211, 0, 0.05) 0%, transparent 50%),
+    url('/assets/noise.avif');
+  background-size: 600px 600px, 800px 800px, 100px 100px;
+  background-position: 0% 0%, 100% 100%, 0 0;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Noise texture overlay */
+.hero::after,
+.work::after,
+.about::after,
+.contact::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/noise.avif');
+  background-size: 100px 100px;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Work rows asymmetric radius improvement */
+.media-wrap {
+  border-radius: 0 0 0 clamp(48px, 10vw, 120px);
+}
+
+/* Animation base classes for Framer Motion */
+.animate-in {
+  animation-fill-mode: both;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Improved cursor interaction */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Case study specific styles */
+.case-study-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.case-study-section {
+  margin-bottom: var(--space-3xl);
+}
+
+.case-study-section h2 {
+  font-size: var(--step-2);
+  font-weight: 400;
+  margin-bottom: var(--space-lg);
+  color: var(--text);
+}
+
+.case-study-section p {
+  font-size: var(--step-0);
+  line-height: 1.7;
+  color: var(--c-gray-100);
+  margin-bottom: var(--space-lg);
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-3xl);
+  padding: var(--space-xl);
+  background-color: var(--surface);
+  border-radius: var(--radius);
+}
+
+.meta-item h3 {
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--space-sm);
+}
+
+.meta-item p {
+  font-size: var(--step-0);
+  color: var(--c-gray-100);
+}
+
+.breadcrumb {
+  position: fixed;
+  top: 100px;
+  left: var(--space-lg);
+  z-index: var(--z-nav);
+}
+
+.breadcrumb-link {
+  color: var(--c-gray-100);
+  text-decoration: none;
+  font-size: var(--step-0);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb-link:hover {
+  color: var(--accent);
+}
+
+.cs-gallery {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(12, 1fr);
+  margin: var(--space-xl) 0;
+}
+
+.cs-gallery .cs-media {
+  grid-column: span 12;
+}
+
+.cs-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+@media (min-width: 900px) {
+  .cs-gallery .cs-media:nth-child(odd) {
+    grid-column: span 7;
+  }
+  .cs-gallery .cs-media:nth-child(even) {
+    grid-column: span 5;
+  }
+}
+
+.cs-outcomes {
+  list-style: none;
+  padding: 0;
+}
+
+.cs-outcomes li {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--c-gray-100);
+}
+
+.cs-outcomes li:last-child {
+  border-bottom: none;
+}
+
+.cs-outcomes li::before {
+  content: "→";
+  color: var(--accent);
+  font-weight: bold;
+  margin-right: var(--space-sm);
+}
+
+.cta-section {
+  text-align: center;
+  padding: var(--space-3xl) 0;
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-3xl);
+}
+
+.cta-section h2 {
+  font-size: var(--step-2);
+  margin-bottom: var(--space-lg);
+}
+
+.cta-section p {
+  font-size: var(--step-0);
+  color: var(--c-gray-100);
+  margin-bottom: var(--space-xl);
+}
+
+@media (max-width: 768px) {
+  .breadcrumb {
+    left: var(--space-md);
+  }
+  
+  .meta-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cs-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Print styles */
+@media print {
+  .hero-background,
+  .hero::after,
+  .work::after,
+  .about::after,
+  .contact::after,
+  .hover-pill {
+    display: none !important;
+  }
+}

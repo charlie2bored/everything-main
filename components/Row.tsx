@@ -1,0 +1,154 @@
+'use client'
+
+import { useRef, useState, useCallback } from 'react'
+import { m } from 'framer-motion'
+import Link from 'next/link'
+import Image from 'next/image'
+import { Project } from '@/lib/projects'
+import TagChips from './TagChips'
+import { fadeUp } from '@/app/providers/MotionProvider'
+
+interface RowProps {
+  project: Project
+  index: number
+}
+
+export default function Row({ project, index }: RowProps) {
+  const mediaRef = useRef<HTMLDivElement>(null)
+  const pillRef = useRef<HTMLSpanElement>(null)
+  const [isHovered, setIsHovered] = useState(false)
+  const [pillPosition, setPillPosition] = useState({ x: -9999, y: -9999 })
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!mediaRef.current || !pillRef.current) return
+    
+    const rect = mediaRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    
+    setPillPosition({ x, y })
+  }, [])
+
+  const handleMouseEnter = useCallback(() => {
+    setIsHovered(true)
+  }, [])
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false)
+    setPillPosition({ x: -9999, y: -9999 })
+  }, [])
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      // The Link will handle navigation
+    }
+  }, [])
+
+  const handleFocus = useCallback(() => {
+    setIsHovered(true)
+    // Pin pill to bottom-right for keyboard focus
+    if (mediaRef.current) {
+      const rect = mediaRef.current.getBoundingClientRect()
+      setPillPosition({ x: rect.width * 0.5, y: rect.height * 0.5 })
+    }
+  }, [])
+
+  const handleBlur = useCallback(() => {
+    setIsHovered(false)
+    setPillPosition({ x: -9999, y: -9999 })
+  }, [])
+
+  return (
+    <m.li 
+      className="work-row"
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-10%" }}
+      variants={fadeUp}
+      transition={{ delay: index * 0.1 }}
+    >
+      <Link 
+        href={`/case/${project.slug}/`}
+        className="work-link"
+        aria-label={`Open case study: ${project.title}`}
+        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      >
+        {/* Text Column (48%) */}
+        <div className="col-text">
+          <m.h3 
+            className="project-title"
+            variants={fadeUp}
+          >
+            {project.title}
+          </m.h3>
+          <m.p 
+            className="project-subtitle"
+            variants={fadeUp}
+          >
+            {project.subtitle}
+          </m.p>
+          <m.div variants={fadeUp}>
+            <TagChips tags={project.tags} />
+          </m.div>
+        </div>
+
+        {/* Media Column (52%) */}
+        <div className="col-media">
+          <m.div 
+            ref={mediaRef}
+            className="media-wrap"
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            whileHover={{ 
+              scale: 1.02,
+              transition: { duration: 0.3, ease: "easeOut" }
+            }}
+            variants={fadeUp}
+          >
+            <Image
+              src={project.cover}
+              alt={`${project.title} cover`}
+              fill
+              className="project-thumb"
+              sizes="(min-width: 900px) 52vw, 100vw"
+              loading={index < 2 ? "eager" : "lazy"}
+              style={{ objectFit: 'cover' }}
+            />
+            
+            {/* Cursor-following pill */}
+            <span
+              ref={pillRef}
+              className="hover-pill"
+              style={{
+                left: `${pillPosition.x}px`,
+                top: `${pillPosition.y}px`,
+                opacity: isHovered ? 1 : 0,
+                transform: 'translate(-50%, -50%)',
+                pointerEvents: 'none',
+                position: 'absolute',
+                zIndex: 10,
+                padding: '8px 16px',
+                borderRadius: '999px',
+                background: 'rgba(0, 0, 0, 0.8)',
+                color: 'white',
+                fontSize: 'var(--step-0)',
+                fontWeight: '500',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                backdropFilter: 'blur(20px)',
+                transition: 'opacity 0.2s ease',
+                whiteSpace: 'nowrap',
+              }}
+              aria-hidden="true"
+            >
+              See the work
+            </span>
+          </m.div>
+        </div>
+      </Link>
+    </m.li>
+  )
+}

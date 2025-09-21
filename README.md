@@ -1,288 +1,223 @@
-# Charlie Portfolio
+# Charlie Portfolio — Next.js + Framer Motion
 
-A cinematic, high-contrast portfolio website with placeholder projects, rekorderstudios.com-inspired navigation, and one-project-per-row layout.
+A modern portfolio website built with Next.js 14 App Router, Framer Motion v11, and designed for static export to Cloudflare Pages.
 
-## Quick Start
+## ✨ Features
 
-Open in Cursor. Run a local static server (or use VS Code Live Server). No build step required.
+- **Next.js 14 App Router** with static export for optimal performance
+- **Framer Motion v11** with reduced motion support and smooth animations
+- **Responsive 48/52 grid layout** for work showcase
+- **Cursor-following interactive pill** on project hover
+- **Case study pages** generated from data/projects.json
+- **OpenGraph image generation** for social sharing
+- **Accessibility-first** with proper focus management and ARIA labels
+- **Performance optimized** with lazy loading and image optimization
 
-```bash
-# Using Python
-python -m http.server 8000
+## 🚀 Quick Start
 
-# Using Node.js
-npx serve .
+### Prerequisites
 
-# Using VS Code Live Server extension
-# Right-click index.html → "Open with Live Server"
+- Node.js 18.0.0 or higher
+- npm or yarn package manager
+
+### Installation
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Start development server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view the site.
+
+3. **Build for production:**
+   ```bash
+   npm run build
+   ```
+   The static files will be generated in the `out/` directory.
+
+4. **Preview production build:**
+   ```bash
+   npm start
+   ```
+
+## 📁 Project Structure
+
+```
+├── app/                          # Next.js App Router
+│   ├── case/[slug]/             # Dynamic case study pages
+│   │   ├── page.tsx             # Case study template
+│   │   └── opengraph-image.tsx  # OG image generator
+│   ├── work/                    # All work page
+│   ├── providers/               # App providers
+│   │   └── MotionProvider.tsx   # Framer Motion setup
+│   ├── globals.css              # Global styles
+│   ├── layout.tsx               # Root layout
+│   └── page.tsx                 # Home page
+├── components/                   # Reusable components
+│   ├── Hero.tsx                 # Hero section with animations
+│   ├── Row.tsx                  # Project row with cursor pill
+│   └── TagChips.tsx             # Tag components
+├── data/                        # Static data
+│   └── projects.json            # Project data
+├── lib/                         # Utilities
+│   └── projects.ts              # Project helpers
+├── public/                      # Static assets
+│   └── assets/                  # Images, icons, etc.
+├── tokens.css                   # Design tokens
+├── main.css                     # Base styles
+├── luxury-styles.css            # Enhanced styles
+└── next.config.mjs              # Next.js configuration
 ```
 
-## How to Replace Placeholders with Your Own Projects
+## 📝 How to Add Projects
 
-### 1. Add Your Font File
-Drop your `mensrea-bubble.woff2` file into the `/fonts/` directory. The CSS is already configured to load it.
-
-### 2. Create Project Assets
-For each project, create a folder in `projects/<your-slug>/`:
-```
-projects/your-project-slug/
-├── cover.jpg    # Thumbnail image (~1600×1000, 80-85% JPG quality)
-├── hero.jpg     # Hero image (~2400×1400, 80-85% JPG quality)
-├── 1.jpg        # Gallery image 1 (optional)
-├── 2.jpg        # Gallery image 2 (optional)
-└── ...          # Additional gallery images (optional)
-```
-
-**Image Specifications:**
-- **Thumbnails**: ~1600px wide, 80-85% JPG quality
-- **Hero images**: ~2400px wide, 80-85% JPG quality
-- **Gallery images**: Any size, optimized for web
-- **Videos**: MP4/H.264, ~8-12 second loops for motion projects
-
-### 3. Update projects.json
-Open `projects.json` and replace the placeholder objects with your projects:
+Edit the `data/projects.json` file to add or modify projects:
 
 ```json
 {
-  "slug": "your-project-slug",
-  "title": "Your Project Title",
-  "subtitle": "One-liner description",
-  "tags": ["Design", "Development", "Branding"],
-  "thumb": "projects/your-project-slug/cover.jpg",
-  "hero": "projects/your-project-slug/hero.jpg",
-  "summary": "Short 1-2 sentence project summary.",
-  "role": "Your role(s) in the project",
-  "scope": ["Deliverable A", "Deliverable B", "Deliverable C"],
-  "outcomes": ["Result 1", "Result 2", "Result 3"],
+  "slug": "project-slug",
+  "title": "Project Title",
+  "subtitle": "Brief description",
+  "tags": ["Branding", "Web", "Motion"],
+  "role": "Your role on the project",
+  "timeline": "Project duration",
+  "summary": "Detailed project overview...",
+  "process": [
+    "Step 1 of your process...",
+    "Step 2 of your process..."
+  ],
   "gallery": [
-    "projects/your-project-slug/1.jpg",
-    "projects/your-project-slug/2.jpg"
-  ]
+    "/assets/projects/project-1.webp",
+    "/assets/projects/project-2.webp"
+  ],
+  "outcomes": [
+    "+25% conversion improvement",
+    "Award recognition"
+  ],
+  "cover": "/assets/projects/project-cover.webp",
+  "live": "https://example.com",
+  "repo": "https://github.com/username/repo"
 }
 ```
 
-### 4. Update Social Links
-Edit the social links in `index.html` (lines 39-69):
-- Replace `yourusername` with your actual usernames
-- Replace `hello@yourdomain.com` with your email
-- Update URLs to point to your profiles
+### Image Guidelines
 
-### 5. Save and Deploy
-Save the JSON file. Your projects automatically appear as full-width rows. Clicking them opens the case study page.
+- **Cover images:** 1200x800px WebP format
+- **Gallery images:** Variable sizes, WebP format recommended
+- **File naming:** Use project slug as prefix (e.g., `zenflow-cover.webp`)
+- **Location:** Place all images in `public/assets/projects/`
 
-## Brand Colors
+## 🎨 Customization
 
-The portfolio uses these exact colors:
-- **Black**: #000000
-- **White**: #FFFFFF  
-- **Yellow**: #FFD300 (accent color)
-- **Light Gray**: #EDEDED
-- **Dark Gray**: #1C1C1C
+### Design Tokens
 
-Edit `tokens.css` to customize colors if needed. Yellow is used for accents (links, focus rings, small dividers), not for large text blocks.
+Edit `tokens.css` to customize the design system:
 
-## Typography
-
-The portfolio uses three font families:
-
-1. **Mensrea Bubble** (Title font)
-   - Self-hosted via `/fonts/mensrea-bubble.woff2`
-   - Used for h1, h2, h3 elements
-   - Letter-spacing: 0.2px
-
-2. **Space Grotesk** (Subtitle font)
-   - Loaded from Google Fonts
-   - Used for subtitles and section subtitles
-   - Clean, modern sans-serif
-
-3. **Inter** (Body font)
-   - Loaded from Google Fonts
-   - Used for body text, navigation, and UI elements
-   - Excellent readability
-
-## Features
-
-- **Cinematic Design**: High-contrast, full-bleed images with one project per row
-- **Rekorder Studios Navbar**: Sticky navigation with transparent→solid transition and mobile overlay
-- **Placeholder Projects**: 6 sample projects ready to replace with your work
-- **Dynamic Project Loading**: Projects render from JSON, no code edits needed
-- **Case Study System**: Click any project to view detailed case study
-- **Responsive Design**: Mobile-first with optimized layouts
-- **Accessibility**: WCAG AA compliant with keyboard navigation and reduced motion support
-- **Performance**: Optimized animations with LQIP and responsive images
-- **Form Validation**: Client-side validation with honeypot spam protection
-
-## Project Structure
-
-```
-Charlie Portfolio/
-├── index.html                    # Main portfolio page
-├── 
-│   └── case-study.html          # Dynamic case study template
-├── 
-│   └── projects.json            # Project data (edit to add projects)
-├── styles/
-│   ├── tokens.css              # Brand colors & typography
-│   ├── main.css                # Main styles & layout
-│   └── animations.css          # Animation styles
-├── 
-│   ├── main.js                 # Main functionality
-│   ├── particles.js            # Particle effects
-│   └── animations.js           # Animation helpers
-├── fonts/
-│   └── mensrea-bubble.woff2    # Your custom title font
-├── 
-│   ├── placeholder/            # Placeholder images (replace with your projects)
-│   └── projects/               # Your project images
-├── sitemap.xml                 # SEO sitemap
-├── robots.txt                  # SEO robots file
-└── README.md                   # This file
-```
-
-## How to Host
-
-This portfolio is a static website that works on any web host. Here are several hosting options:
-
-### Static Hosting Platforms (Recommended)
-
-**GitHub Pages** (Free)
-1. Create a new repository on GitHub
-2. Upload your portfolio files to the repository
-3. Go to Settings → Pages
-4. Select "Deploy from a branch" and choose `main` branch
-5. Your site will be available at `https://yourusername.github.io/repository-name`
-
-**Netlify** (Free tier available)
-1. Visit [netlify.com](https://netlify.com)
-2. Drag and drop your portfolio folder onto their deploy area
-3. Your site gets a random URL immediately
-4. Optional: Connect to Git repository for automatic deployments
-5. Optional: Add custom domain in site settings
-
-**Vercel** (Free tier available)
-1. Visit [vercel.com](https://vercel.com)
-2. Import your Git repository or upload files
-3. Deploy with zero configuration
-4. Automatic HTTPS and global CDN included
-
-**Cloudflare Pages** (Free)
-1. Visit [pages.cloudflare.com](https://pages.cloudflare.com)
-2. Connect your Git repository
-3. Build command: Leave empty (static site)
-4. Output directory: `/` (root)
-5. Fast global deployment with Cloudflare's network
-
-### Traditional Web Hosting
-
-**Shared Hosting** (cPanel, etc.)
-1. Upload files via FTP to your `public_html` or `www` folder
-2. Ensure all files maintain their folder structure
-3. Visit your domain to view the site
-
-**VPS/Dedicated Server**
-1. Upload files to your web server directory (usually `/var/www/html`)
-2. Configure your web server (Apache/Nginx) to serve static files
-3. Ensure proper file permissions (644 for files, 755 for folders)
-
-### Domain Setup (Optional)
-
-1. **Purchase a domain** from registrars like Namecheap, GoDaddy, or Google Domains
-2. **Point to your host**:
-   - For GitHub Pages: Create CNAME file with your domain
-   - For Netlify/Vercel: Add domain in dashboard settings
-   - For traditional hosting: Update nameservers or A records
-
-### Pre-Deployment Checklist
-
-- [ ] Replace placeholder content with your projects
-- [ ] Update social links with your profiles
-- [ ] Test all navigation and project links locally
-- [ ] Optimize images (JPG quality 80-85%)
-- [ ] Verify `projects.json` is valid JSON
-- [ ] Add your custom font file if using Mensrea Bubble
-- [ ] Test contact form functionality
-
-### Post-Deployment
-
-- **Set up analytics** (Google Analytics, Plausible, etc.)
-- **Test performance** with PageSpeed Insights
-- **Verify mobile responsiveness** on actual devices
-- **Check accessibility** with tools like WAVE
-- **Submit sitemap** to Google Search Console for SEO
-
-## Deploy
-
-The portfolio works on any static host and requires no build process or server-side code.
-
-## Browser Support
-
-- **Modern browsers**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
-- **Mobile**: iOS Safari 14+, Chrome Mobile 90+
-- **Features**: CSS Grid, CSS Custom Properties, Intersection Observer, Fetch API
-
-## Performance Targets
-
-- **Lighthouse Performance**: ≥ 90
-- **Lighthouse Accessibility**: ≥ 95  
-- **Lighthouse SEO**: ≥ 95
-- **Core Web Vitals**: All green
-- **Load Time**: < 3 seconds on 3G
-
-## Accessibility
-
-- **WCAG AA Compliance**: Proper contrast ratios and focus states
-- **Keyboard Navigation**: Full keyboard support with visible focus indicators
-- **Screen Reader Support**: Semantic HTML and ARIA labels
-- **Reduced Motion**: Respects `prefers-reduced-motion` settings
-- **Skip Links**: Jump to main content with Tab key
-
-## Customization
-
-### Colors
-Edit `styles/tokens.css` to change the color scheme. The CSS custom properties make it easy to maintain consistency.
-
-### Typography
-- **Title Font**: Replace `/fonts/mensrea-bubble.woff2` with your font file
-- **Subtitle Font**: Update the Google Fonts link in `index.html`
-- **Body Font**: Change the Inter font import if desired
-
-### Layout
-- **Project Rows**: Modify `.project-row` styles in `main.css`
-- **Navigation**: Customize `.nav` and related styles
-- **Hero Section**: Adjust `.hero` and `.hero-content` styles
+- **Colors:** Brand colors, semantic colors
+- **Typography:** Font sizes, families
+- **Spacing:** Consistent spacing scale
+- **Layout:** Content widths, grid settings
 
 ### Animations
-- **Reduced Motion**: All animations respect user preferences
-- **Custom Animations**: Add new keyframes in `animations.css`
-- **Performance**: Animations use `transform` and `opacity` for smooth 60fps
 
-## Troubleshooting
+Framer Motion variants are defined in `app/providers/MotionProvider.tsx`:
 
-### Projects Not Loading
-- Check that `projects.json` is valid JSON
-- Ensure image paths in JSON match your file structure
-- Verify images exist in the specified locations
+- `fadeUp` - Standard entrance animation
+- `stagger` - Staggered children animations
+- `scaleIn` - Scale entrance effect
 
-### Fonts Not Loading
-- Confirm `mensrea-bubble.woff2` is in the `/fonts/` directory
-- Check that Google Fonts links are accessible
-- Verify font-display: swap is working
+### Layout
 
-### Case Studies Not Working
-- Ensure `case-study.html` exists
-- Check that project slugs in JSON match the URL parameters
-- Verify the fetch request to `projects.json` is successful
+The 48/52 grid layout is configured in CSS:
+- Text content: 48% width
+- Media content: 52% width
+- Asymmetric border radius on media
+- Responsive breakpoints included
 
-### Performance Issues
-- Optimize images (use 80-85% JPG quality)
-- Enable gzip compression on your server
-- Use a CDN for faster global delivery
-- Consider lazy loading for below-the-fold content
+## 🚀 Deployment to Cloudflare Pages
 
-## Support
+### Automatic Deployment
 
-For issues or questions:
-1. Check the browser console for JavaScript errors
-2. Validate your JSON at jsonlint.com
-3. Test with a local server (not file:// protocol)
-4. Ensure all file paths are correct and files exist
+1. **Connect repository** to Cloudflare Pages
+2. **Set build configuration:**
+   - Build command: `npm run build`
+   - Output directory: `out`
+   - Framework preset: None
+
+### Manual Deployment
+
+1. **Build the project:**
+   ```bash
+   npm run build
+   ```
+
+2. **Upload the `out/` directory** to Cloudflare Pages
+
+### Environment Variables
+
+No environment variables are required for the static build.
+
+## 🎯 Performance
+
+- **Lighthouse Score:** 90+/90+ target
+- **Static Export:** No server-side rendering
+- **Image Optimization:** Next.js Image component with lazy loading
+- **Code Splitting:** Automatic with Next.js App Router
+- **Reduced Motion:** Respects user preferences
+
+## 🧩 Browser Support
+
+- **Modern browsers:** Chrome, Firefox, Safari, Edge (latest 2 versions)
+- **Mobile:** iOS Safari, Chrome Mobile
+- **Accessibility:** WCAG 2.1 AA compliance
+
+## 📖 Key Features Explained
+
+### Cursor-Following Pill
+
+The "See the work" pill follows the cursor on project hover and pins to bottom-right on keyboard focus for accessibility.
+
+### Framer Motion Integration
+
+- **LazyMotion:** Only loads necessary animation features
+- **MotionConfig:** Respects `prefers-reduced-motion`
+- **AnimatePresence:** Smooth page transitions
+
+### Static Generation
+
+All pages are statically generated at build time:
+- Home page with all projects
+- Individual case study pages
+- Work listing page
+- OpenGraph images
+
+### Accessibility
+
+- **Focus management:** Proper tab order and focus indicators
+- **ARIA labels:** Descriptive labels for screen readers
+- **Reduced motion:** Animations disabled when preferred
+- **Keyboard navigation:** Full keyboard accessibility
+
+## 🔧 Development Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production (generates `out/` directory)
+- `npm start` - Preview production build locally
+- `npm run lint` - Run ESLint
+- `npm run type-check` - TypeScript type checking
+
+## 📄 License
+
+MIT License - feel free to use this as a starting point for your own portfolio.
+
+## 🤝 Contributing
+
+This is a personal portfolio template. Feel free to fork and customize for your own use.
+
+---
+
+**Built with ❤️ using Next.js, Framer Motion, and modern web standards.**
