@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
-import Hero from '@/components/Hero'
+import StaticHero from '@/components/StaticHero'
+import StaticRow from '@/components/StaticRow'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Row from '@/components/Row'
@@ -82,8 +83,8 @@ export default function HomePage() {
       <Header />
       
       <main id="main">
-        {/* Hero Section */}
-        <Hero />
+        {/* Hero Section - Static for faster rendering */}
+        <StaticHero />
         
         {/* Background effects - loads after idle, skipped on mobile */}
         <EffectsGate />
@@ -102,11 +103,19 @@ export default function HomePage() {
 
             <ul className="selected-work__grid">
               {selectedWork.map((project, index) => (
-                <Row 
-                  key={project.slug}
-                  project={project}
-                  index={index}
-                />
+                index === 0 ? (
+                  <StaticRow
+                    key={project.slug}
+                    project={project}
+                    index={index}
+                  />
+                ) : (
+                  <Row
+                    key={project.slug}
+                    project={project}
+                    index={index}
+                  />
+                )
               ))}
             </ul>
 

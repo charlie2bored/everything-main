@@ -157,7 +157,7 @@ export default function Row({ project, index }: RowProps) {
                   alt={`${project.title} cover demonstrating brand & motion`}
                   width={960}
                   height={540}
-                  sizes="(max-width: 600px) 100vw, (max-width: 1024px) 80vw, 50vw"
+                  sizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 52vw, 50vw"
                   loading="eager"
                   decoding="async"
                   fetchPriority="high"

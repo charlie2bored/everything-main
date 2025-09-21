@@ -108,9 +108,9 @@ export function getProjectUrl(slug: string): string {
   return `/case/${slug}/`
 }
 
-// Helper function to get projects for homepage (first 4-6)
+// Helper function to get projects for homepage (reduced to 3 for performance)
 export function getSelectedWork(): Project[] {
-  return getFeaturedProjects(6)
+  return getFeaturedProjects(3)
 }
 
 // Helper function to format KPI display
