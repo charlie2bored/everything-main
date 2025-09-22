@@ -8,7 +8,7 @@ interface Skill {
 }
 
 interface SkillsGridProps {
-  skills: Skill[]
+  skills?: Skill[]
   className?: string
 }
 
