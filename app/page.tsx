@@ -3,12 +3,11 @@ import dynamic from 'next/dynamic'
 import StaticHero from '@/components/StaticHero'
 import StaticRow from '@/components/StaticRow'
 import StaticHeader from '@/components/StaticHeader'
-import dynamic from 'next/dynamic';
-const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
-const Row = dynamic(() => import('@/components/Row'), { ssr: false });
-const ProofStrip = dynamic(() => import('@/components/MetricBadge').then(m => m.ProofStrip), { ssr: false });
 import { getSelectedWork, getAverageImprovement, getAllProjects } from '@/lib/projects'
-import dynamic from 'next/dynamic';
+
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: false })
+const Row = dynamic(() => import('@/components/Row'), { ssr: false })
+const ProofStrip = dynamic(() => import('@/components/MetricBadge').then(m => ({ default: m.ProofStrip })), { ssr: false })
 
 const EffectsGate = dynamic(() => import('@/components/EffectsGate'), { 
   ssr: false, 
