@@ -12,7 +12,7 @@ export default function StaticHero() {
       {/* Content layer - static for instant rendering */}
       <div className="hero__container">
         <p className="hero__eyebrow">
-          Designer & Developer
+          Brand Systems & Motion
         </p>
 
         <h1 className="hero__title">

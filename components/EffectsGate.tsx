@@ -3,9 +3,15 @@
 import { useEffect } from 'react'
 
 const isMobile = () => {
-  // Check if we're on the client side and if the device is mobile
+  // More aggressive mobile detection including tablets and slow devices
   if (typeof window === 'undefined') return false
-  return window.matchMedia('(max-width: 768px)').matches
+  
+  return (
+    window.matchMedia('(max-width: 1024px)').matches || // Include tablets
+    window.matchMedia('(hover: none)').matches || // Touch devices
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) || // Slow CPUs
+    ((navigator as any).deviceMemory && (navigator as any).deviceMemory < 4) // Low memory
+  )
 }
 
 export default function EffectsGate() {
@@ -18,7 +24,7 @@ export default function EffectsGate() {
     // For desktop, load particles with idle callback for better performance
     const startEffects = () => {
       import('../lib/particles-init')
-        .then(module => module.initParticles({ density: 0.55 }))
+        .then(module => module.initParticles({ density: 0.3 }))
         .catch(error => console.warn('Effects failed to load:', error))
     }
 

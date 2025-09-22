@@ -1,0 +1,88 @@
+/* Custom cursor implementation with performance optimizations */
+
+/* Only hide OS cursor on hover-capable pointer devices when cursor is active */
+@media (hover: hover) and (pointer: fine) {
+  body.cursor-active {
+    cursor: none;
+  }
+}
+
+.cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.cursor__dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  will-change: transform;
+  transition: opacity 0.2s ease;
+}
+
+.cursor__trail {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  will-change: transform;
+  transition: opacity 0.3s ease;
+  opacity: 0.6;
+}
+
+/* Cursor states for different interactive elements */
+.cursor-container.cursor--hover .cursor__dot {
+  transform: scale(1.5);
+}
+
+.cursor-container.cursor--hover .cursor__trail {
+  transform: scale(1.2);
+  border-width: 2px;
+}
+
+/* Pill cursor for work rows */
+.hover-pill {
+  position: absolute;
+  z-index: 10;
+  background: var(--accent);
+  color: var(--bg);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 999px;
+  font-size: var(--step-0);
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  white-space: nowrap;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: opacity 0.2s ease;
+}
+
+/* Reduced motion: disable cursor entirely */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-container {
+    display: none !important;
+  }
+  
+  body.cursor-active {
+    cursor: auto !important;
+  }
+}
+
+/* Touch devices: ensure OS cursor is always visible */
+@media (hover: none) {
+  .cursor-container {
+    display: none !important;
+  }
+  
+  body.cursor-active {
+    cursor: auto !important;
+  }
+}

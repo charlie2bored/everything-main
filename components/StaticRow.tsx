@@ -25,7 +25,7 @@ export default function StaticRow({ project, index }: StaticRowProps) {
             {project.subtitle}
           </p>
           
-          <div>
+          <div className="project-tags">
             <TagChips tags={project.tags} />
           </div>
 

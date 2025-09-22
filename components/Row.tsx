@@ -183,23 +183,8 @@ export default function Row({ project, index }: RowProps) {
               ref={pillRef}
               className="hover-pill"
               style={{
-                left: `${pillPosition.x}px`,
-                top: `${pillPosition.y}px`,
+                transform: `translate(${pillPosition.x}px, ${pillPosition.y}px)`,
                 opacity: isHovered ? 1 : 0,
-                transform: 'translate(-50%, -50%)',
-                pointerEvents: 'none',
-                position: 'absolute',
-                zIndex: 10,
-                padding: '8px 16px',
-                borderRadius: '999px',
-                background: 'rgba(0, 0, 0, 0.8)',
-                color: 'white',
-                fontSize: 'var(--step-0)',
-                fontWeight: '500',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                backdropFilter: 'blur(20px)',
-                transition: 'opacity 0.2s ease',
-                whiteSpace: 'nowrap',
               }}
               aria-hidden="true"
             >

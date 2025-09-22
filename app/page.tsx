@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import StaticHero from '@/components/StaticHero'
 import StaticRow from '@/components/StaticRow'
-import Header from '@/components/Header'
+import StaticHeader from '@/components/StaticHeader'
 import Footer from '@/components/Footer'
 import Row from '@/components/Row'
 import { ProofStrip } from '@/components/MetricBadge'
@@ -80,7 +80,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
       />
       
-      <Header />
+      <StaticHeader />
       
       <main id="main">
         {/* Hero Section - Static for faster rendering */}
@@ -90,14 +90,14 @@ export default function HomePage() {
         <EffectsGate />
 
         {/* Selected Work Section */}
-        <section id="work" className="selected-work" aria-labelledby="work-heading">
-          <div className="selected-work__container">
+        <section id="work" className="selected-work" aria-labelledby="work-heading" style={{ contentVisibility: 'auto', containIntrinsicSize: '800px' }}>
+          <div className="selected-work__container content-grid">
             <header className="selected-work__header">
               <h2 id="work-heading" className="selected-work__title">
-                Selected Work
+                Selected work
               </h2>
               <p className="selected-work__subtitle">
-                Recent projects with measurable outcomes
+                One project per row. Real constraints, real outcomes.
               </p>
             </header>
 
@@ -133,10 +133,12 @@ export default function HomePage() {
         </section>
 
         {/* Proof Strip */}
-        <ProofStrip 
-          metrics={proofMetrics}
-          footnote="Results from client projects 2023-2024"
-        />
+        <div style={{ contentVisibility: 'auto', containIntrinsicSize: '300px' }}>
+          <ProofStrip 
+            metrics={proofMetrics}
+            footnote="Results from client projects 2023-2024"
+          />
+        </div>
       </main>
 
       <Footer />

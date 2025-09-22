@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { useRef } from 'react'
 import { m, useScroll, useTransform } from 'framer-motion'
 import { fadeUp, stagger } from '@/app/providers/MotionProvider'
+import Button from './Button'
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
@@ -30,7 +30,7 @@ export default function Hero() {
       {/* Content layer - no transforms after settle for crisp text */}
       <div className="hero__content">
         <m.div 
-          className="hero__text"
+          className="hero__text-group"
           initial="hidden"
           animate="show"
           variants={stagger(0.06)}
@@ -39,7 +39,7 @@ export default function Hero() {
             className="hero__eyebrow"
             variants={fadeUp}
           >
-            Designer & Developer
+            Brand Systems & Motion
           </m.p>
           
           <h1 className="hero__title">
@@ -61,47 +61,38 @@ export default function Hero() {
             className="hero__lede"
             variants={fadeUp}
           >
-            Identity, web, and UX that ship fast and move metrics.
+            Identity, web, and UX that move metrics.
           </m.p>
           
           <m.div 
             className="hero__actions"
             variants={fadeUp}
           >
-            <Link 
-              href="/work" 
-              className="btn btn--primary"
-              aria-label="View my work"
+            <Button
+              href="/work"
+              variant="primary"
+              aria-label="View my work portfolio"
             >
-              <span className="btn__text">View work</span>
-            </Link>
-            <Link 
-              href="/contact" 
-              className="btn btn--secondary"
-              aria-label="Let's collaborate"
+              See the work
+            </Button>
+          </m.div>
+
+          {/* Sticky scroll indicator with hero text group */}
+          <m.div 
+            className="hero__scroll"
+            variants={fadeUp}
+          >
+            <span className="hero__scroll-text">Scroll for more</span>
+            <m.div 
+              className="hero__scroll-arrow"
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-              <span className="btn__text">Let's collaborate</span>
-            </Link>
+              ↓
+            </m.div>
           </m.div>
         </m.div>
       </div>
-
-      {/* Scroll indicator */}
-      <m.div 
-        className="hero__scroll"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.5 }}
-      >
-        <Link 
-          href="#work"
-          className="scroll-indicator"
-          aria-label="Scroll to work section"
-        >
-          <span className="scroll-indicator__dot" aria-hidden="true"></span>
-          <span className="scroll-indicator__label">Scroll for work</span>
-        </Link>
-      </m.div>
     </section>
   )
 }

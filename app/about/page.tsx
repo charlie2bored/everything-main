@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { m } from 'framer-motion'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import Button from '@/components/Button'
 import { fadeUp, stagger } from '@/app/providers/MotionProvider'
 
 export const metadata: Metadata = {
@@ -62,18 +63,18 @@ export default function AboutPage() {
               animate="show"
               variants={stagger(0.06)}
             >
+              <m.p 
+                className="about-page__eyebrow"
+                variants={fadeUp}
+              >
+                Designer–developer in NYC
+              </m.p>
               <m.h1 
                 className="about-page__title"
                 variants={fadeUp}
               >
-                About
+                I build brand systems, motion, and web that feel inevitable.
               </m.h1>
-              <m.p 
-                className="about-page__subtitle"
-                variants={fadeUp}
-              >
-                Designer and developer creating experiences that drive measurable results
-              </m.p>
             </m.div>
           </div>
         </header>
@@ -83,47 +84,38 @@ export default function AboutPage() {
           <div className="about-page__container">
             <div className="bio__content">
               <div className="bio__text">
-                <h2 id="bio-heading" className="bio__heading">
-                  I help founders and product teams build brands and experiences that convert.
-                </h2>
-                
                 <div className="bio__description">
                   <p>
-                    Whether you're launching a new product or scaling an existing one, I combine 
-                    design strategy with technical implementation to create systems that drive 
-                    measurable business outcomes.
+                    I design with intent—minimal, accessible, fast. My work lives where identity, 
+                    motion, and product meet, using the city as inspiration for human interaction.
                   </p>
                   
                   <p>
-                    My process focuses on understanding your users deeply, then building brands 
-                    and digital experiences that convert visitors into customers. Every project 
-                    includes performance tracking and optimization based on real user data.
+                    Recent focus: brand systems, conversion UX, performance-first web. 
+                    Available for select collaborations.
                   </p>
                   
                   <p>
-                    Based in San Francisco, I work with ambitious teams worldwide who want 
-                    design that moves metrics, not just aesthetics.
+                    Find the intent. Build the system. Ship the result.
                   </p>
                 </div>
 
                 <div className="bio__actions">
-                  <a 
-                    href="/resume.pdf" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn--primary"
+                  <Button
+                    href="/resume.pdf"
+                    variant="primary"
+                    external
                     aria-label="Download resume (PDF)"
                   >
-                    <span className="btn__text">Download Resume</span>
-                    <span aria-hidden="true">↓</span>
-                  </a>
+                    Resume
+                  </Button>
                   
-                  <a 
-                    href="/contact" 
-                    className="btn btn--secondary"
+                  <Button
+                    href="/contact"
+                    variant="ghost"
                   >
-                    <span className="btn__text">Let's talk</span>
-                  </a>
+                    Get in touch
+                  </Button>
                 </div>
               </div>
 
