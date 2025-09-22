@@ -1,10 +1,8 @@
 import { Metadata } from 'next'
-import { m } from 'framer-motion'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Button from '@/components/Button'
 import SkillsGrid from '@/components/SkillsGrid'
-import { fadeUp, stagger } from '@/app/providers/MotionProvider'
 
 export const metadata: Metadata = {
   title: 'About — Charlie',
@@ -63,25 +61,14 @@ export default function AboutPage() {
         {/* Header Section */}
         <header className="about-page__header">
           <div className="about-page__header-container">
-            <m.div
-              className="about-page__intro"
-              initial="hidden"
-              animate="show"
-              variants={stagger(0.06)}
-            >
-              <m.p 
-                className="about-page__eyebrow"
-                variants={fadeUp}
-              >
+            <div className="about-page__intro">
+              <p className="about-page__eyebrow">
                 Designer–developer in NYC
-              </m.p>
-              <m.h1 
-                className="about-page__title"
-                variants={fadeUp}
-              >
+              </p>
+              <h1 className="about-page__title">
                 I build brand systems, motion, and web that feel inevitable.
-              </m.h1>
-            </m.div>
+              </h1>
+            </div>
           </div>
         </header>
 
