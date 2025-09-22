@@ -90,14 +90,12 @@ export default function Row({ project, index }: RowProps) {
       variants={fadeUp}
       transition={{ delay: index * 0.1 }}
     >
-      <Link 
-        href={`/case/${project.slug}/`}
-        className="work-link"
-        aria-label={`Open case study: ${project.title}`}
-        onKeyDown={handleKeyDown}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-      >
+        <Link
+          href={`/case/${project.slug}/`}
+          className="work-link"
+          aria-label={`Open case study: ${project.title}`}
+          data-cursor-text="See the work"
+        >
         {/* Text Column (48%) */}
         <div className="col-text">
           <m.h3 

@@ -9,15 +9,14 @@ interface TagChipsProps {
 }
 
 export default function TagChips({ tags, variant = 'default', className = '' }: TagChipsProps) {
+  if (!tags || tags.length === 0) return null
+
   return (
-    <ul 
-      className={`chips ${className}`} 
-      aria-label="Project categories"
-    >
+    <div className={`chips ${className}`}>
       {tags.map((tag, index) => (
-        <m.li 
+        <m.span 
           key={tag}
-          className="chip"
+          className={`chip chip--${variant}`}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
@@ -27,8 +26,8 @@ export default function TagChips({ tags, variant = 'default', className = '' }: 
           }}
         >
           {tag}
-        </m.li>
+        </m.span>
       ))}
-    </ul>
+    </div>
   )
 }

@@ -15,6 +15,7 @@ export default function StaticRow({ project, index }: StaticRowProps) {
         href={`/case/${project.slug}/`}
         className="work-link"
         aria-label={`Open case study: ${project.title}`}
+        data-cursor-text="See the work"
       >
         {/* Text Column (48%) */}
         <div className="col-text">

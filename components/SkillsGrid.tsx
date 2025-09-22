@@ -1,11 +1,10 @@
 'use client'
 
 import { m } from 'framer-motion'
-import { fadeUp, stagger } from '@/app/providers/MotionProvider'
 
 interface Skill {
   name: string
-  category?: string
+  icon?: string
 }
 
 interface SkillsGridProps {
@@ -13,28 +12,38 @@ interface SkillsGridProps {
   className?: string
 }
 
-export default function SkillsGrid({ skills, className = '' }: SkillsGridProps) {
+const defaultSkills: Skill[] = [
+  { name: 'Brand Systems' },
+  { name: 'Conversion UX' },
+  { name: 'Motion Design' },
+  { name: 'Next.js' },
+  { name: 'Performance' },
+  { name: 'Typography' },
+  { name: 'Design Tokens' },
+  { name: 'A11y' },
+  { name: 'Analytics' },
+  { name: 'Prototyping' }
+]
+
+export default function SkillsGrid({ skills = defaultSkills, className = '' }: SkillsGridProps) {
   return (
-    <m.div 
-      className={`skills ${className}`}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: '-10% 0px -10% 0px' }}
-      variants={stagger(0.06)}
-    >
+    <div className={`skills ${className}`}>
       {skills.map((skill, index) => (
         <m.div
           key={skill.name}
           className="skill"
-          variants={fadeUp}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-10% 0px -10% 0px' }}
+          transition={{
+            delay: index * 0.06,
+            duration: 0.4,
+            ease: "easeOut"
+          }}
         >
-          <h3 className="skill__name">{skill.name}</h3>
-          {skill.category && (
-            <span className="skill__category">{skill.category}</span>
-          )}
+          <span className="skill__name">{skill.name}</span>
         </m.div>
       ))}
-    </m.div>
+    </div>
   )
 }
-

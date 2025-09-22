@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Button from './Button'
 
 export default function StaticHero() {
   return (
@@ -11,10 +11,6 @@ export default function StaticHero() {
 
       {/* Content layer - static for instant rendering */}
       <div className="hero__container">
-        <p className="hero__eyebrow">
-          Brand Systems & Motion
-        </p>
-
         <h1 className="hero__title">
           <span className="hero__title-line hero__title-line--white">
             Brand systems + motion
@@ -25,24 +21,25 @@ export default function StaticHero() {
         </h1>
 
         <p className="hero__lede">
-          Identity, web, and UX that ship fast and move metrics.
+          Identity, web, and UX that move metrics.
         </p>
 
         <div className="hero__actions">
-          <Link
+          <Button
             href="/work"
-            className="btn btn--primary"
-            aria-label="View my work"
+            variant="primary"
+            aria-label="See the work"
           >
-            <span className="btn__text">View work</span>
-          </Link>
-          <Link
-            href="/contact"
-            className="btn btn--secondary"
-            aria-label="Let's collaborate"
-          >
-            <span className="btn__text">Let's collaborate</span>
-          </Link>
+            See the work
+          </Button>
+        </div>
+
+        {/* Sticky scroll indicator */}
+        <div className="hero__scroll">
+          <span className="hero__scroll-text">Scroll for more</span>
+          <div className="hero__scroll-indicator" aria-hidden="true">
+            <div className="hero__scroll-line"></div>
+          </div>
         </div>
       </div>
     </section>

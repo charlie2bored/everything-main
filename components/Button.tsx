@@ -1,98 +1,55 @@
 import Link from 'next/link'
-import { m } from 'framer-motion'
+import { forwardRef } from 'react'
 
 interface ButtonProps {
+  children: React.ReactNode
   href?: string
   onClick?: () => void
   variant?: 'primary' | 'ghost'
-  size?: 'default' | 'large'
-  children: React.ReactNode
-  className?: string
   disabled?: boolean
-  type?: 'button' | 'submit' | 'reset'
-  external?: boolean
+  className?: string
   'aria-label'?: string
+  type?: 'button' | 'submit' | 'reset'
 }
 
-export default function Button({
-  href,
-  onClick,
-  variant = 'primary',
-  size = 'default',
-  children,
-  className = '',
-  disabled = false,
-  type = 'button',
-  external = false,
-  'aria-label': ariaLabel,
-  ...props
-}: ButtonProps) {
-  const baseClasses = [
-    'btn',
-    `btn--${variant}`,
-    `btn--${size}`,
-    className,
-    disabled && 'btn--disabled'
-  ].filter(Boolean).join(' ')
+const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  ({ children, href, onClick, variant = 'primary', disabled = false, className = '', type = 'button', ...props }, ref) => {
+    const baseClasses = 'btn'
+    const variantClasses = {
+      primary: 'btn--primary',
+      ghost: 'btn--ghost'
+    }
+    
+    const classes = `${baseClasses} ${variantClasses[variant]} ${className}`.trim()
 
-  const buttonContent = (
-    <>
-      <span className="btn__text">{children}</span>
-      {external && <span className="btn__icon" aria-hidden="true">↗</span>}
-    </>
-  )
-
-  if (href) {
-    if (external) {
+    if (href) {
       return (
-        <m.a
+        <Link
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={baseClasses}
-          aria-label={ariaLabel}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.2 }}
+          className={classes}
+          ref={ref as React.Ref<HTMLAnchorElement>}
           {...props}
         >
-          {buttonContent}
-        </m.a>
+          <span className="btn__text">{children}</span>
+        </Link>
       )
     }
 
     return (
-      <m.div
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        transition={{ duration: 0.2 }}
+      <button
+        type={type}
+        onClick={onClick}
+        disabled={disabled}
+        className={classes}
+        ref={ref as React.Ref<HTMLButtonElement>}
+        {...props}
       >
-        <Link
-          href={href}
-          className={baseClasses}
-          aria-label={ariaLabel}
-          {...props}
-        >
-          {buttonContent}
-        </Link>
-      </m.div>
+        <span className="btn__text">{children}</span>
+      </button>
     )
   }
+)
 
-  return (
-    <m.button
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
-      className={baseClasses}
-      aria-label={ariaLabel}
-      whileHover={{ scale: disabled ? 1 : 1.02 }}
-      whileTap={{ scale: disabled ? 1 : 0.98 }}
-      transition={{ duration: 0.2 }}
-      {...props}
-    >
-      {buttonContent}
-    </m.button>
-  )
-}
+Button.displayName = 'Button'
 
+export default Button

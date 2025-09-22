@@ -1,89 +1,109 @@
-/* Custom cursor implementation with performance optimizations */
+/* Custom cursor styles */
 
-/* Only hide OS cursor on hover-capable pointer devices when cursor is active */
+/* Hide OS cursor only on pointer devices when custom cursor is active */
 @media (hover: hover) and (pointer: fine) {
   body.cursor-active {
     cursor: none;
   }
+  
+  body.cursor-active * {
+    cursor: none !important;
+  }
 }
 
-.cursor-container {
+/* Cursor dot - follows mouse immediately */
+.cursor-dot {
+  position: fixed;
+  top: -2px;
+  left: -2px;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+/* Cursor circle - trails with spring physics */
+.cursor-circle {
+  position: fixed;
+  top: -16px;
+  left: -16px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.6;
+  transition: all 0.2s ease-out;
+  will-change: transform;
+}
+
+.cursor-circle--hover {
+  transform: scale(1.5) !important;
+  opacity: 0.8;
+  border-color: var(--text);
+}
+
+/* Cursor pill - for "See the work" etc */
+.cursor-pill {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
-  pointer-events: none;
-  mix-blend-mode: difference;
-}
-
-.cursor__dot {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
-  border-radius: 50%;
-  will-change: transform;
-  transition: opacity 0.2s ease;
-}
-
-.cursor__trail {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--accent);
-  border-radius: 50%;
-  will-change: transform;
-  transition: opacity 0.3s ease;
-  opacity: 0.6;
-}
-
-/* Cursor states for different interactive elements */
-.cursor-container.cursor--hover .cursor__dot {
-  transform: scale(1.5);
-}
-
-.cursor-container.cursor--hover .cursor__trail {
-  transform: scale(1.2);
-  border-width: 2px;
-}
-
-/* Pill cursor for work rows */
-.hover-pill {
-  position: absolute;
-  z-index: 10;
+  padding: 0.25rem 0.75rem;
   background: var(--accent);
   color: var(--bg);
-  padding: var(--space-xs) var(--space-sm);
   border-radius: 999px;
-  font-size: var(--step-0);
+  font-size: 0.8rem;
   font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(20px);
-  white-space: nowrap;
   pointer-events: none;
+  z-index: 9997;
+  white-space: nowrap;
+  opacity: 0;
+  animation: pillFadeIn 0.2s ease-out forwards;
   will-change: transform, opacity;
-  transition: opacity 0.2s ease;
 }
 
-/* Reduced motion: disable cursor entirely */
-@media (prefers-reduced-motion: reduce) {
-  .cursor-container {
+@keyframes pillFadeIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.9) translateY(4px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+}
+
+/* Elements that trigger cursor pill should have data-cursor-text attribute */
+[data-cursor-text] {
+  position: relative;
+}
+
+/* Disable cursor on touch devices and reduced motion */
+@media (hover: none) or (pointer: coarse) or (prefers-reduced-motion: reduce) {
+  .cursor-dot,
+  .cursor-circle,
+  .cursor-pill {
     display: none !important;
   }
   
   body.cursor-active {
-    cursor: auto !important;
-  }
-}
-
-/* Touch devices: ensure OS cursor is always visible */
-@media (hover: none) {
-  .cursor-container {
-    display: none !important;
+    cursor: auto;
   }
   
-  body.cursor-active {
+  body.cursor-active * {
     cursor: auto !important;
   }
 }
 
+/* Focus states for keyboard navigation */
+@media (hover: hover) and (pointer: fine) {
+  [data-cursor-text]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}

@@ -2,126 +2,201 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-const SPRING = { stiffness: 0.24, damping: 0.18 }
-
-interface CursorPosition {
+interface CursorState {
   x: number
   y: number
+  targetX: number
+  targetY: number
+  isActive: boolean
+  isHovering: boolean
+  pillText: string
+  isPillVisible: boolean
+  pillX: number
+  pillY: number
+}
+
+const SPRING = { stiffness: 0.24, damping: 0.18 }
+
+// Check if device supports custom cursor
+const supportsCustomCursor = () => {
+  if (typeof window === 'undefined') return false
+  
+  // Only enable on pointer devices with hover capability
+  const hasHover = window.matchMedia('(hover: hover)').matches
+  const hasPointer = window.matchMedia('(pointer: fine)').matches
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  
+  return hasHover && hasPointer && !prefersReducedMotion
 }
 
 export default function Cursor() {
-  const [position, setPosition] = useState<CursorPosition>({ x: 0, y: 0 })
-  const [isVisible, setIsVisible] = useState(false)
-  const [isActive, setIsActive] = useState(false)
-  const trailRef = useRef<CursorPosition>({ x: 0, y: 0 })
-  const velocityRef = useRef<CursorPosition>({ x: 0, y: 0 })
-  const rafRef = useRef<number>()
+  const [state, setState] = useState<CursorState>({
+    x: 0,
+    y: 0,
+    targetX: 0,
+    targetY: 0,
+    isActive: false,
+    isHovering: false,
+    pillText: '',
+    isPillVisible: false,
+    pillX: 0,
+    pillY: 0
+  })
 
-  // Check if device supports hover and prefers motion
-  const shouldShowCursor = () => {
-    if (typeof window === 'undefined') return false
-    
-    const hasHover = window.matchMedia('(hover: hover)').matches
-    const hasPointer = window.matchMedia('(pointer: fine)').matches
-    const prefersMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-    
-    return hasHover && hasPointer && prefersMotion && !isTouchDevice
-  }
+  const rafRef = useRef<number>(0)
+  const velocityRef = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
-    if (!shouldShowCursor()) return
-
-    let mousePosition = { x: 0, y: 0 }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mousePosition.x = e.clientX
-      mousePosition.y = e.clientY
-      setPosition(mousePosition)
-      setIsVisible(true)
+    if (!supportsCustomCursor()) {
+      return
     }
 
-    const handleMouseEnter = () => {
-      setIsVisible(true)
-      document.body.classList.add('cursor-active')
-      setIsActive(true)
+    // Add cursor-active class to body
+    document.body.classList.add('cursor-active')
+
+    const updateCursor = () => {
+      setState(prevState => {
+        const dx = prevState.targetX - prevState.x
+        const dy = prevState.targetY - prevState.y
+
+        // Spring physics for smoother following
+        velocityRef.current.x += dx * SPRING.stiffness
+        velocityRef.current.y += dy * SPRING.stiffness
+        velocityRef.current.x *= (1 - SPRING.damping)
+        velocityRef.current.y *= (1 - SPRING.damping)
+
+        const newX = prevState.x + velocityRef.current.x
+        const newY = prevState.y + velocityRef.current.y
+
+        return {
+          ...prevState,
+          x: newX,
+          y: newY
+        }
+      })
+
+      rafRef.current = requestAnimationFrame(updateCursor)
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      setState(prevState => ({
+        ...prevState,
+        targetX: e.clientX,
+        targetY: e.clientY,
+        isActive: true
+      }))
+    }
+
+    const handleMouseEnter = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      const pillText = target.getAttribute('data-cursor-text')
+      
+      if (pillText) {
+        setState(prevState => ({
+          ...prevState,
+          isHovering: true,
+          pillText,
+          isPillVisible: true
+        }))
+      } else {
+        setState(prevState => ({
+          ...prevState,
+          isHovering: true
+        }))
+      }
     }
 
     const handleMouseLeave = () => {
-      setIsVisible(false)
-      document.body.classList.remove('cursor-active')
-      setIsActive(false)
+      setState(prevState => ({
+        ...prevState,
+        isHovering: false,
+        isPillVisible: false,
+        pillText: ''
+      }))
     }
 
-    // Smooth trailing animation
-    const animate = () => {
-      const trail = trailRef.current
-      const velocity = velocityRef.current
+    const handleFocus = (e: FocusEvent) => {
+      const target = e.target as HTMLElement
+      const pillText = target.getAttribute('data-cursor-text')
       
-      // Spring physics for smooth following
-      const dx = mousePosition.x - trail.x
-      const dy = mousePosition.y - trail.y
-      
-      velocity.x += dx * SPRING.stiffness
-      velocity.y += dy * SPRING.stiffness
-      velocity.x *= (1 - SPRING.damping)
-      velocity.y *= (1 - SPRING.damping)
-      
-      trail.x += velocity.x
-      trail.y += velocity.y
-      
-      // Update trail position if visible
-      if (isVisible) {
-        const trailElement = document.querySelector('.cursor__trail') as HTMLElement
-        if (trailElement) {
-          trailElement.style.transform = `translate3d(${trail.x - 20}px, ${trail.y - 20}px, 0)`
-        }
+      if (pillText) {
+        // Pin pill to bottom-right of focused element for keyboard users
+        const rect = target.getBoundingClientRect()
+        setState(prevState => ({
+          ...prevState,
+          isPillVisible: true,
+          pillText,
+          pillX: rect.right - 80,
+          pillY: rect.bottom - 40
+        }))
       }
-      
-      rafRef.current = requestAnimationFrame(animate)
     }
+
+    const handleBlur = () => {
+      setState(prevState => ({
+        ...prevState,
+        isPillVisible: false,
+        pillText: ''
+      }))
+    }
+
+    // Add event listeners
+    document.addEventListener('mousemove', handleMouseMove, { passive: true })
+    document.addEventListener('mouseenter', handleMouseEnter, true)
+    document.addEventListener('mouseleave', handleMouseLeave, true)
+    document.addEventListener('focus', handleFocus, true)
+    document.addEventListener('blur', handleBlur, true)
 
     // Start animation loop
-    rafRef.current = requestAnimationFrame(animate)
-
-    // Event listeners
-    document.addEventListener('mousemove', handleMouseMove)
-    document.addEventListener('mouseenter', handleMouseEnter)
-    document.addEventListener('mouseleave', handleMouseLeave)
+    rafRef.current = requestAnimationFrame(updateCursor)
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove)
-      document.removeEventListener('mouseenter', handleMouseEnter)
-      document.removeEventListener('mouseleave', handleMouseLeave)
       document.body.classList.remove('cursor-active')
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseenter', handleMouseEnter, true)
+      document.removeEventListener('mouseleave', handleMouseLeave, true)
+      document.removeEventListener('focus', handleFocus, true)
+      document.removeEventListener('blur', handleBlur, true)
       
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current)
       }
     }
-  }, [isVisible])
+  }, [])
 
-  if (!shouldShowCursor()) return null
+  if (!supportsCustomCursor() || !state.isActive) {
+    return null
+  }
 
   return (
-    <div className="cursor-container">
+    <>
       {/* Main cursor dot */}
       <div
-        className="cursor__dot"
+        className="cursor-dot"
         style={{
-          transform: `translate3d(${position.x - 4}px, ${position.y - 4}px, 0)`,
-          opacity: isVisible ? 1 : 0,
+          transform: `translate3d(${state.targetX}px, ${state.targetY}px, 0)`,
         }}
       />
       
       {/* Trailing circle */}
       <div
-        className="cursor__trail"
+        className={`cursor-circle ${state.isHovering ? 'cursor-circle--hover' : ''}`}
         style={{
-          opacity: isVisible ? 1 : 0,
+          transform: `translate3d(${state.x}px, ${state.y}px, 0)`,
         }}
       />
-    </div>
+
+      {/* Cursor pill */}
+      {state.isPillVisible && (
+        <div
+          className="cursor-pill"
+          style={{
+            transform: `translate3d(${state.pillX || state.x + 12}px, ${state.pillY || state.y + 12}px, 0)`,
+          }}
+        >
+          {state.pillText}
+        </div>
+      )}
+    </>
   )
 }
-
