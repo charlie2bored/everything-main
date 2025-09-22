@@ -1,10 +1,8 @@
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import { Inter, DM_Sans, Playfair_Display } from 'next/font/google'
-import dynamic from 'next/dynamic';
 // Import CSS (Next.js will optimize this)
 import './globals.css'
-import dynamic from 'next/dynamic';
 const MotionProvider = dynamic(() => import('./providers/MotionProvider'), { ssr: false });
 const Cursor = dynamic(() => import('../components/Cursor'), { 
   ssr: false 
