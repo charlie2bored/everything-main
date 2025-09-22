@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import { getAllProjects } from '@/lib/projects'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import WorkClient from '@/components/WorkClient'
+const Header = dynamic(() => import('@/components/Header'), { ssr: false });
+import dynamic from 'next/dynamic';
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
+const WorkClient = dynamic(() => import('@/components/WorkClient'), { ssr: false });
+import dynamic from 'next/dynamic';
 
 const allProjects = getAllProjects()
 
