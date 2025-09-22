@@ -37,3 +37,4 @@ export default function SkillsGrid({ skills, className = '' }: SkillsGridProps) 
     </m.div>
   )
 }
+

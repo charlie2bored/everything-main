@@ -126,3 +126,4 @@ export function initParticles(config: ParticlesConfig = { density: 0.55 }) {
     }
   }
 }
+
