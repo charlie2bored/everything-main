@@ -1,6 +1,5 @@
-import NextDynamic from 'next/dynamic';
 export const dynamic = "force-static";
-const AboutClient = NextDynamic(() => import('@/components/AboutClient'), { ssr: false });
+import AboutClient from '@/components/AboutClient'
 export default function AboutPage() {
   return (
     <AboutClient>

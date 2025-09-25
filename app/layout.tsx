@@ -5,10 +5,6 @@ import { Inter, DM_Sans, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import StaticHeader from '@/components/StaticHeader'
 import Container from '@/components/Container'
-// Temporarily omit MotionProvider during build to avoid client-only import in server graph
-const Cursor = dynamic(() => import('../components/Cursor'), { 
-  ssr: false 
-})
 
 
 const inter = Inter({
@@ -132,7 +128,6 @@ export default function RootLayout({
       </head>
       <body className="">
         <a className="skip-link" href="#main">Skip to content</a>
-        <Cursor />
         <StaticHeader />
         <div style={{ paddingTop: 'var(--header-h)' }}>
           <Container>
