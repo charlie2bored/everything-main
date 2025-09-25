@@ -3,6 +3,8 @@ import dynamic from 'next/dynamic'
 import { Inter, DM_Sans, Playfair_Display } from 'next/font/google'
 // Import CSS (Next.js will optimize this)
 import './globals.css'
+import NavBar from '@/components/NavBar'
+import Container from '@/components/Container'
 const MotionProvider = dynamic(() => import('./providers/MotionProvider'), { ssr: false });
 const Cursor = dynamic(() => import('../components/Cursor'), { 
   ssr: false 
@@ -131,8 +133,13 @@ export default function RootLayout({
       <body className="">
         <a className="skip-link" href="#main">Skip to content</a>
         <Cursor />
+        <NavBar />
         <MotionProvider>
-          {children}
+          <div style={{ paddingTop: 'var(--header-h)' }}>
+            <Container>
+              {children}
+            </Container>
+          </div>
         </MotionProvider>
       </body>
     </html>
