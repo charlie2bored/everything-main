@@ -3,9 +3,9 @@ import dynamic from 'next/dynamic'
 import { Inter, DM_Sans, Playfair_Display } from 'next/font/google'
 // Import CSS (Next.js will optimize this)
 import './globals.css'
-import NavBar from '@/components/NavBar'
+import StaticHeader from '@/components/StaticHeader'
 import Container from '@/components/Container'
-const MotionProvider = dynamic(() => import('./providers/MotionProvider'), { ssr: false });
+// Temporarily omit MotionProvider during build to avoid client-only import in server graph
 const Cursor = dynamic(() => import('../components/Cursor'), { 
   ssr: false 
 })
@@ -133,14 +133,12 @@ export default function RootLayout({
       <body className="">
         <a className="skip-link" href="#main">Skip to content</a>
         <Cursor />
-        <NavBar />
-        <MotionProvider>
-          <div style={{ paddingTop: 'var(--header-h)' }}>
-            <Container>
-              {children}
-            </Container>
-          </div>
-        </MotionProvider>
+        <StaticHeader />
+        <div style={{ paddingTop: 'var(--header-h)' }}>
+          <Container>
+            {children}
+          </Container>
+        </div>
       </body>
     </html>
   )

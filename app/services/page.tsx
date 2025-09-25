@@ -1,8 +1,6 @@
 import { Metadata } from 'next'
-import dynamic from 'next/dynamic'
-const Header = dynamic(() => import('@/components/Header'), { ssr: false })
-const Footer = dynamic(() => import('@/components/Footer'), { ssr: false })
-const MetricGrid = dynamic(() => import('@/components/MetricBadge').then(m => ({ default: m.MetricGrid })), { ssr: false })
+import Footer from '@/components/Footer'
+import { MetricGrid } from '@/components/MetricBadge'
 
 export const metadata: Metadata = {
   title: 'Services — Charlie',
@@ -103,8 +101,6 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      <Header />
-      
       <main id="main" className="services-page">
         {/* Header Section */}
         <header className="services-page__header">

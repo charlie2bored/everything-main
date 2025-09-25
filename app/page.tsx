@@ -1,18 +1,12 @@
 import { Metadata } from 'next'
-import dynamic from 'next/dynamic'
+import Footer from '@/components/Footer'
+import Row from '@/components/Row'
+import { ProofStrip } from '@/components/MetricBadge'
+import EffectsGate from '@/components/EffectsGate'
 import StaticHero from '@/components/StaticHero'
 import StaticRow from '@/components/StaticRow'
-import StaticHeader from '@/components/StaticHeader'
 import { getSelectedWork, getAverageImprovement, getAllProjects } from '@/lib/projects'
 
-const Footer = dynamic(() => import('@/components/Footer'), { ssr: false })
-const Row = dynamic(() => import('@/components/Row'), { ssr: false })
-const ProofStrip = dynamic(() => import('@/components/MetricBadge').then(m => ({ default: m.ProofStrip })), { ssr: false })
-
-const EffectsGate = dynamic(() => import('@/components/EffectsGate'), { 
-  ssr: false, 
-  loading: () => null 
-})
 
 export const metadata: Metadata = {
   title: 'Charlie — Designer & Developer',
@@ -81,7 +75,6 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
       />
       
-      <StaticHeader />
       
       <main id="main">
         {/* Hero Section - Static for faster rendering */}

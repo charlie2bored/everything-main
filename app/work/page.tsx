@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import { getAllProjects } from '@/lib/projects'
 
-const Header = dynamic(() => import('@/components/Header'), { ssr: false })
-const Footer = dynamic(() => import('@/components/Footer'), { ssr: false })
-const WorkClient = dynamic(() => import('@/components/WorkClient'), { ssr: false })
+const Footer = dynamic(() => import('@/components/Footer'))
+const WorkClient = dynamic(() => import('@/components/WorkClient'))
 
 const allProjects = getAllProjects()
 
@@ -42,7 +41,6 @@ export default async function WorkPage() {
   
   return (
     <>
-      <Header />
       <WorkClient projects={projects} />
       <Footer />
     </>

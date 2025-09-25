@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getProjectBySlug, getProjectSlugs, getProjectOGImage } from '@/lib/projects'
-import dynamic from 'next/dynamic'
-const CaseStudyContent = dynamic(() => import('@/components/CaseStudyContent'), { ssr: false })
+import CaseStudyContent from '@/components/CaseStudyContent'
 export const dynamicParams = false
 
 export async function generateStaticParams() {

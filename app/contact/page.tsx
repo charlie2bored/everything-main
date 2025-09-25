@@ -1,8 +1,6 @@
-'use client'
-
+"use client"
 import { useState } from 'react'
 import { Metadata } from 'next'
-import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { m } from 'framer-motion'
 import { fadeUp, stagger } from '@/app/providers/MotionProvider'
@@ -139,8 +137,6 @@ export default function ContactPage() {
 
   return (
     <>
-      <Header />
-      
       <main id="main" className="contact-page">
         {/* Header Section */}
         <header className="contact-page__header">
