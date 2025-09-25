@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import dynamic from 'next/dynamic'
+ 
 import { Inter, DM_Sans, Playfair_Display } from 'next/font/google'
 // Import CSS (Next.js will optimize this)
 import './globals.css'

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
 import { getAllProjects } from '@/lib/projects'
+import Footer from '@/components/Footer'
+import WorkClient from '@/components/WorkClient'
 
-const Footer = dynamic(() => import('@/components/Footer'))
-const WorkClient = dynamic(() => import('@/components/WorkClient'))
+ 
 
 const allProjects = getAllProjects()
 
