@@ -1,12 +1,14 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { m, useScroll, useTransform } from 'framer-motion'
 import { fadeUp, stagger } from '@/app/providers/MotionProvider'
 import Button from './Button'
+import VideoModal from './VideoModal'
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
+  const [open, setOpen] = useState(false)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -75,6 +77,13 @@ export default function Hero() {
             >
               See the work
             </Button>
+            <Button
+              onClick={() => setOpen(true)}
+              variant="ghost"
+              aria-label="Play showreel"
+            >
+              Play showreel
+            </Button>
           </m.div>
 
           {/* Sticky scroll indicator with hero text group */}
@@ -93,6 +102,7 @@ export default function Hero() {
           </m.div>
         </m.div>
       </div>
+      <VideoModal open={open} onClose={() => setOpen(false)} src="/assets/showreel.mp4" poster="/assets/og/home.jpg" />
     </section>
   )
 }

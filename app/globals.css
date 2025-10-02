@@ -171,6 +171,12 @@ body {
 .nav-link--active {
   color: var(--accent);
 }
+/* Improve visible focus */
+.nav-link:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+  border-radius: 8px;
+}
 
 .nav-underline {
   position: absolute;
@@ -946,7 +952,7 @@ body {
   position: absolute;
   inset: -10% -5%;
   background: 
-    radial-gradient(60% 40% at 20% 0%, color-mix(in lab, var(--accent) 8%, transparent) 0%, transparent 70%),
+    radial-gradient(60% 40% at 20% 0%, color-mix(in oklab, var(--accent) 6%, transparent) 0%, transparent 70%),
     url('/assets/noise.avif');
   opacity: 0.06;
   pointer-events: none;

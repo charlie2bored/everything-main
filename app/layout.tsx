@@ -5,6 +5,8 @@ import { Inter, DM_Sans, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import StaticHeader from '@/components/StaticHeader'
 import Container from '@/components/Container'
+import dynamic from 'next/dynamic'
+const ActiveAnchor = dynamic(() => import('@/components/ActiveAnchor'), { ssr: false })
  
 
 
@@ -135,6 +137,7 @@ export default function RootLayout({
             {children}
           </Container>
         </div>
+        <ActiveAnchor />
         
       </body>
     </html>

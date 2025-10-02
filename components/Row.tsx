@@ -4,6 +4,7 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import { m } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import Magnetic from './Magnetic'
 import { Project } from '@/lib/projects'
 import TagChips from './TagChips'
 import MetricBadge from './MetricBadge'
@@ -127,17 +128,13 @@ export default function Row({ project, index }: RowProps) {
 
         {/* Media Column (52%) */}
         <div className="col-media">
-          <m.div 
+          <Magnetic 
             ref={mediaRef}
             className="media-wrap"
             onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            whileHover={{ 
-              scale: 1.02,
-              transition: { duration: 0.3, ease: "easeOut" }
-            }}
-            variants={fadeUp}
+            style={{ display: 'block' }}
           >
 {index === 0 ? (
               // LCP optimized picture element for first image
@@ -188,7 +185,7 @@ export default function Row({ project, index }: RowProps) {
             >
               See the work
             </span>
-          </m.div>
+          </Magnetic>
         </div>
       </Link>
     </m.li>
