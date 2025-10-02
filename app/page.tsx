@@ -126,13 +126,24 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Proof Strip */}
-        <div style={{ contentVisibility: 'auto', containIntrinsicSize: '300px' }}>
-          <ProofStrip 
-            metrics={proofMetrics}
-            footnote="Results from client projects 2023-2024"
-          />
-        </div>
+        {/* About Section */}
+        <section id="about" className="about-page__bio section" aria-labelledby="about-heading" style={{ contentVisibility: 'auto', containIntrinsicSize: '600px' }}>
+          <div className="selected-work__container content-grid">
+            <h2 id="about-heading" className="selected-work__title">About</h2>
+            <p className="about-page__subtitle">NYC-based designer & front-end dev focused on intentional, conversion-aware brand and product experiences.</p>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="services-page__cta section" aria-labelledby="contact-heading">
+          <div className="services-page__cta-container">
+            <h2 id="contact-heading" className="services-page__cta-title">Start a project</h2>
+            <p className="services-page__cta-subtitle">Tell me about your goals and timeline. I’ll reply within 24 hours.</p>
+            <a href="/contact" className="btn btn--primary" aria-label="Start a project">
+              <span className="btn__text">Get in touch</span>
+            </a>
+          </div>
+        </section>
       </main>
 
       <Footer />

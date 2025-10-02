@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
-const ThemeToggle = dynamic(() => import('./ThemeToggle'), { ssr: false })
+ 
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -32,19 +31,13 @@ export default function StaticHeader() {
           </Link>
         </div>
 
-        {/* Navigation - single instance, responsive via CSS */}
+        {/* Navigation - anchor links for one-pager */}
         <nav className="header__nav" role="navigation" aria-label="Main navigation">
           <ul className="nav-list">
-            {navigation.map((item) => (
-              <li key={item.name} className="nav-item">
-                <Link
-                  href={item.href}
-                  className="nav-link"
-                >
-                  <span className="nav-text">{item.name}</span>
-                </Link>
-              </li>
-            ))}
+            <li className="nav-item"><a href="#home" className="nav-link">Home</a></li>
+            <li className="nav-item"><a href="#work" className="nav-link">Work</a></li>
+            <li className="nav-item"><a href="#about" className="nav-link">About</a></li>
+            <li className="nav-item"><a href="#contact" className="nav-link">Contact</a></li>
           </ul>
         </nav>
 
@@ -69,7 +62,6 @@ export default function StaticHeader() {
 
         {/* Theme toggle (mobile-first) */}
         <div className="desktop-only" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <ThemeToggle />
           <div aria-hidden="true" style={{ width: '1px', height: '24px', background: 'var(--border)' }} />
           <div style={{
             padding: '6px 10px',

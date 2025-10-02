@@ -5,9 +5,7 @@ import { Inter, DM_Sans, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import StaticHeader from '@/components/StaticHeader'
 import Container from '@/components/Container'
-import dynamic from 'next/dynamic'
-const ScrollProgress = dynamic(() => import('@/components/ScrollProgress'), { ssr: false })
-const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
+ 
 
 
 const inter = Inter({
@@ -132,13 +130,12 @@ export default function RootLayout({
       <body className="">
         <a className="skip-link" href="#main">Skip to content</a>
         <StaticHeader />
-        <ScrollProgress />
         <div style={{ paddingTop: 'var(--header-h)' }}>
           <Container>
             {children}
           </Container>
         </div>
-        <BackToTop />
+        
       </body>
     </html>
   )
