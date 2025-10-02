@@ -19,8 +19,8 @@ const socials = [
 
 export default function StaticHeader() {
   return (
-    <header className="header" role="banner">
-      <div className="header__container">
+    <header className="header" role="banner" style={{ height: 'var(--header-h)', borderBottom: '1px solid var(--border)', background: 'linear-gradient(90deg, rgba(255,255,255,0.02), transparent 40%, transparent 60%, rgba(255,255,255,0.02))', backdropFilter: 'blur(6px)' }}>
+      <div className="header__container" style={{ height: '100%' }}>
         {/* Logo */}
         <div className="header__logo">
           <Link 
@@ -28,7 +28,7 @@ export default function StaticHeader() {
             className="logo-link"
             aria-label="Charlie - Home"
           >
-            <span className="logo-text">Charlie</span>
+            <span className="logo-text" style={{ letterSpacing: '-0.02em' }}>Charlie</span>
           </Link>
         </div>
 
@@ -68,8 +68,19 @@ export default function StaticHeader() {
         </div>
 
         {/* Theme toggle (mobile-first) */}
-        <div className="desktop-only">
+        <div className="desktop-only" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
           <ThemeToggle />
+          <div aria-hidden="true" style={{ width: '1px', height: '24px', background: 'var(--border)' }} />
+          <div style={{
+            padding: '6px 10px',
+            borderRadius: '999px',
+            border: '1px solid var(--border)',
+            background: 'color-mix(in oklab, var(--bg) 85%, transparent)',
+            fontSize: '12px',
+            color: 'var(--muted)'
+          }}>
+            Available Q4
+          </div>
         </div>
       </div>
     </header>

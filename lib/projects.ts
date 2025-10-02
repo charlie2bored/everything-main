@@ -110,7 +110,7 @@ export function getProjectUrl(slug: string): string {
 
 // Helper function to get projects for homepage (reduced to 3 for performance)
 export function getSelectedWork(): Project[] {
-  return getFeaturedProjects(3)
+  return getFeaturedProjects(5)
 }
 
 // Helper function to format KPI display

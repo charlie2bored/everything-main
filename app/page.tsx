@@ -3,7 +3,7 @@ import Footer from '@/components/Footer'
 import Row from '@/components/Row'
 import { ProofStrip } from '@/components/MetricBadge'
 import EffectsGate from '@/components/EffectsGate'
-import StaticHero from '@/components/StaticHero'
+import Hero from '@/components/Hero'
 import StaticRow from '@/components/StaticRow'
 import { getSelectedWork, getAverageImprovement, getAllProjects } from '@/lib/projects'
 
@@ -77,8 +77,8 @@ export default function HomePage() {
       
       
       <main id="main">
-        {/* Hero Section - Static for faster rendering */}
-        <StaticHero />
+        {/* Hero Section with animated graphic/parallax */}
+        <Hero />
         
         {/* Background effects - loads after idle, skipped on mobile */}
         <EffectsGate />
