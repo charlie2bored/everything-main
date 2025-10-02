@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
+const ThemeToggle = dynamic(() => import('./ThemeToggle'), { ssr: false })
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -63,6 +65,11 @@ export default function StaticHeader() {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Theme toggle (mobile-first) */}
+        <div className="desktop-only">
+          <ThemeToggle />
         </div>
       </div>
     </header>

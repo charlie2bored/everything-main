@@ -2,6 +2,7 @@
 
 import { m } from 'framer-motion'
 import { KPI } from '@/lib/projects'
+import Counter from './Counter'
 
 interface MetricBadgeProps {
   kpi: KPI
@@ -33,7 +34,7 @@ export default function MetricBadge({ kpi, delay = 0, variant = 'default' }: Met
             'metric-badge__change--neutral'
           }`}
         >
-          {kpi.change}
+          <Counter value={kpi.change} />
         </span>
         <span className="metric-badge__label">
           {kpi.label}
